@@ -84,7 +84,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initView() {
-
+        recyclerView.setVisibility(View.INVISIBLE);
         mainAdapter = new MainAdapter(HomeActivity.this, mBanners);
         //初始化下拉布局
         itemTouchHelperCallback = new ItemTouchHelperCallback(mainAdapter, mBanners);

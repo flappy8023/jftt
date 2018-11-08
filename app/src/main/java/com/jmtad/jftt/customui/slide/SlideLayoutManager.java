@@ -51,6 +51,7 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                         getDecoratedMeasuredWidth(view),
                         getDecoratedMeasuredHeight(view));
             }
+            mRecyclerView.setVisibility(View.VISIBLE);
         } else {
             for (int position = itemCount - 1; position >= 0; position--) {
                 final View view = recycler.getViewForPosition(position);

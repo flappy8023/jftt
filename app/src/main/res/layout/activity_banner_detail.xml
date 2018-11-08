@@ -128,7 +128,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <WebView
+            <com.just.agentweb.AgentWebView
                 android:id="@+id/tv_banner_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

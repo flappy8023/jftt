@@ -13,9 +13,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +24,7 @@ import com.jmtad.jftt.module.banner.contract.DetailContract;
 import com.jmtad.jftt.module.banner.presenter.DetailPresenter;
 import com.jmtad.jftt.util.StatusBarUtil;
 import com.jmtad.jftt.util.wechat.WeShareUtil;
+import com.just.agentweb.AgentWebView;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 
 import butterknife.BindView;
@@ -40,7 +38,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_banner_detail_content)
-    WebView webView;
+    AgentWebView webView;
     private Banner banner;
     private String bannerId;
     @BindView(R.id.bt_go_link)
@@ -87,21 +85,21 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     @Override
     protected void initView() {
         initToolbar();
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (!TextUtils.isEmpty(url)) {
-                    Intent intent = new Intent(BannerDetailActivity.this, BannerLinkActivity.class);
-                    intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
-                    startActivity(intent);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webSettings.setJavaScriptEnabled(true);//支持js
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                if (!TextUtils.isEmpty(url)) {
+//                    Intent intent = new Intent(BannerDetailActivity.this, BannerLinkActivity.class);
+//                    intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
+//                    startActivity(intent);
+//                    return true;
+//                }
+//                return super.shouldOverrideUrlLoading(view, url);
+//            }
+//        });
+//        WebSettings webSettings = webView.getSettings();
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        webSettings.setJavaScriptEnabled(true);//支持js
         //填充数据
         if (null != getIntent()) {
             bannerId = getIntent().getStringExtra(KEY_BANNER_ID);
