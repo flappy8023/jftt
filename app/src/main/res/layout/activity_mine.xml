@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_1"
+    android:clipChildren="false"
+    android:fitsSystemWindows="true"
+    tools:context=".module.mine.MineActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/px_560"
+        android:background="@color/profile_bg_color" />
+
+    <RelativeLayout
+        android:id="@+id/rl_mine_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_110">
+
+        <ImageView
+            android:id="@+id/iv_mine_back"
+            android:layout_width="@dimen/px_40"
+            android:layout_height="@dimen/px_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_40"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/px_40"
+            android:layout_toRightOf="@id/iv_mine_back"
+            android:text="@string/mine_title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_50" />
+
+        <com.jmtad.jftt.customui.CircleImageView
+            android:id="@+id/iv_mine_head"
+            android:layout_width="@dimen/px_60"
+            android:layout_height="@dimen/px_60"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/px_40"
+            android:src="@drawable/defult_head"
+            app:civ_border_color="@color/gray_2"
+            app:civ_border_width="@dimen/px_2"
+            app:civ_fill_color="@color/white" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_mine_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_310"
+        android:layout_below="@id/rl_mine_title"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40"
+        android:clipChildren="false"></android.support.v4.view.ViewPager>
+
+    <com.jmtad.jftt.customui.indicator.CircleIndicatorView
+        android:id="@+id/indicator_mine_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vp_mine_card"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px_18"
+        app:indicatorRadius="@dimen/px_6"
+        app:indicatorSelectColor="@color/white" />
+
+    <com.jmtad.jftt.customui.ViewPagerExt
+        android:id="@+id/vp_mine_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/indicator_mine_card"
+        android:paddingLeft="@dimen/px_40"
+        android:paddingTop="@dimen/px_20"
+        android:paddingRight="@dimen/px_40">
+
+    </com.jmtad.jftt.customui.ViewPagerExt>
+</RelativeLayout>

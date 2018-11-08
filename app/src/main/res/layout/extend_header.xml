@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pull_to_refresh_header_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_recent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg_home_header"
+            android:layout_marginLeft="@dimen/px_40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_60"
+            android:orientation="horizontal"
+            android:text="@string/home_header_recent_text"
+            android:textSize="@dimen/px_30">
+
+            <RadioButton
+                android:id="@+id/rb_home_header_recent"
+                android:layout_width="@dimen/px_140"
+                android:layout_height="@dimen/px_48"
+                android:background="@drawable/home_header_radio_bt_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/home_header_recent_text"
+                android:textColor="@drawable/home_header_rb_text_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_home_header_like"
+                android:layout_width="@dimen/px_140"
+                android:layout_height="@dimen/px_48"
+                android:background="@drawable/home_header_radio_bt_selector"
+                android:button="@null"
+                android:layout_marginLeft="@dimen/px_12"
+                android:checked="false"
+                android:gravity="center"
+                android:text="@string/home_header_like_text"
+                android:textColor="@drawable/home_header_rb_text_selector" />
+        </RadioGroup>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_marginLeft="@dimen/px_8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/px_36" />
+    </LinearLayout>
+
+
+    <com.jmtad.jftt.customui.pullextend.ExpendPoint
+        android:id="@+id/expend_point"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:layout_alignParentBottom="true"
+        android:padding="1dp" />
+
+
+</RelativeLayout>

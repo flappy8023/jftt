@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".module.setting.FeedbackActivity">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/profile_bg_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/px_40"
+            android:background="@drawable/profile_content_bg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/px_30"
+            android:paddingTop="@dimen/px_40"
+            android:paddingRight="@dimen/px_30"
+            android:paddingBottom="@dimen/px_72">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_feedback_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/yellow"
+                app:tabSelectedTextColor="@color/black"
+                app:tabTextColor="@color/gray_textColor">
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feedback_function_tab" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="@dimen/px_120"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feedback_performance_tab" />
+            </android.support.design.widget.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray_1" />
+
+            <EditText
+                android:id="@+id/et_feedback_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_90"
+                android:layout_marginTop="@dimen/px_46"
+                android:background="@drawable/profile_edittext_bg_selector"
+                android:gravity="center_vertical"
+                android:hint="@string/feedback_hint_title"
+                android:inputType="text"
+                android:paddingLeft="@dimen/px_30"
+                android:textSize="@dimen/sp_30" />
+
+            <EditText
+                android:id="@+id/et_feedback_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_260"
+                android:layout_marginTop="@dimen/px_32"
+                android:background="@drawable/profile_edittext_bg_selector"
+                android:gravity="top|left"
+                android:hint="@string/feedback_hint_content"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/px_30"
+                android:textSize="@dimen/sp_30" />
+
+            <EditText
+                android:id="@+id/et_feedback_contact"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_90"
+                android:layout_marginTop="@dimen/px_46"
+                android:background="@drawable/profile_edittext_bg_selector"
+                android:gravity="center_vertical"
+                android:hint="@string/feedback_hint_contact"
+                android:inputType="text"
+                android:paddingLeft="@dimen/px_30"
+                android:textSize="@dimen/sp_30" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_feedback_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px_90"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_marginRight="@dimen/px_30"
+            android:background="@drawable/bt_choose_login_bg"
+            android:text="@string/profile_submit"
+            android:textColor="@color/black_textColor"
+            android:textSize="@dimen/sp_30" />
+    </LinearLayout>
+
+
+</LinearLayout>

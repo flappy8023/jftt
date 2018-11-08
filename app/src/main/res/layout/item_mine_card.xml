@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/px_24"
+        app:cardPreventCornerOverlap="false">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/sinopeccard" />
+
+            <TextView
+                android:id="@+id/tv_card_balance_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_40"
+                android:layout_marginTop="@dimen/px_46"
+                android:text="@string/oil_balance"
+                android:textColor="@color/white_1"
+                android:textSize="@dimen/sp_24" />
+
+            <TextView
+                android:id="@+id/tv_card_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_card_balance_title"
+                android:layout_alignLeft="@id/tv_card_balance_title"
+                android:layout_marginTop="@dimen/px_24"
+                android:maxLength="30"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_42"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_card_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_card_balance_title"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px_40"
+                android:text="@string/card_name_zsh"
+                android:textColor="@color/white_1"
+                android:textSize="@dimen/sp_24" />
+
+            <TextView
+                android:id="@+id/card_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/tv_card_name"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/px_50"
+                android:textColor="@color/white_1" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_card_no_bind"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/sinopeccard">
+
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_100"
+                android:text="@string/card_no_bind_zsh_hint"
+                android:textColor="#FFE1DC"
+                android:textSize="@dimen/sp_28" />
+
+            <TextView
+                android:id="@+id/tv_card_bind_now"
+                android:layout_width="@dimen/px_180"
+                android:layout_height="@dimen/px_72"
+                android:layout_below="@id/tv_hint"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_60"
+                android:background="@drawable/bt_login_bind_bg"
+                android:gravity="center"
+                android:text="@string/card_bind_now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_30" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

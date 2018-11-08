@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jmtad.jftt">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/TranslucentTheme">
+        <activity android:name=".module.main.ui.MainActivity">
+
+        </activity>
+        <activity
+            android:name=".module.login.ui.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
+
+
+        </activity>
+        <activity android:name=".module.login.ui.LoginBindActivity" />
+        <activity android:name=".module.login.ui.ResetPwdActivity" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
+        <activity android:name=".module.login.ui.LoginActivity" />
+        <activity android:name=".module.mine.MineActivity" />
+        <activity android:name=".module.setting.SettingActivity" />
+        <activity android:name=".module.banner.BannerDetailActivity"></activity>
+        <activity android:name=".module.setting.AboutUsActivity" />
+        <activity android:name=".module.mine.ProfileActivity" />
+        <activity android:name=".module.mine.BindAccountActivity" />
+        <activity android:name=".module.setting.FeedbackActivity" />
+        <activity android:name=".module.mine.FAQActivity" />
+        <activity android:name=".module.mine.SysMessageActivity" />
+        <activity
+            android:name=".module.login.ui.WelcomeActivity"
+            android:theme="@style/AppTheme.Splash" />
+        <activity android:name=".module.mine.DealQueryActivity" />
+        <activity android:name=".module.mine.FAQDetailActivity" />
+        <activity android:name=".module.mine.BindCardActivity" />
+        <activity android:name=".module.banner.BannerLinkActivity" />
+        <activity android:name=".module.banner.PictureActivity" />
+        <activity android:name=".module.main.ui.Main2Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: "calces.screen"
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    signingConfigs {
+        debugConfig {
+            storeFile file("mykey.jks")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.jmtad.jftt"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debugConfig
+        }
+        debug {
+            signingConfig signingConfigs.debugConfig
+        }
+    }
+
+    //打包重命名
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output -> output.outputFileName = "jftt_" + buildType.name + "_" + defaultConfig.versionName + "_" + new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC")) + ".apk"
+            }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+screen {
+
+    dimens {
+        designPx 375
+        smallesWidths 320, 360, 375, 392, 411
+        scale BigDecimal.ROUND_UP
+        auto true
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibVersion"
+    //Glide图片加载框架
+    implementation("com.github.bumptech.glide:glide:$rootProject.glideVersion") {
+        exclude group: "com.android.support"
+    }
+    //材料设计库
+    implementation "com.android.support:design:$rootProject.supportLibVersion"
+    implementation "com.github.bumptech.glide:okhttp3-integration:$rootProject.glideVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:27.1.1'
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    //卡片布局
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibVersion"
+    //EventBus事件总线
+    implementation "org.greenrobot:eventbus:$rootProject.eventBusVersion"
+    //ButterKnife自动绑定
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+    //Retrofit（只用Retrofit联网）
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    //Rxjava and Retrofit（Retrofit+Rx需要添加的依赖）
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxAndroidVersion"
+    //okHttp3
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    //rxLife
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.rxlifecycleVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.rxlifecycleVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
+    //Gson
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    //banner
+    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
+    //wechat
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //滚轮选择器
+    implementation('com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.5.6') {
+        exclude group: 'com.android.support'
+    }
+    //二维码
+    implementation 'com.google.zxing:core:3.3.0'
+    //更新检测
+    implementation 'com.allenliu.versionchecklib:library:2.1.1'
+    //loadingview
+    implementation 'com.victor:lib:1.0.4'
+    //滑动返回
+    implementation 'com.r0adkll:slidableactivity:2.0.6'
+    //webview
+    implementation 'com.just.agentweb:agentweb:4.0.2' // (必选)
+    implementation 'com.just.agentweb:download:4.0.2' // (可选)
+    //图片浏览
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+
+}

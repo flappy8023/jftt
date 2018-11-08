@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/px_72"
+    android:paddingRight="@dimen/px_72"
+    tools:context="com.jmtad.jftt.module.login.ui.LoginBindActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_200"
+        android:text="@string/bind_phone_title"
+        android:textColor="@color/black_2"
+        android:textSize="@dimen/sp_50" />
+
+
+    <EditText
+        android:id="@+id/et_bind_phone_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_100"
+        android:background="@null"
+        android:hint="@string/bind_phone_phoneHint"
+        android:inputType="number"
+        android:maxLength="11"
+        android:textColor="@color/black"
+        android:textColorHint="#6F6E6E"
+        android:textSize="@dimen/sp_40" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/px_24"
+        android:background="#D1D0D0" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px_40">
+
+
+        <EditText
+            android:id="@+id/et_bind_phone_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_24"
+            android:background="@null"
+            android:hint="@string/bind_phone_verCodeHint"
+            android:inputType="number"
+            android:maxLength="8"
+            android:textColor="@color/black"
+            android:textColorHint="#6F6E6E"
+            android:textSize="@dimen/sp_40" />
+
+        <com.jmtad.jftt.customui.CountDownTextView
+            android:id="@+id/bt_send_code"
+            android:layout_width="@dimen/px_180"
+            android:layout_height="@dimen/px_72"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bt_login_bind_send_bg"
+            android:gravity="center"
+            android:text="@string/bind_phone_getcode"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/sp_26" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/px_16"
+        android:background="#D1D0D0" />
+
+    <TextView
+        android:id="@+id/bt_login_bind_sure"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_marginTop="@dimen/px_72"
+        android:background="@drawable/bt_choose_login_bg"
+        android:gravity="center"
+        android:text="@string/login_bind_sure"
+        android:textColor="@color/black_textColor"
+        android:textSize="@dimen/sp_30" />
+
+    <TextView
+        android:id="@+id/bt_login_bind_back"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_marginTop="@dimen/px_72"
+        android:background="@drawable/bt_login_bind_bg"
+        android:gravity="center"
+        android:text="@string/back"
+        android:textColor="#8D8C8B"
+        android:textSize="@dimen/sp_30" />
+</LinearLayout>

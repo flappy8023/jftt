@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D93615"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".module.mine.DealQueryActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_deal_query_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_mine_back"
+                android:layout_width="@dimen/px_40"
+                android:layout_height="@dimen/px_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_40"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px_40"
+                android:layout_toRightOf="@id/iv_mine_back"
+                android:text="@string/deal_query_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_50" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_oil_remain_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_deal_query_title"
+            android:layout_marginLeft="@dimen/px_60"
+            android:layout_marginTop="@dimen/px_50"
+            android:text="@string/deal_query_oil_remaining"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_30" />
+
+        <TextView
+            android:id="@+id/tv_oil_remain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_oil_remain_title"
+            android:layout_alignLeft="@id/tv_oil_remain_title"
+            android:layout_marginTop="@dimen/px_30"
+            android:layout_marginBottom="@dimen/px_60"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_40" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/deal_query_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/px_20"
+            android:layout_marginTop="@dimen/px_30"
+            android:layout_marginRight="@dimen/px_20"
+            android:background="@drawable/mine_menu_content_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/px_36"
+            android:paddingRight="@dimen/px_36">
+
+            <LinearLayout
+                android:id="@+id/ll_date_select"
+                android:layout_width="@dimen/px_200"
+                android:layout_height="@dimen/px_50"
+                android:layout_marginTop="@dimen/px_32"
+                android:background="@drawable/deal_query_date_bg"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/px_30"
+                    android:layout_height="@dimen/px_30"
+                    android:src="@drawable/calendar" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/px_16"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_20" />
+
+                <ImageView
+                    android:layout_width="@dimen/px_8"
+                    android:layout_height="@dimen/px_8"
+                    android:layout_marginLeft="@dimen/px_16"
+                    android:src="@drawable/triangle_down" />
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_deal_query_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/px_40"
+                app:tabIndicatorColor="@color/tab_indicator_color"
+                app:tabSelectedTextColor="@color/tab_indicator_color"
+                app:tabTextColor="@color/gray_textColor">
+
+            </android.support.design.widget.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/gray" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_deal_query_cotent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

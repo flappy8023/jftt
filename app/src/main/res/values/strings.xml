@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">积分头条</string>
+    <!--登录-->
+    <string name="slogan1">资讯遇见生活,积分产生价值</string>
+    <string name="choose_login_wechat_login">微信登录</string>
+    <string name="choose_login_wechat_direct">直接登录</string>
+    <string name="choose_login_bind_phone">绑定手机号</string>
+    <string name="login_copyright">Copyright © JMT</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
+    <string name="login_bind_sure">绑定</string>
+    <string name="back">返回</string>
+    <string name="bind_phone_phoneHint">手机号</string>
+    <string name="bind_phone_verCodeHint">验证码</string>
+    <string name="bind_phone_getcode">获取</string>
+    <string name="bind_phone_title">绑定手机</string>
+    <string name="copy_kefu_wx_suc">已成功复制微信号~现在就去添加微信联系客服吧</string>
+    <!--注册-->
+    <string name="register_send_verification_code">获取</string>
+    <!--个人中心-->
+    <string name="mine_title">个人中心</string>
+    <string name="oil_balance">油滴余额</string>
+    <string name="card_name_zsh">中石化加油卡</string>
+    <string name="menu_bind_account">账号绑定</string>
+    <string name="menu_my_oil_pool">我的油库</string>
+    <string name="menu_deal_query">交易查询</string>
+    <string name="menu_my_message">系统消息</string>
+    <string name="menu_faq">常见问题</string>
+    <string name="card_no_bind_zsh_hint">暂未绑定中石化加油卡</string>
+    <string name="card_bind_title">油卡绑定</string>
+    <string name="card_bind_cardNo">加油卡号</string>
+    <string name="card_bind_now">立即绑卡</string>
+    <string name="card_bind_sure">确认绑定</string>
+    <string name="bind_card_hint">请输入19位中石油加油卡号</string>
+    <string name="bind_card_success">绑定成功</string>
+    <!--设置-->
+    <string name="setting_title">系统设置</string>
+    <string name="setting_about_us">关于我们</string>
+    <string name="setting_feedback">问题反馈</string>
+    <string name="setting_clear_cache">清除缓存</string>
+    <string name="setting_check_update">检查更新</string>
+    <string name="setting_switch_account">切换账号</string>
+    <string name="makesure_clear_cache">确定清除所有缓存?</string>
+    <string name="clear_done">清除完成</string>
+    <!--首页-->
+    <string name="home_menu_mine">我的</string>
+    <string name="home_menu_setting">设置</string>
+    <string name="home_news_view_format">%d   views</string>
+    <string name="home_header_recent_text">最近浏览</string>
+    <string name="home_header_like_text">喜欢</string>
+    <!--个人资料-->
+    <string name="profile_title">个人资料</string>
+    <string name="profile_nick_name">昵称</string>
+    <string name="profile_gender">性别</string>
+    <string name="profile_city">城市</string>
+    <string name="profile_job">职业</string>
+    <string name="profile_education">教育经历</string>
+    <string name="profile_introduction">个人简介</string>
+    <string name="profile_hint_nickName">设置昵称</string>
+    <string name="profile_hint_job">请填写职业</string>
+    <string name="profile_hint_city">请选择地区</string>
+    <string name="profile_hint_education">请填写学历</string>
+    <string name="profile_hint_introduction">请填写个人简介</string>
+    <string name="profile_gender_male">男性</string>
+    <string name="profile_gender_female">女性</string>
+    <string name="profile_submit">提交</string>
+    <!--账号绑定-->
+    <string name="bind_account_title">账号绑定</string>
+    <string name="bind_account_phone">手机</string>
+    <string name="bind_account_wechat">微信</string>
+    <string name="bind_account_hint_phone">手机号</string>
+    <string name="bind_account_hint_verCode">验证码</string>
+    <string name="bind_binded">（已绑定）</string>
+    <string name="bind_no_binded">（未绑定）</string>
+    <string name="bind_account_go_bind_wechat">点击跳转微信绑定</string>
+    <!--反馈页面-->
+    <string name="feedback_title">意见反馈</string>
+    <string name="feedback_function_tab">功能反馈</string>
+    <string name="feedback_performance_tab">性能问题</string>
+    <string name="feedback_hint_title">反馈标题</string>
+    <string name="feedback_hint_content">反馈内容</string>
+    <string name="feedback_hint_contact">联系方式</string>
+    <!--常见问题-->
+    <string name="faq_charge_question">充值问题</string>
+    <string name="faq_account_question">如何获油</string>
+    <string name="faq_contant_custom_service">联系客服</string>
+
+    <!--交易查询-->
+    <string name="deal_query_title">交易查询</string>
+    <string name="deal_query_oil_remaining">油滴剩余</string>
+    <!--详情页-->
+    <string name="banner_detail_comment_hint">有何高见,展开讲讲</string>
+
+</resources>

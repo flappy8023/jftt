@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_1">#FFE0DB</color>
+    <color name="gray">#666666</color>
+    <color name="gray_1">#E4E9F2</color>
+    <color name="gray_2">#CCCCCC</color>
+    <color name="gray_4">#C2C1BC</color>
+    <color name="toolbar_color">#FAFAFA</color>
+    <color name="black">#000000</color>
+    <color name="black_2">#616161</color>
+    <color name="black_textColor">#181717</color>
+    <color name="translucent_black_1">#90000000</color>
+    <color name="translucent_black_80">#CC000000</color>
+    <color name="black_1">#14151C</color>
+    <color name="splash_start_color">#5243FF</color>
+    <color name="splash_end_color">#658CFF</color>
+    <color name="orange">#FFF6CC</color>
+    <color name="orange_1">#FFC000</color>
+    <color name="profile_bg_color">#EFEFF4</color>
+    <color name="gray_textColor">#A0ACBF</color>
+    <color name="tab_indicator_color">#FF613C</color>
+    <color name="red">#FF0000</color>
+    <color name="red_1">#FFD2D2</color>
+    <color name="deal_query_bg">#F6F3F7</color>
+    <color name="yellow">#FFDE41</color>
+    <color name="color_income">#5CA714</color>
+    <color name="color_expend">#FF4460</color>
+    <color name="home_header_bg_color">#1D1D24</color>
+    <color name="home_header_selected_color">#FFD302</color>
+
+</resources>

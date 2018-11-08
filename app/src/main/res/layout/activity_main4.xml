@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jmtad.jftt.customui.pullextend.PullExtendLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pull_extend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_header_bg_color"
+    tools:context=".module.main.ui.Main2Activity">
+
+    <com.jmtad.jftt.customui.pullextend.ExtendListHeader
+        android:id="@+id/extend_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_310">
+
+    </com.jmtad.jftt.customui.pullextend.ExtendListHeader>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_30"
+            android:fitsSystemWindows="true">
+
+            <ImageView
+                android:id="@+id/iv_main_top_menu"
+                android:layout_width="@dimen/px_70"
+                android:layout_height="@dimen/px_70"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/px_40"
+                android:scaleType="fitXY"
+                android:src="@drawable/home_menu_more" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_home_qrcode"
+            android:layout_width="@dimen/px_200"
+            android:layout_height="@dimen/px_200"
+            android:layout_alignTop="@id/rl_home_bottom"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/px_40"
+            android:layout_marginRight="@dimen/px_40" />
+    </RelativeLayout>
+</com.jmtad.jftt.customui.pullextend.PullExtendLayout>

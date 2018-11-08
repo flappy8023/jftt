@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/px_670"
+    android:orientation="horizontal"
+    android:layout_height="@dimen/px_310"
+    android:gravity="center_vertical">
+
+    <com.jmtad.jftt.customui.CircleImageView
+        android:layout_width="@dimen/px_120"
+        android:layout_marginLeft="@dimen/px_12"
+        android:layout_height="@dimen/px_120"
+        android:src="@drawable/kefu_head" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_20"
+        android:text="有礼付小姐姐微信号:\n17715231656"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_30" />
+
+    <Button
+        android:id="@+id/bt_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/profile_bt_submit_bg"
+        android:text="点击复制"
+        android:layout_marginRight="@dimen/px_12"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_30" />
+</LinearLayout>

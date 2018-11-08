@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".module.mine.ProfileActivity">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/profile_bg_color"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/px_168"
+                    android:layout_height="@dimen/px_168"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px_40">
+
+                    <com.jmtad.jftt.customui.CircleImageView
+                        android:id="@+id/iv_profile_headImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/defult_head"
+                        app:civ_border_color="@color/gray_2"
+                        app:civ_border_width="@dimen/px_2"
+                        app:civ_fill_color="@color/white" />
+
+                    <!--暂时不支持上传头像-->
+                    <ImageView
+                        android:layout_width="@dimen/px_42"
+                        android:layout_height="@dimen/px_42"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/edit"
+                        android:visibility="invisible" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:layout_marginTop="@dimen/px_40"
+                    android:layout_marginRight="@dimen/px_40"
+                    android:background="@drawable/profile_content_bg"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/px_32"
+                        android:layout_marginRight="@dimen/px_30"
+                        android:layout_marginBottom="@dimen/px_42"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_50"
+                            android:text="@string/profile_nick_name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <EditText
+                            android:id="@+id/et_profile_nickName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_90"
+                            android:layout_marginTop="@dimen/px_20"
+                            android:background="@drawable/profile_edittext_bg_selector"
+                            android:hint="@string/profile_hint_nickName"
+                            android:paddingLeft="@dimen/px_30"
+                            android:textSize="@dimen/sp_30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_48"
+                            android:text="@string/profile_gender"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <RadioGroup
+                            android:id="@+id/rg_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_24"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb_gender_male"
+                                android:layout_width="@dimen/px_190"
+                                android:layout_height="@dimen/px_90"
+                                android:background="@drawable/profile_radio_bt_selector"
+                                android:button="@null"
+                                android:checked="true"
+                                android:gravity="center"
+                                android:text="@string/profile_gender_male"
+                                android:textColor="@drawable/profile_text_selector"
+                                android:textSize="@dimen/sp_30" />
+
+                            <RadioButton
+                                android:id="@+id/rb_gender_female"
+                                android:layout_width="@dimen/px_190"
+                                android:layout_height="@dimen/px_90"
+                                android:layout_marginLeft="@dimen/px_32"
+                                android:background="@drawable/profile_radio_bt_selector"
+                                android:button="@null"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:text="@string/profile_gender_female"
+                                android:textColor="@drawable/profile_text_selector"
+                                android:textSize="@dimen/sp_30" />
+                        </RadioGroup>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_48"
+                            android:text="@string/profile_city"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <TextView
+                            android:id="@+id/tv_profile_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_90"
+                            android:layout_marginTop="@dimen/px_20"
+                            android:background="@drawable/profile_edittext_bg_selector"
+                            android:gravity="center_vertical"
+                            android:hint="@string/profile_hint_city"
+                            android:paddingLeft="@dimen/px_30"
+                            android:textSize="@dimen/sp_30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_48"
+                            android:text="@string/profile_job"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <TextView
+                            android:id="@+id/tv_profile_job"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_90"
+                            android:layout_marginTop="@dimen/px_20"
+                            android:background="@drawable/profile_edittext_bg_selector"
+                            android:gravity="center_vertical"
+                            android:hint="@string/profile_hint_job"
+                            android:paddingLeft="@dimen/px_30"
+                            android:textSize="@dimen/sp_30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_48"
+                            android:text="@string/profile_education"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <TextView
+                            android:id="@+id/tv_profile_edu"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_90"
+                            android:layout_marginTop="@dimen/px_20"
+                            android:background="@drawable/profile_edittext_bg_selector"
+                            android:gravity="center_vertical"
+                            android:hint="@string/profile_hint_education"
+                            android:paddingLeft="@dimen/px_30"
+                            android:textSize="@dimen/sp_30" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/px_48"
+                            android:text="@string/profile_introduction"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_28" />
+
+                        <EditText
+                            android:id="@+id/tv_profile_introduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/px_290"
+                            android:layout_marginTop="@dimen/px_20"
+                            android:background="@drawable/profile_edittext_bg_selector"
+                            android:gravity="start|top"
+                            android:hint="@string/profile_hint_introduction"
+                            android:inputType="textMultiLine"
+                            android:padding="@dimen/px_30"
+                            android:textSize="@dimen/sp_30" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/bt_profile_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/px_40"
+                    android:layout_marginTop="@dimen/px_30"
+                    android:layout_marginRight="@dimen/px_40"
+                    android:layout_marginBottom="@dimen/px_36"
+                    android:background="@drawable/bt_choose_login_bg"
+                    android:text="@string/profile_submit"
+                    android:textColor="@color/black_textColor"
+                    android:textSize="@dimen/sp_30" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
