@@ -1,3 +1,3 @@
 # jftt_android
 
-积分头条appAndroid客户端
+积分头条App Android客户端
