@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.adapter.WelcomeAdapter;
 import com.jmtad.jftt.base.BaseActivity;
-import com.jmtad.jftt.module.main.ui.MainActivity;
+import com.jmtad.jftt.module.main.ui.HomeActivity;
 
 import butterknife.BindView;
 
@@ -29,13 +29,10 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void initView() {
         WelcomeAdapter adapter = new WelcomeAdapter(this);
-        adapter.setClickListener(new WelcomeAdapter.ClickListener() {
-            @Override
-            public void onClick(int position) {
-                if (position == 2) {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                    finish();
-                }
+        adapter.setClickListener(position -> {
+            if (position == 2) {
+                startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+                finish();
             }
         });
         //viewpager缓存所有页面

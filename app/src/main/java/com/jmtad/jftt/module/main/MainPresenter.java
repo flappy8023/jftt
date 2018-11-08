@@ -1,6 +1,7 @@
 package com.jmtad.jftt.module.main;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
 import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
@@ -10,6 +11,7 @@ import com.jmtad.jftt.http.RxCallBack;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.QueryBannerListResp;
+import com.jmtad.jftt.http.bean.response.StarResp;
 import com.jmtad.jftt.util.CheckUpdateUtil;
 import com.jmtad.jftt.util.CollectionUtil;
 
@@ -48,5 +50,35 @@ public class MainPresenter extends BasePresenter<MainContract.IMainView> impleme
     @Override
     public DownloadBuilder checkUpdate(RequestVersionListener listener, boolean canCael) {
         return CheckUpdateUtil.checkVersion(listener, canCael);
+    }
+
+    /**
+     * 点赞或者取消点赞
+     */
+    @Override
+    public void starOrUnStar(Banner banner, View tvStar) {
+        HttpApi.getInstance().service.star(getUserId(), banner.getId()).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<StarResp>() {
+            @Override
+            public void onSuccess(StarResp starResp) {
+                if (TextUtils.equals(BaseResponse.CODE_0, starResp.getCode())) {
+                    if (TextUtils.equals(StarResp.TYPE_STAR, starResp.getOprType())) {
+                        banner.setStars(banner.getStars() + 1);
+                        banner.setStarStatus(Banner.STATUS_STARED);
+                        mView.starSucc(tvStar, banner.getStars());
+                    } else {
+                        banner.setStarStatus(Banner.STATUS_UNSTARED);
+                        banner.setStars(banner.getStars() - 1);
+                        mView.unStarSucc(tvStar, banner.getStars());
+                    }
+                } else {
+                    mView.showError(starResp.getMsg());
+                }
+            }
+
+            @Override
+            public void onFail(Throwable e) {
+
+            }
+        });
     }
 }

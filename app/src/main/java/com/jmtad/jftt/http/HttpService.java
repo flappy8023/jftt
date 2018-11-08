@@ -3,6 +3,7 @@ package com.jmtad.jftt.http;
 
 import com.jmtad.jftt.http.bean.response.AddReadVolumeResp;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
+import com.jmtad.jftt.http.bean.response.QueryBannerDetailResp;
 import com.jmtad.jftt.http.bean.response.QueryBannerListResp;
 import com.jmtad.jftt.http.bean.response.QueryCardResp;
 import com.jmtad.jftt.http.bean.response.QueryCommonProResp;
@@ -71,6 +72,14 @@ public interface HttpService {
                                           @Query("sex") String sex, @Query("city") String city, @Query("profession") String profession,
                                           @Query("education") String education, @Query("personalProfile") String personalProfile);
 
+    /**
+     * 查询图文详情
+     *
+     * @param id
+     * @return
+     */
+    @POST("banner/queryBannerById")
+    Observable<QueryBannerDetailResp> queryBannerDetail(@Query("id") String id);
     /**
      * 查询图文列表
      *

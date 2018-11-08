@@ -23,7 +23,11 @@
             android:name=".module.login.ui.SplashActivity"
             android:theme="@style/AppTheme.Splash">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".module.login.ui.LoginBindActivity" />
         <activity android:name=".module.login.ui.ResetPwdActivity" />
@@ -48,12 +52,8 @@
         <activity android:name=".module.mine.BindCardActivity" />
         <activity android:name=".module.banner.BannerLinkActivity" />
         <activity android:name=".module.banner.PictureActivity" />
-        <activity android:name=".module.main.ui.Main2Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".module.main.ui.HomeActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

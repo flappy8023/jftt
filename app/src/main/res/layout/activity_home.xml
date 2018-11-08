@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/home_header_bg_color"
-    tools:context=".module.main.ui.Main2Activity">
+    tools:context=".module.main.ui.HomeActivity">
 
     <com.jmtad.jftt.customui.pullextend.ExtendListHeader
         android:id="@+id/extend_header"
@@ -47,9 +47,9 @@
             android:id="@+id/iv_home_qrcode"
             android:layout_width="@dimen/px_200"
             android:layout_height="@dimen/px_200"
-            android:layout_alignTop="@id/rl_home_bottom"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/px_40"
-            android:layout_marginRight="@dimen/px_40" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/px_40"
+            android:layout_marginBottom="@dimen/px_60" />
     </RelativeLayout>
 </com.jmtad.jftt.customui.pullextend.PullExtendLayout>

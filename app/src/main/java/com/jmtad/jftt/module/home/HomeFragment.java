@@ -19,6 +19,7 @@ import com.jmtad.jftt.customui.SharePopwindow;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.banner.BannerLinkActivity;
+import com.jmtad.jftt.module.main.ui.HomeActivity;
 import com.jmtad.jftt.util.GlideUtil;
 import com.jmtad.jftt.util.MyToast;
 import com.jmtad.jftt.util.QRCodeUtil;
@@ -30,10 +31,12 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * Fragment切换方式在V1.1废弃,新的实现{@link HomeActivity}
  * @description:
  * @author: flappy8023
  * @create: 2018-10-11 14:08
  **/
+@Deprecated
 public class HomeFragment extends BaseMvpFragment<HomePresenter> implements HomeContract.IHomeView {
 
     private FrameLayoutExt.SlideListener listener;
@@ -110,7 +113,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         //判断是否展示详情页
         if (TextUtils.equals(banner.getIsShowDetails(), "0")) {
             Intent intent = new Intent(getActivity(), BannerDetailActivity.class);
-            intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
+            intent.putExtra(BannerDetailActivity.KEY_BANNER_ID, banner.getId());
             startActivity(intent);
         } else {
             //如果跳转链接不为空跳转到配置的链接

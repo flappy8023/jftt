@@ -7,8 +7,10 @@ import com.jmtad.jftt.http.HttpApi;
 import com.jmtad.jftt.http.RxCallBack;
 import com.jmtad.jftt.http.bean.response.AddReadVolumeResp;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
+import com.jmtad.jftt.http.bean.response.QueryBannerDetailResp;
 import com.jmtad.jftt.http.bean.response.StarResp;
 import com.jmtad.jftt.module.banner.contract.DetailContract;
+import com.jmtad.jftt.util.LogUtil;
 
 import cn.qqtheme.framework.util.LogUtils;
 
@@ -59,5 +61,24 @@ public class DetailPresenter extends BasePresenter<DetailContract.IDetailView> i
             }
         });
 
+    }
+
+    @Override
+    public void queryBannerByID(String id) {
+        HttpApi.getInstance().service.queryBannerDetail(id).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<QueryBannerDetailResp>() {
+            @Override
+            public void onSuccess(QueryBannerDetailResp queryBannerDetailResp) {
+                if (TextUtils.equals(BaseResponse.CODE_0, queryBannerDetailResp.getCode())) {
+                    mView.loadBanner(queryBannerDetailResp.getBanner());
+                } else {
+                    mView.showError("");
+                }
+            }
+
+            @Override
+            public void onFail(Throwable e) {
+                LogUtil.debug(e.getLocalizedMessage());
+            }
+        });
     }
 }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.adapter.HomeHeaderAdapter;
@@ -45,7 +46,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class Main2Activity extends BaseActivity<MainPresenter> implements MainContract.IMainView, MainAdapter.HomeListener {
+public class HomeActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView, MainAdapter.HomeListener {
     @BindView(R.id.pull_extend)
     PullExtendLayout pullExtendLayout;
     @BindView(R.id.extend_header)
@@ -84,12 +85,12 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
     @Override
     protected void initView() {
 
-        mainAdapter = new MainAdapter(Main2Activity.this, mBanners);
+        mainAdapter = new MainAdapter(HomeActivity.this, mBanners);
         //初始化下拉布局
         itemTouchHelperCallback = new ItemTouchHelperCallback(mainAdapter, mBanners);
         itemTouchHelperCallback.setOnSlideListener(onSlideListener);
         itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
-        SlideLayoutManager layoutManager = new SlideLayoutManager(recyclerView, itemTouchHelper, Main2Activity.this);
+        SlideLayoutManager layoutManager = new SlideLayoutManager(recyclerView, itemTouchHelper, HomeActivity.this);
         itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         mainAdapter.setHomeListener(this);
@@ -102,8 +103,8 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
 
     private void initHeader() {
         headerRecyclerView = extendListHeader.getRecyclerView();
-        headerRecyclerView.setLayoutManager(new LinearLayoutManager(Main2Activity.this, LinearLayoutManager.HORIZONTAL, false));
-        headerAdapter = new HomeHeaderAdapter(Main2Activity.this, mBanners);
+        headerRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
         headerRecyclerView.setAdapter(headerAdapter);
         headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
             @Override
@@ -113,7 +114,7 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
 
             @Override
             public void onLongClick(Banner banner) {
-                MyToast.showLongToast(Main2Activity.this, "长按删除");
+                MyToast.showLongToast(HomeActivity.this, "长按删除");
             }
         });
     }
@@ -148,7 +149,7 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main4;
+        return R.layout.activity_home;
     }
 
     @Override
@@ -168,6 +169,22 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
     @Override
     public void noBanners() {
 
+    }
+
+    @Override
+    public void starSucc(View view, long stars) {
+        TextView tvStar = view.findViewById(R.id.tv_home_news_likes);
+        ImageView ivStar = view.findViewById(R.id.iv_star);
+        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+        tvStar.setText(String.valueOf(stars));
+    }
+
+    @Override
+    public void unStarSucc(View view, long stars) {
+        TextView tvStar = view.findViewById(R.id.tv_home_news_likes);
+        ImageView ivStar = view.findViewById(R.id.iv_star);
+        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like));
+        tvStar.setText(String.valueOf(stars));
     }
 
     @OnClick(R.id.iv_main_top_menu)
@@ -205,7 +222,7 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
     @Override
     public void share(Banner banner) {
         if (null == popwindow) {
-            popwindow = new SharePopwindow(Main2Activity.this, view -> {
+            popwindow = new SharePopwindow(HomeActivity.this, view -> {
                 switch (view.getId()) {
                     //分享到微信会话
                     case R.id.wechat_share_session:
@@ -252,14 +269,14 @@ public class Main2Activity extends BaseActivity<MainPresenter> implements MainCo
     }
 
     @Override
-    public void starOrUnstar(Banner banner) {
-
+    public void starOrUnstar(Banner banner, View view) {
+        presenter.starOrUnStar(banner, view);
     }
 
     @Override
     public void toDetail(Banner banner) {
-        Intent intent = new Intent(Main2Activity.this, BannerDetailActivity.class);
-        intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
+        Intent intent = new Intent(HomeActivity.this, BannerDetailActivity.class);
+        intent.putExtra(BannerDetailActivity.KEY_BANNER_ID, banner.getId());
         startActivity(intent);
     }
 }

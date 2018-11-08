@@ -14,6 +14,7 @@ import com.jmtad.jftt.module.banner.BannerDetailActivity;
 
 public class SlideLayoutManager extends RecyclerView.LayoutManager {
 
+
     private RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
     private Context context;
@@ -40,7 +41,7 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
         detachAndScrapAttachedViews(recycler);
         int itemCount = getItemCount();
-
+        //预加载一个
         if (itemCount > ItemConfig.DEFAULT_SHOW_ITEM) {
             for (int position = ItemConfig.DEFAULT_SHOW_ITEM; position >= 0; position--) {
                 final View view = recycler.getViewForPosition(position);
@@ -49,9 +50,6 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                 layoutDecoratedWithMargins(view, 0, 0,
                         getDecoratedMeasuredWidth(view),
                         getDecoratedMeasuredHeight(view));
-                if (position == 0) {
-//                    view.setOnTouchListener(mOnTouchListener);
-                }
             }
         } else {
             for (int position = itemCount - 1; position >= 0; position--) {
@@ -61,9 +59,6 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                 layoutDecoratedWithMargins(view, 0, 0,
                         getDecoratedMeasuredWidth(view),
                         getDecoratedMeasuredHeight(view));
-//                if (position == 0) {
-////                    view.setOnTouchListener(mOnTouchListener);
-//                }
             }
         }
     }
@@ -82,7 +77,7 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 mItemTouchHelper.startSwipe(childViewHolder);
             }
-            //为了解决华东和点击事件的冲突,在onTouch
+            //为了解决滑动和点击事件的冲突,在onTouch
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 float deltX = event.getX() - lastX;
                 float deltY = event.getY() - lastY;

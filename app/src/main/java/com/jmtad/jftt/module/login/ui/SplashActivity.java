@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
-import com.jmtad.jftt.module.main.ui.MainActivity;
+import com.jmtad.jftt.module.main.ui.HomeActivity;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 
 import butterknife.BindView;
@@ -78,7 +78,7 @@ public class SplashActivity extends BaseActivity {
      * 已登录用户直接进入主页
      */
     private void goToMain() {
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, HomeActivity.class));
         finish();
     }
 

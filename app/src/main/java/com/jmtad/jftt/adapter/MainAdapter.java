@@ -65,6 +65,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
         } else {
             holder.tvTitle.setText("");
         }
+        //设置点赞状态图标
+        if (TextUtils.equals(Banner.STATUS_STARED, banner.getStarStatus())) {
+            holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.liked));
+        } else {
+            holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.like));
+        }
         holder.tvStars.setText(banner.getStars() + "");
         holder.tvViews.setText(String.format(context.getString(R.string.home_news_view_format), banner.getViews()));
         holder.ivShare.setOnClickListener(view -> {
@@ -75,7 +81,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
         holder.ivPoster.getParent().getParent().requestDisallowInterceptTouchEvent(false);
         holder.likeLayout.setOnClickListener(view -> {
             if (null != homeListener) {
-                homeListener.starOrUnstar(banner);
+                homeListener.starOrUnstar(banner, view);
             }
         });
         holder.itemView.setOnTouchListener(new View.OnTouchListener() {
@@ -112,6 +118,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
 
     class MyHolder extends RecyclerView.ViewHolder {
         private ImageView ivPoster;
+        private ImageView ivStar;
         private TextView tvAuthor;
         private TextView tvTitle;
         private TextView tvStars;
@@ -128,6 +135,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
             ivPoster = itemView.findViewById(R.id.iv_home_frag_poster);
             tvAuthor = itemView.findViewById(R.id.tv_home_news_author);
             tvTitle = itemView.findViewById(R.id.tv_home_news_title);
+            ivStar = itemView.findViewById(R.id.iv_star);
             tvStars = itemView.findViewById(R.id.tv_home_news_likes);
             tvViews = itemView.findViewById(R.id.tv_home_news_views);
             likeLayout = itemView.findViewById(R.id.ll_home_news_like_container);
@@ -142,7 +150,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
     public interface HomeListener {
         void share(Banner banner);
 
-        void starOrUnstar(Banner banner);
+        void starOrUnstar(Banner banner, View view);
 
         void toDetail(Banner banner);
     }

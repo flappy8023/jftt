@@ -45,7 +45,9 @@ import butterknife.OnClick;
 
 /**
  * 首页
+ * Fragment切换方式在V1.1废弃,新的实现{@link HomeActivity}
  */
+@Deprecated
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView, FrameLayoutExt.SlideListener {
     @BindView(R.id.pull_extend)
     PullExtendLayout pullExtendLayout;
@@ -308,6 +310,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void noBanners() {
+
+    }
+
+    @Override
+    public void starSucc(View view, long stars) {
+
+    }
+
+    @Override
+    public void unStarSucc(View view, long stars) {
 
     }
 

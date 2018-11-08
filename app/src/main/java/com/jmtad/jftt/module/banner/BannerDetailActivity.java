@@ -36,12 +36,13 @@ import butterknife.OnClick;
  * 图文详情页
  */
 public class BannerDetailActivity extends BaseActivity<DetailPresenter> implements DetailContract.IDetailView {
-    public static final String KEY_BANNER = "banner";
+    public static final String KEY_BANNER_ID = "bannerId";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_banner_detail_content)
     WebView webView;
     private Banner banner;
+    private String bannerId;
     @BindView(R.id.bt_go_link)
     FloatingActionButton btLink;
     @BindView(R.id.nestedScrollView)
@@ -103,55 +104,56 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
         webSettings.setJavaScriptEnabled(true);//支持js
         //填充数据
         if (null != getIntent()) {
-            banner = (Banner) getIntent().getSerializableExtra(KEY_BANNER);
-            if (null != banner) {
-                if (!TextUtils.isEmpty(banner.getLinkUrl())) {
-                    btLink.setVisibility(View.VISIBLE);
-                } else {
-                    btLink.setVisibility(View.GONE);
-
-                }
-                if (!TextUtils.isEmpty(banner.getTitle())) {
-                    tvTitle.setText(banner.getTitle());
-                }
-                if (!TextUtils.isEmpty(banner.getAuthor())) {
-                    tvAuthor.setText(banner.getAuthor());
-                }
-                //原始格式:2018-10-10 10:10:10
-                if (!TextUtils.isEmpty(banner.getCreateTime())) {
-                    String date = banner.getCreateTime().substring(0, 10);
-                    tvDate.setText(date);
-                }
-                //点赞数
-                tvLikes.setText(banner.getStars() + "");
-                //点赞状态
-                if (TextUtils.equals(banner.getStarStatus(), "0")) {
-                    ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
-                } else {
-                    ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
-                }
-                //浏览量
-                tvViews.setText(banner.getViews() + "");
-                webView.loadDataWithBaseURL(null, getHtmlData(banner.getContentText()), "text/html", "UTF-8", null);
-                toolbar.setTitle("");
-                //增加阅读数
-                presenter.addViews(banner.getId());
-            }
+            bannerId = getIntent().getStringExtra(KEY_BANNER_ID);
+            presenter.queryBannerByID(bannerId);
         }
-        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                //向下滚动时展示标题,滚动到顶部时隐藏标题
-                if (scrollY > 100) {
-                    if (null != banner && null != banner.getAuthor()) {
-                        toolbar.setTitle(banner.getAuthor());
-                    }
-                } else {
-                    toolbar.setTitle("");
+        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            //向下滚动时展示标题,滚动到顶部时隐藏标题
+            if (scrollY > 100) {
+                if (null != banner && null != banner.getAuthor()) {
+                    toolbar.setTitle(banner.getAuthor());
                 }
+            } else {
+                toolbar.setTitle("");
             }
         });
 
+    }
+
+    private void showBanner() {
+        if (null != banner) {
+            if (!TextUtils.isEmpty(banner.getLinkUrl())) {
+                btLink.setVisibility(View.VISIBLE);
+            } else {
+                btLink.setVisibility(View.GONE);
+
+            }
+            if (!TextUtils.isEmpty(banner.getTitle())) {
+                tvTitle.setText(banner.getTitle());
+            }
+            if (!TextUtils.isEmpty(banner.getAuthor())) {
+                tvAuthor.setText(banner.getAuthor());
+            }
+            //原始格式:2018-10-10 10:10:10
+            if (!TextUtils.isEmpty(banner.getCreateTime())) {
+                String date = banner.getCreateTime().substring(0, 10);
+                tvDate.setText(date);
+            }
+            //点赞数
+            tvLikes.setText(banner.getStars() + "");
+            //点赞状态
+            if (TextUtils.equals(banner.getStarStatus(), "0")) {
+                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+            } else {
+                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
+            }
+            //浏览量
+            tvViews.setText(banner.getViews() + "");
+            webView.loadDataWithBaseURL(null, getHtmlData(banner.getContentText()), "text/html", "UTF-8", null);
+            toolbar.setTitle("");
+            //增加阅读数
+            presenter.addViews(banner.getId());
+        }
     }
 
     private void initToolbar() {
@@ -267,5 +269,11 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     @Override
     public void addViewsSuc(long views) {
         tvViews.setText(views + "");
+    }
+
+    @Override
+    public void loadBanner(Banner banner) {
+        this.banner = banner;
+        showBanner();
     }
 }
