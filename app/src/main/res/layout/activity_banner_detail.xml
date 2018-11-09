@@ -189,8 +189,7 @@
         android:visibility="visible"
         app:backgroundTint="@color/yellow"
         app:borderWidth="0dp"
-        app:fabSize="auto"
-        app:layout_behavior="com.jmtad.jftt.customui.ScrollAwareFABBehavior" />
+        app:fabSize="auto" />
 
 
 </android.support.design.widget.CoordinatorLayout>

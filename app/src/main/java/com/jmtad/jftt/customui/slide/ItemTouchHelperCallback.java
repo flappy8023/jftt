@@ -129,7 +129,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     //滑动阈值,超过recyclerview宽高十分之一就切换
     @Override
     public float getSwipeThreshold(RecyclerView.ViewHolder viewHolder) {
-        return 0.1f;
+        return 0.2f;
     }
 
     private float getThreshold(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
