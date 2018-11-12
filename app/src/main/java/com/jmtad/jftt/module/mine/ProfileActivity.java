@@ -109,11 +109,11 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
             }
             AddressPicker picker = new AddressPicker(this, cityData);
             //设置统一颜色
-            picker.setTextColor(getResources().getColor(R.color.orange));
-            picker.setDividerColor(getResources().getColor(R.color.orange));
-            picker.setCancelTextColor(getResources().getColor(R.color.orange));
-            picker.setTopLineColor(getResources().getColor(R.color.orange));
-            picker.setSubmitTextColor(getResources().getColor(R.color.orange));
+            picker.setTextColor(getResources().getColor(R.color.red_1));
+            picker.setDividerColor(getResources().getColor(R.color.red_1));
+            picker.setCancelTextColor(getResources().getColor(R.color.red_1));
+            picker.setTopLineColor(getResources().getColor(R.color.red_1));
+            picker.setSubmitTextColor(getResources().getColor(R.color.red_1));
             picker.setLineSpaceMultiplier(3.0f);
             picker.setSubmitText(R.string.sure);
             picker.setCancelText(getString(R.string.cancel));
@@ -168,11 +168,11 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         LinkagePicker picker = new LinkagePicker(this, jobProvider);
         picker.setLineSpaceMultiplier(3.0f);
         //设置统一颜色
-        picker.setTextColor(getResources().getColor(R.color.orange));
-        picker.setDividerColor(getResources().getColor(R.color.orange));
-        picker.setCancelTextColor(getResources().getColor(R.color.orange));
-        picker.setTopLineColor(getResources().getColor(R.color.orange));
-        picker.setSubmitTextColor(getResources().getColor(R.color.orange));
+        picker.setTextColor(getResources().getColor(R.color.red_1));
+        picker.setDividerColor(getResources().getColor(R.color.red_1));
+        picker.setCancelTextColor(getResources().getColor(R.color.red_1));
+        picker.setTopLineColor(getResources().getColor(R.color.red_1));
+        picker.setSubmitTextColor(getResources().getColor(R.color.red_1));
         picker.setCycleDisable(true);
         picker.setSubmitText(R.string.sure);
         picker.setCancelText(getString(R.string.cancel));
@@ -205,11 +205,11 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         }
         SinglePicker<Education> picker = new SinglePicker<>(this, eduData);
         //设置统一颜色
-        picker.setTextColor(getResources().getColor(R.color.orange));
-        picker.setDividerColor(getResources().getColor(R.color.orange));
-        picker.setCancelTextColor(getResources().getColor(R.color.orange));
-        picker.setTopLineColor(getResources().getColor(R.color.orange));
-        picker.setSubmitTextColor(getResources().getColor(R.color.orange));
+        picker.setTextColor(getResources().getColor(R.color.red_1));
+        picker.setDividerColor(getResources().getColor(R.color.red_1));
+        picker.setCancelTextColor(getResources().getColor(R.color.red_1));
+        picker.setTopLineColor(getResources().getColor(R.color.red_1));
+        picker.setSubmitTextColor(getResources().getColor(R.color.red_1));
         picker.setLineSpaceMultiplier(3.0f);
         picker.setCancelText(R.string.cancel);
         picker.setSubmitText(R.string.sure);

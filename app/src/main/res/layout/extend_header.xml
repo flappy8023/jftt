@@ -5,16 +5,39 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/layout_recent"
+        android:id="@+id/ll_home_header_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/px_72"
+            android:layout_height="@dimen/px_72"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/px_240"
+            android:src="@drawable/noicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/px_40"
+            android:text="@string/home_header_no_data_hint"
+            android:textColor="#A7A7A8"
+            android:textSize="@dimen/sp_24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_home_header_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RadioGroup
             android:id="@+id/rg_home_header"
-            android:layout_marginLeft="@dimen/px_40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/px_40"
             android:layout_marginTop="@dimen/px_60"
             android:orientation="horizontal"
             android:text="@string/home_header_recent_text"
@@ -35,9 +58,9 @@
                 android:id="@+id/rb_home_header_like"
                 android:layout_width="@dimen/px_140"
                 android:layout_height="@dimen/px_48"
+                android:layout_marginLeft="@dimen/px_12"
                 android:background="@drawable/home_header_radio_bt_selector"
                 android:button="@null"
-                android:layout_marginLeft="@dimen/px_12"
                 android:checked="false"
                 android:gravity="center"
                 android:text="@string/home_header_like_text"
@@ -46,9 +69,9 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
-            android:layout_marginLeft="@dimen/px_8"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/px_8"
             android:layout_marginTop="@dimen/px_36" />
     </LinearLayout>
 

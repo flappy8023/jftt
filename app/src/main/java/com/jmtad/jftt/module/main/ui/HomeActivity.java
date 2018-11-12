@@ -28,6 +28,7 @@ import com.jmtad.jftt.customui.pullextend.PullExtendLayout;
 import com.jmtad.jftt.customui.slide.ItemTouchHelperCallback;
 import com.jmtad.jftt.customui.slide.OnSlideListener;
 import com.jmtad.jftt.customui.slide.SlideLayoutManager;
+import com.jmtad.jftt.event.RefreshBannerEvent;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.main.MainContract;
@@ -39,6 +40,9 @@ import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,9 +79,11 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     ImageView ivQRCode;
     private SharePopwindow popwindow;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         slidrInterface.lock();
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
     }
@@ -102,21 +108,25 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initHeader() {
-        headerRecyclerView = extendListHeader.getRecyclerView();
-        headerRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-        headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
-        headerRecyclerView.setAdapter(headerAdapter);
-        headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
-            @Override
-            public void onClick(Banner banner) {
-                toDetail(banner);
-            }
+        if (false) {
+            headerRecyclerView = extendListHeader.getRecyclerView();
+            headerRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+            headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
+            headerRecyclerView.setAdapter(headerAdapter);
+            headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
+                @Override
+                public void onClick(Banner banner) {
+                    toDetail(banner);
+                }
 
-            @Override
-            public void onLongClick(Banner banner) {
-                MyToast.showLongToast(HomeActivity.this, "长按删除");
-            }
-        });
+                @Override
+                public void onLongClick(Banner banner) {
+                    MyToast.showLongToast(HomeActivity.this, "长按删除");
+                }
+            });
+        } else {
+            extendListHeader.showHint();
+        }
     }
 
     private OnSlideListener<Banner> onSlideListener = new OnSlideListener<Banner>() {
@@ -279,7 +289,18 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public void toDetail(Banner banner) {
         Intent intent = new Intent(HomeActivity.this, BannerDetailActivity.class);
-        intent.putExtra(BannerDetailActivity.KEY_BANNER_ID, banner.getId());
+        intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
         startActivity(intent);
+    }
+
+    @Subscribe
+    public void refreshBanner(RefreshBannerEvent event) {
+        Banner banner = event.getCurrentBanner();
+        if (null != mBanners && mBanners.size() > 0) {
+            mBanners.get(0).setStarStatus(banner.getStarStatus());
+            mBanners.get(0).setViews(banner.getViews());
+            mBanners.get(0).setStars(banner.getStars());
+            mainAdapter.notifyItemChanged(0, "refresh");
+        }
     }
 }

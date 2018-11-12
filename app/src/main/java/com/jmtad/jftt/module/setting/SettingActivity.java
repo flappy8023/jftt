@@ -1,6 +1,5 @@
 package com.jmtad.jftt.module.setting;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +12,7 @@ import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
+import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.login.ui.LoginActivity;
@@ -81,27 +81,36 @@ public class SettingActivity extends BaseActivity {
      */
     @OnClick(R.id.ll_setting_clear_cache)
     public void clearCache() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.makesure_clear_cache);
-        builder.setPositiveButton(R.string.sure, (dialogInterface, i) -> {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    CacheUtil.clearAllCache(SettingActivity.this);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showMsg(getString(R.string.clear_done));
-                            showCache();
-                        }
-                    });
+        new CommonDialog(SettingActivity.this, R.style.BaseDialog, getString(R.string.makesure_clear_cache)).setPositiveButton(getString(R.string.sure)).setTitle("提示").setListener((d, confirm) -> new Thread(() -> {
+            CacheUtil.clearAllCache(SettingActivity.this);
+            runOnUiThread(() -> {
+                showMsg(getString(R.string.clear_done));
+                d.dismiss();
+                showCache();
+            });
 
-                }
-            }).start();
-
-        });
-        builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss());
-        builder.show();
+        }).start()).show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(R.string.makesure_clear_cache);
+//        builder.setPositiveButton(R.string.sure, (dialogInterface, i) -> {
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    CacheUtil.clearAllCache(SettingActivity.this);
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            showMsg(getString(R.string.clear_done));
+//                            showCache();
+//                        }
+//                    });
+//
+//                }
+//            }).start();
+//
+//        });
+//        builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss());
+//        builder.show();
     }
 
     /**

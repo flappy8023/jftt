@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_home_frag"
     android:layout_width="match_parent"
-    android:clickable="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true">
 
     <RelativeLayout
         android:id="@+id/frame_container"
@@ -19,15 +19,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px_300"
+            android:layout_height="@dimen/px_210"
             android:layout_alignParentBottom="true"
-            android:background="@color/translucent_black_80" />
+            android:background="@color/translucent_black_65" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_home_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_300"
+        android:layout_height="@dimen/px_210"
         android:layout_alignParentBottom="true">
 
         <TextView
@@ -35,10 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/px_40"
-            android:layout_marginTop="@dimen/px_40"
+            android:layout_marginTop="@dimen/px_28"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_36"
+            android:textSize="@dimen/px_36"
             android:textStyle="bold" />
 
         <TextView
@@ -47,20 +47,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_home_news_author"
             android:layout_alignLeft="@id/tv_home_news_author"
-            android:layout_marginTop="@dimen/px_20"
+            android:layout_marginTop="@dimen/px_14"
             android:layout_marginRight="@dimen/px_240"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_28" />
+            android:textSize="@dimen/px_28" />
 
         <LinearLayout
             android:id="@+id/ll_home_news_like_container"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/px_40"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tv_home_news_title"
             android:layout_alignLeft="@id/tv_home_news_author"
-            android:layout_marginTop="@dimen/px_24"
+            android:layout_marginTop="@dimen/px_22"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -75,29 +75,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_10"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/px_26" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_10"
                 android:text="likes"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/px_26" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_home_news_share"
-            android:layout_width="@dimen/px_150"
-            android:layout_height="@dimen/px_72"
+            android:layout_width="@dimen/px_100"
+            android:layout_height="@dimen/px_100"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/px_70"
-            android:layout_marginRight="@dimen/px_40"
+            android:layout_marginTop="@dimen/px_46"
+            android:layout_marginRight="@dimen/px_60"
             android:src="@drawable/btn_share" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/px_40"
+            android:layout_height="wrap_content"
             android:layout_alignTop="@id/ll_home_news_like_container"
             android:layout_marginLeft="@dimen/px_60"
             android:layout_toRightOf="@id/ll_home_news_like_container"
@@ -111,10 +113,11 @@
             <TextView
                 android:id="@+id/tv_home_news_views"
                 android:layout_width="wrap_content"
-                android:layout_height="26dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_10"
                 android:text="1220 views"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/px_26" />
 
 
         </LinearLayout>

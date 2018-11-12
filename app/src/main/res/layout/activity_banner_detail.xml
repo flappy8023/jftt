@@ -28,7 +28,7 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <com.jmtad.jftt.MyScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,6 +49,9 @@
                 android:textColor="#333333"
                 android:textSize="@dimen/sp_40" />
 
+            <!--仿微信颜色-->
+            <!--android:textColor="#4682B4"-->
+
 
             <TextView
                 android:id="@+id/tv_banner_author"
@@ -57,8 +60,7 @@
                 android:layout_below="@id/tv_banner_title"
                 android:layout_marginLeft="@dimen/px_30"
                 android:layout_marginTop="@dimen/sp_32"
-
-                android:textColor="#4682B4"
+                android:textColor="@color/dialog_gray_textColor"
                 android:textSize="@dimen/sp_28" />
 
             <TextView
@@ -69,7 +71,7 @@
                 android:layout_marginLeft="@dimen/px_30"
                 android:layout_toRightOf="@id/tv_banner_author"
                 android:text="2018-11-01"
-                android:textColor="#B3B3B3"
+                android:textColor="@color/dialog_gray_textColor"
                 android:textSize="@dimen/sp_28" />
 
             <LinearLayout
@@ -131,7 +133,7 @@
             <com.just.agentweb.AgentWebView
                 android:id="@+id/tv_banner_detail_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tv_banner_author"
                 android:layout_marginLeft="@dimen/px_30"
                 android:layout_marginTop="@dimen/px_30"
@@ -139,13 +141,13 @@
                 android:scrollbars="none"
                 android:textIsSelectable="true" />
 
-            <View
-                android:id="@+id/dash_line"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_below="@id/tv_banner_detail_content"
-                android:layout_margin="@dimen/px_30"
-                android:background="@drawable/dash_line" />
+            <!--<View-->
+            <!--android:id="@+id/dash_line"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="4dp"-->
+            <!--android:layout_below="@id/tv_banner_detail_content"-->
+            <!--android:layout_margin="@dimen/px_30"-->
+            <!--android:background="@drawable/dash_line" />-->
 
             <!--<RelativeLayout-->
             <!--android:layout_width="match_parent"-->
@@ -176,7 +178,7 @@
             <!--</RelativeLayout>-->
         </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </com.jmtad.jftt.MyScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/bt_go_link"

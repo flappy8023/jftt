@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,9 +40,9 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.ILoginView {
     @BindView(R.id.bt_choose_top)
-    TextView btTop;
+    Button btTop;
     @BindView(R.id.bt_choose_bottom)
-    TextView btBottom;
+    Button btBottom;
     @BindView(R.id.rl_choose_login_logo)
     RelativeLayout rlLogo;
     @BindView(R.id.iv_choose_login_head)
@@ -55,6 +56,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+
         //在登录页面禁用滑动返回功能
         slidrInterface.lock();
     }
@@ -86,7 +88,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
     @Subscribe

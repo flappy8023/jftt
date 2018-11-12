@@ -25,6 +25,7 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initPresenter();
         if (null != presenter) {
             presenter.attachView(this);

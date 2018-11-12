@@ -1,7 +1,6 @@
 package com.jmtad.jftt.module.mine;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
+import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.module.mine.contract.MineContract;
 import com.jmtad.jftt.module.mine.presenter.MinePresenter;
 import com.jmtad.jftt.util.StatusBarUtil;
@@ -79,24 +79,31 @@ public class BindCardActivity extends BaseActivity<MinePresenter> implements Min
 
     @Override
     public void bindSuccess(String cardNo) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.bind_card_success);
-        builder.setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+        new CommonDialog(BindCardActivity.this, R.style.BaseDialog, getString(R.string.bind_card_success)).setPositiveButton(getString(R.string.sure)).setListener(new CommonDialog.OnCloseListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(Dialog dialog, boolean confirm) {
                 Intent intent = new Intent();
                 intent.putExtra("cardNo", cardNo);
                 setResult(RESULT_OK, intent);
+                dialog.dismiss();
                 BindCardActivity.this.finish();
             }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        builder.show();
+        }).show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage(R.string.bind_card_success);
+//        builder.setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//
+//            }
+//        });
+//        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
+//        builder.show();
     }
 
     @Override

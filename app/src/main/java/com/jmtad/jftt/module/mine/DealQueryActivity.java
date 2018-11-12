@@ -104,16 +104,17 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
         cn.qqtheme.framework.picker.DatePicker picker = new cn.qqtheme.framework.picker.DatePicker(this, cn.qqtheme.framework.picker.DatePicker.YEAR_MONTH);
         picker.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         //设置统一颜色
-        picker.setTextColor(getResources().getColor(R.color.orange));
-        picker.setDividerColor(getResources().getColor(R.color.orange));
-        picker.setCancelTextColor(getResources().getColor(R.color.orange));
-        picker.setTopLineColor(getResources().getColor(R.color.orange));
-        picker.setSubmitTextColor(getResources().getColor(R.color.orange));
-        picker.setLabelTextColor(getResources().getColor(R.color.orange));
+        picker.setTextColor(getResources().getColor(R.color.red_1));
+        picker.setDividerColor(getResources().getColor(R.color.red_1));
+        picker.setCancelTextColor(getResources().getColor(R.color.red_1));
+        picker.setTopLineColor(getResources().getColor(R.color.red_1));
+        picker.setSubmitTextColor(getResources().getColor(R.color.red_1));
+        picker.setLabelTextColor(getResources().getColor(R.color.red_1));
         picker.setLineSpaceMultiplier(3.0f);
         picker.setSubmitText(R.string.sure);
         picker.setCancelText(getString(R.string.cancel));
-        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
+        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.8));
+        picker.setHeight((int) (picker.getScreenHeightPixels() * 0.6));
         picker.setRangeStart(2015, 10, 14);
         picker.setRangeEnd(2099, 11, 11);
         picker.setSelectedItem(selectedYear, selectedMonth);

@@ -52,6 +52,7 @@
             android:layout_height="@dimen/px_90"
             android:layout_marginLeft="@dimen/px_40"
             android:layout_marginRight="@dimen/px_40"
+            style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/bt_choose_login_bg"
             android:gravity="center"
             android:text="@string/card_bind_sure"

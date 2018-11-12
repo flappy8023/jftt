@@ -113,7 +113,7 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         //判断是否展示详情页
         if (TextUtils.equals(banner.getIsShowDetails(), "0")) {
             Intent intent = new Intent(getActivity(), BannerDetailActivity.class);
-            intent.putExtra(BannerDetailActivity.KEY_BANNER_ID, banner.getId());
+            intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
             startActivity(intent);
         } else {
             //如果跳转链接不为空跳转到配置的链接

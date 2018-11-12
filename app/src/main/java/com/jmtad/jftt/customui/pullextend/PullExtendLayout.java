@@ -421,11 +421,11 @@ public class PullExtendLayout extends LinearLayout implements IPullToExtend {
         // 未处于刷新状态，更新箭头
         int scrollY = Math.abs(getScrollYValue());
         if (null != mHeaderLayout && 0 != mHeaderHeight) {
-            if (scrollY >= headerListHeight) {
+            if (scrollY >= (headerListHeight)) {
                 mHeaderLayout.setState(IExtendLayout.State.arrivedListHeight);
                 setOffsetRadio(2.0f);
             } else {
-                setOffsetRadio(1.0f);
+                setOffsetRadio(0.6f);
             }
             mHeaderLayout.onPull(scrollY);
         }

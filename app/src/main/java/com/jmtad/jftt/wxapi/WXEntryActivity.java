@@ -14,7 +14,6 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
-//    private static SucceedAndFailedHandler mWXHandler = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +34,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 // 成功
                 int type = baseResp.getType();
 
-//                if (mWXHandler != null) {
-//                    mWXHandler.onSuccess(type);
-//                }
 
                 if (type == ConstantsAPI.COMMAND_SENDAUTH) {
                     // 授权

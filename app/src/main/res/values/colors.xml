@@ -14,6 +14,7 @@
     <color name="black_textColor">#181717</color>
     <color name="translucent_black_1">#90000000</color>
     <color name="translucent_black_80">#CC000000</color>
+    <color name="translucent_black_65">#A5000000</color>
     <color name="black_1">#14151C</color>
     <color name="splash_start_color">#5243FF</color>
     <color name="splash_end_color">#658CFF</color>
@@ -23,12 +24,12 @@
     <color name="gray_textColor">#A0ACBF</color>
     <color name="tab_indicator_color">#FF613C</color>
     <color name="red">#FF0000</color>
-    <color name="red_1">#FFD2D2</color>
+    <color name="red_1">#E95454</color>
     <color name="deal_query_bg">#F6F3F7</color>
-    <color name="yellow">#FFDE41</color>
+    <color name="yellow">#FFD302</color>
     <color name="color_income">#5CA714</color>
     <color name="color_expend">#FF4460</color>
     <color name="home_header_bg_color">#1D1D24</color>
     <color name="home_header_selected_color">#FFD302</color>
-
+    <color name="dialog_gray_textColor">#B1B0A9</color>
 </resources>

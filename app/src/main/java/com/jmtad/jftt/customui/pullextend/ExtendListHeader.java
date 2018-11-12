@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.util.DisplayUtils;
@@ -22,6 +23,8 @@ public class ExtendListHeader extends ExtendLayout {
     float listHeight = DisplayUtils.dpToPx(120);
     boolean arrivedListHeight = false;
     private RecyclerView mRecyclerView;
+    private LinearLayout llNodata;
+    private LinearLayout llContent;
 
     /**
      * 原点
@@ -58,6 +61,8 @@ public class ExtendListHeader extends ExtendLayout {
     protected void bindView(View container) {
         mRecyclerView = findViewById(R.id.list);
         mExpendPoint = findViewById(R.id.expend_point);
+        llNodata = findViewById(R.id.ll_home_header_nodata);
+        llContent = findViewById(R.id.ll_home_header_content);
     }
 
     public RecyclerView getRecyclerView() {
@@ -135,4 +140,8 @@ public class ExtendListHeader extends ExtendLayout {
     }
 
 
+    public void showHint() {
+        llContent.setVisibility(INVISIBLE);
+        llNodata.setVisibility(VISIBLE);
+    }
 }

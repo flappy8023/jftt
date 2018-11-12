@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/iv_mine_back"
-            android:layout_width="@dimen/px_40"
-            android:layout_height="@dimen/px_40"
+            android:layout_width="@dimen/px_36"
+            android:layout_height="@dimen/px_36"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px_40"
             android:src="@drawable/back" />
@@ -37,7 +37,7 @@
             android:layout_toRightOf="@id/iv_mine_back"
             android:text="@string/mine_title"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_50" />
+            android:textSize="@dimen/sp_36" />
 
         <com.jmtad.jftt.customui.CircleImageView
             android:id="@+id/iv_mine_head"

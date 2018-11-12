@@ -87,10 +87,10 @@
                 android:layout_below="@id/tv_hint"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/px_60"
-                android:background="@drawable/bt_login_bind_bg"
+                android:background="@drawable/bt_bind_card_bg"
                 android:gravity="center"
                 android:text="@string/card_bind_now"
-                android:textColor="@color/white"
+                android:textColor="#FF363C"
                 android:textSize="@dimen/sp_30" />
         </RelativeLayout>
 

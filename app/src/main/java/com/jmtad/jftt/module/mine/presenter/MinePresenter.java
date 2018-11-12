@@ -51,7 +51,6 @@ public class MinePresenter extends BasePresenter<MineContract.IMineView> impleme
 
             @Override
             public void onFail(Throwable e) {
-
             }
         });
     }

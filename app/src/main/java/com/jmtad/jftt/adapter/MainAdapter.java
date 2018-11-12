@@ -10,12 +10,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.util.CollectionUtil;
 import com.jmtad.jftt.util.GlideUtil;
 
 import java.util.List;
@@ -25,7 +23,7 @@ import java.util.List;
  * @author: flappy8023
  * @create: 2018-11-05 09:26
  **/
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
     private Context context;
     private List<Banner> banners;
     private HomeListener homeListener;
@@ -45,13 +43,30 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MainHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.home_layout, parent, false);
-        return new MyHolder(view);
+        return new MainHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MainHolder holder, int position, @NonNull List<Object> payloads) {
+        if (!CollectionUtil.isEmpty(payloads)) {
+            Banner banner = banners.get(position);
+            //只刷新点赞数和浏览量
+            if (TextUtils.equals(Banner.STATUS_STARED, banner.getStarStatus())) {
+                holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.liked));
+            } else {
+                holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.like));
+            }
+            holder.tvStars.setText(banner.getStars() + "");
+            holder.tvViews.setText(String.format(context.getString(R.string.home_news_view_format), banner.getViews()));
+        } else {
+            onBindViewHolder(holder, position);
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MainHolder holder, int position) {
         Banner banner = banners.get(position);
         if (!TextUtils.isEmpty(banner.getImgUrl())) {
             GlideUtil.loadImage(context, banner.getImgUrl(), holder.ivPoster);
@@ -124,32 +139,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
         return null == banners ? 0 : banners.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
-        private ImageView ivPoster;
-        private ImageView ivStar;
-        private TextView tvAuthor;
-        private TextView tvTitle;
-        private TextView tvStars;
-        private TextView tvViews;
-        private LinearLayout likeLayout;
-        ImageView ivShare;
-
-        public MyHolder(View itemView) {
-            super(itemView);
-            initView(itemView);
-        }
-
-        private void initView(View itemView) {
-            ivPoster = itemView.findViewById(R.id.iv_home_frag_poster);
-            tvAuthor = itemView.findViewById(R.id.tv_home_news_author);
-            tvTitle = itemView.findViewById(R.id.tv_home_news_title);
-            ivStar = itemView.findViewById(R.id.iv_star);
-            tvStars = itemView.findViewById(R.id.tv_home_news_likes);
-            tvViews = itemView.findViewById(R.id.tv_home_news_views);
-            likeLayout = itemView.findViewById(R.id.ll_home_news_like_container);
-            ivShare = itemView.findViewById(R.id.iv_home_news_share);
-        }
-    }
 
     public void setHomeListener(HomeListener listener) {
         homeListener = listener;

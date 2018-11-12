@@ -147,6 +147,7 @@
             android:layout_marginRight="@dimen/px_40"
             android:background="@drawable/bt_choose_login_bg"
             android:text="@string/profile_submit"
+            style="?android:attr/borderlessButtonStyle"
             android:textColor="@color/black_textColor"
             android:textSize="@dimen/sp_30" />
     </LinearLayout>

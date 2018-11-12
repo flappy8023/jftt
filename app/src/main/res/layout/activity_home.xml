@@ -10,20 +10,20 @@
     <com.jmtad.jftt.customui.pullextend.ExtendListHeader
         android:id="@+id/extend_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_310">
+        android:layout_height="@dimen/px_540">
 
     </com.jmtad.jftt.customui.pullextend.ExtendListHeader>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true">
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_main_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true">
+            android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -45,11 +45,11 @@
 
         <ImageView
             android:id="@+id/iv_home_qrcode"
-            android:layout_width="@dimen/px_200"
-            android:layout_height="@dimen/px_200"
+            android:layout_width="@dimen/px_170"
+            android:layout_height="@dimen/px_170"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/px_40"
-            android:layout_marginBottom="@dimen/px_60" />
+            android:layout_marginBottom="@dimen/px_20" />
     </RelativeLayout>
 </com.jmtad.jftt.customui.pullextend.PullExtendLayout>

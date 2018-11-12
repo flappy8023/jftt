@@ -17,19 +17,31 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/px_40"
             android:background="@drawable/profile_content_bg"
             android:padding="@dimen/px_40">
 
+            <ImageView
+                android:id="@+id/iv_about_us"
+                android:layout_width="@dimen/px_164"
+                android:layout_height="@dimen/px_72"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/px_24"
+                android:src="@drawable/aboutus"
+                android:scaleType="centerInside" />
 
             <TextView
                 android:id="@+id/tv_about_us_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_about_us"
+                android:layout_marginTop="@dimen/px_60"
+                android:paddingBottom="@dimen/px_100"
                 android:lineSpacingExtra="@dimen/px_8"
-                android:textSize="@dimen/sp_32"
-                android:textIsSelectable="true" />
+                android:textColor="#666464"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/sp_32" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

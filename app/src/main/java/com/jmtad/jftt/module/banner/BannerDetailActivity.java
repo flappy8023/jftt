@@ -3,10 +3,12 @@ package com.jmtad.jftt.module.banner;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.NestedScrollView;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -16,9 +18,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jmtad.jftt.MyScrollView;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
 import com.jmtad.jftt.customui.SharePopwindow;
+import com.jmtad.jftt.event.RefreshBannerEvent;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.module.banner.contract.DetailContract;
 import com.jmtad.jftt.module.banner.presenter.DetailPresenter;
@@ -27,6 +31,8 @@ import com.jmtad.jftt.util.wechat.WeShareUtil;
 import com.just.agentweb.AgentWebView;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -34,17 +40,17 @@ import butterknife.OnClick;
  * 图文详情页
  */
 public class BannerDetailActivity extends BaseActivity<DetailPresenter> implements DetailContract.IDetailView {
-    public static final String KEY_BANNER_ID = "bannerId";
+    public static final String KEY_BANNER = "mBanner";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tv_banner_detail_content)
     AgentWebView webView;
-    private Banner banner;
+    private Banner mBanner;
     private String bannerId;
     @BindView(R.id.bt_go_link)
     FloatingActionButton btLink;
     @BindView(R.id.nestedScrollView)
-    NestedScrollView scrollView;
+    MyScrollView scrollView;
     @BindView(R.id.appbar_news_detail)
     AppBarLayout appBarLayout;
     private SharePopwindow popwindow;
@@ -87,63 +93,117 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
         initToolbar();
         //填充数据
         if (null != getIntent()) {
-            bannerId = getIntent().getStringExtra(KEY_BANNER_ID);
-            presenter.queryBannerByID(bannerId);
-        }
-        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            //向下滚动时展示标题,滚动到顶部时隐藏标题
-            if (scrollY > 100) {
-                if (null != banner && null != banner.getAuthor()) {
-                    toolbar.setTitle(banner.getAuthor());
-                }
-            } else {
-                toolbar.setTitle("");
-            }
-                }
-        );
-//        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//            @Override
-//            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//
-//            }
-//
-//        });
-
-    }
-
-    private void showBanner() {
-        if (null != banner) {
-            if (!TextUtils.isEmpty(banner.getLinkUrl())) {
-                btLink.setVisibility(View.VISIBLE);
-            } else {
-                btLink.setVisibility(View.GONE);
-
-            }
-            if (!TextUtils.isEmpty(banner.getTitle())) {
-                tvTitle.setText(banner.getTitle());
-            }
-            if (!TextUtils.isEmpty(banner.getAuthor())) {
-                tvAuthor.setText(banner.getAuthor());
-            }
-            //原始格式:2018-10-10 10:10:10
-            if (!TextUtils.isEmpty(banner.getCreateTime())) {
-                String date = banner.getCreateTime().substring(0, 10);
-                tvDate.setText(date);
-            }
-            //点赞数
-            tvLikes.setText(banner.getStars() + "");
+            Banner banner = (Banner) getIntent().getSerializableExtra(KEY_BANNER);
+            bannerId = banner.getId();
             //点赞状态
             if (TextUtils.equals(banner.getStarStatus(), "0")) {
                 ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
             } else {
                 ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
             }
+            presenter.queryBannerByID(bannerId);
+        }
+//        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+//                    //向下滚动时展示标题,滚动到顶部时隐藏标题
+//                    if (scrollY > 100) {
+//                        if (null != mBanner && null != mBanner.getAuthor()) {
+//                            toolbar.setTitle(mBanner.getAuthor());
+//                        }
+//                    } else {
+//                        toolbar.setTitle("");
+//                    }
+//                }
+//        );
+        scrollView.addOnScrollListner(new MyScrollView.OnMyScrollListener() {
+            @Override
+            public void onScrollStateChanged(MyScrollView view, int state) {
+                if (state == MyScrollView.OnMyScrollListener.SCROLL_STATE_FLING || state == MyScrollView.OnMyScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    animateOut();
+                } else {
+                    animateIn();
+                }
+            }
+
+            @Override
+            public void onScrollToTop() {
+                animateIn();
+            }
+
+            @Override
+            public void onScrollToBottom() {
+                animateIn();
+            }
+
+            @Override
+            public void onScroll(int l, int t, int oldl, int oldt) {
+                //向下滚动时展示标题,滚动到顶部时隐藏标题
+                if (t > 100) {
+                    if (null != mBanner && null != mBanner.getAuthor()) {
+                        toolbar.setTitle(mBanner.getAuthor());
+                    }
+                } else {
+                    toolbar.setTitle("");
+                }
+            }
+        });
+
+    }
+
+    private void animateIn() {
+        btLink.setVisibility(View.VISIBLE);
+        if (Build.VERSION.SDK_INT >= 14) {
+            ViewCompat.animate(btLink).scaleX(1.0F).scaleY(1.0F).alpha(1.0F)
+                    .withLayer().setListener(null)
+                    .start();
+
+        }
+    }
+
+    private void animateOut() {
+        if (Build.VERSION.SDK_INT >= 14) {
+            ViewCompat.animate(btLink).scaleX(0.0F).scaleY(0.0F).alpha(0.0F).withLayer()
+                    .setListener(new ViewPropertyAnimatorListener() {
+                        public void onAnimationStart(View view) {
+                        }
+
+                        public void onAnimationCancel(View view) {
+                        }
+
+                        public void onAnimationEnd(View view) {
+                            view.setVisibility(View.INVISIBLE);
+                        }
+                    }).start();
+
+        }
+    }
+
+    private void showBanner() {
+        if (null != mBanner) {
+            if (!TextUtils.isEmpty(mBanner.getLinkUrl())) {
+                btLink.setVisibility(View.VISIBLE);
+            } else {
+                btLink.setVisibility(View.GONE);
+
+            }
+            if (!TextUtils.isEmpty(mBanner.getTitle())) {
+                tvTitle.setText(mBanner.getTitle());
+            }
+            if (!TextUtils.isEmpty(mBanner.getAuthor())) {
+                tvAuthor.setText(mBanner.getAuthor());
+            }
+            //原始格式:2018-10-10 10:10:10
+            if (!TextUtils.isEmpty(mBanner.getCreateTime())) {
+                String date = mBanner.getCreateTime().substring(0, 10);
+                tvDate.setText(date);
+            }
+            //点赞数
+            tvLikes.setText(mBanner.getStars() + "");
             //浏览量
-            tvViews.setText(banner.getViews() + "");
-            webView.loadDataWithBaseURL(null, getHtmlData(banner.getContentText()), "text/html", "UTF-8", null);
+            tvViews.setText(mBanner.getViews() + "");
+            webView.loadDataWithBaseURL(null, getHtmlData(mBanner.getContentText()), "text/html", "UTF-8", null);
             toolbar.setTitle("");
             //增加阅读数
-            presenter.addViews(banner.getId());
+            presenter.addViews(mBanner.getId());
         }
     }
 
@@ -188,7 +248,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
                     case R.id.wechat_share_session:
                         new Thread(() -> {
                             Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-                            WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneSession);
+                            WeShareUtil.shareUrl(mBanner.getTitle(), mBanner.getSummary(), mBanner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneSession);
                             webView.post(() -> popwindow.dismiss());
                         }).start();
 
@@ -197,7 +257,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
                     case R.id.wechat_share_timeline:
                         new Thread(() -> {
                             Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-                            WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneTimeline);
+                            WeShareUtil.shareUrl(mBanner.getTitle(), mBanner.getSummary(), mBanner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneTimeline);
                             runOnUiThread(() -> popwindow.dismiss());
                         }).start();
 
@@ -210,9 +270,9 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
 
     @OnClick(R.id.bt_go_link)
     public void toDetail() {
-        if (null != banner) {
+        if (null != mBanner) {
             Intent intent = new Intent(BannerDetailActivity.this, BannerLinkActivity.class);
-            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, banner.getLinkUrl());
+            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, mBanner.getLinkUrl());
             startActivity(intent);
         }
     }
@@ -220,35 +280,46 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //返回首页刷新当前的banner信息
+        RefreshBannerEvent event = new RefreshBannerEvent();
+        event.setCurrentBanner(mBanner);
+        EventBus.getDefault().post(event);
     }
 
     @OnClick(R.id.ll_banner_detail_like_container)
     public void starOrUnstar() {
-        if (null != banner) {
-            presenter.starOrUnStar(banner.getId());
+        if (null != mBanner) {
+            presenter.starOrUnStar(mBanner.getId());
         }
     }
 
     @Override
     public void starSuc() {
         ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
-        tvLikes.setText((banner.getStars() + 1) + "");
+        mBanner.setStars(mBanner.getStars() + 1);
+        mBanner.setStarStatus(Banner.STATUS_STARED);
+        tvLikes.setText(mBanner.getStars() + "");
     }
 
     @Override
     public void unStarSuc() {
         ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
-        tvLikes.setText((banner.getStars() - 1) + "");
+        mBanner.setStars(mBanner.getStars() - 1);
+        mBanner.setStarStatus(Banner.STATUS_UNSTARED);
+        tvLikes.setText(mBanner.getStars() + "");
     }
 
     @Override
     public void addViewsSuc(long views) {
+
+        mBanner.setViews(views);
         tvViews.setText(views + "");
     }
 
     @Override
     public void loadBanner(Banner banner) {
-        this.banner = banner;
+        this.mBanner = banner;
         showBanner();
     }
+
 }

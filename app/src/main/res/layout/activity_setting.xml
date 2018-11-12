@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/setting_about_us"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_32" />
 
                 <ImageView
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/setting_feedback"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_32" />
 
                 <ImageView
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/setting_clear_cache"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_32" />
 
                 <TextView
@@ -121,21 +121,21 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="@string/setting_check_update"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_32" />
 
-                <ImageView
-                    android:layout_width="@dimen/px_28"
-                    android:layout_height="@dimen/px_28"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/right" />
+                <!--<ImageView-->
+                <!--android:layout_width="@dimen/px_28"-->
+                <!--android:layout_height="@dimen/px_28"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/right" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/gray_1" />
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:background="@color/gray_1" />-->
             </RelativeLayout>
         </LinearLayout>
 
@@ -148,7 +148,8 @@
             android:layout_marginRight="@dimen/px_40"
             android:background="@drawable/setting_bt_switch_account"
             android:text="@string/setting_switch_account"
-            android:textColor="@color/red"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_30" />
     </LinearLayout>
 

@@ -48,6 +48,7 @@
     <string name="home_news_view_format">%d   views</string>
     <string name="home_header_recent_text">最近浏览</string>
     <string name="home_header_like_text">喜欢</string>
+    <string name="home_header_no_data_hint">最近浏览和您喜欢的都会出现在这里</string>
     <!--个人资料-->
     <string name="profile_title">个人资料</string>
     <string name="profile_nick_name">昵称</string>

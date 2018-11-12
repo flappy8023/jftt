@@ -81,7 +81,7 @@ public class FAQActivity extends BaseActivity {
 
     @OnClick(R.id.bt_faq_contact_custom_service)
     public void contactCustomService() {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, R.style.BaseDialog);
         dialog.setContentView(R.layout.dialog_custom_service_layout);
         dialog.setCanceledOnTouchOutside(true);
         Button btCopy = dialog.findViewById(R.id.bt_copy);
