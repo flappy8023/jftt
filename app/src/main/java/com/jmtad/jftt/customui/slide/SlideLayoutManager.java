@@ -37,15 +37,6 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
-//    @Override
-//    public boolean canScrollHorizontally() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean canScrollVertically() {
-//        return true;
-//    }
 
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -61,7 +52,12 @@ public class SlideLayoutManager extends RecyclerView.LayoutManager {
                         getDecoratedMeasuredWidth(view),
                         getDecoratedMeasuredHeight(view));
             }
-            mRecyclerView.setVisibility(View.VISIBLE);
+            mRecyclerView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                }
+            }, 120);
         } else {
             for (int position = itemCount - 1; position >= 0; position--) {
                 final View view = recycler.getViewForPosition(position);

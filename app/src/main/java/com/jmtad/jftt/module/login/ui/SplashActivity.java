@@ -1,5 +1,6 @@
 package com.jmtad.jftt.module.login.ui;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +13,11 @@ import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
 import com.jmtad.jftt.module.main.ui.HomeActivity;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @description:闪屏页面
@@ -43,13 +47,39 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                String userId = SharedPreferenceUtil.getInstance().getUserId();
-                //如果本地不存在用户id,跳转登录页面,否则直接进入首页
-                if (TextUtils.isEmpty(userId)) {
-                    showLogin();
-                } else {
-                    goToMain();
-                }
+                RxPermissions rxPermissions = new RxPermissions(SplashActivity.this);
+                rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        if (aBoolean) {
+                            String userId = SharedPreferenceUtil.getInstance().getUserId();
+                            //如果本地不存在用户id,跳转登录页面,否则直接进入首页
+                            if (TextUtils.isEmpty(userId)) {
+                                showLogin();
+                            } else {
+                                goToMain();
+                            }
+                        } else {
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
             }
 
             @Override

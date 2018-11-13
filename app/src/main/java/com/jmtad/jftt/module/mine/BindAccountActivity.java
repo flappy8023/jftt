@@ -51,6 +51,8 @@ public class BindAccountActivity extends BaseActivity<LoginPresenter> implements
     protected void initView() {
         ivBack.setImageResource(R.drawable.back_black);
         tvTitle.setText(R.string.bind_account_title);
+        sendCode.setCountDownColor(R.color.countDown_usable_color, R.color.countDown_unusable_color);
+        sendCode.setEndHint("s");
         String phone = SharedPreferenceUtil.getInstance().getPhone();
         //已绑定手机号展示手机号,隐藏验证码
         if (!TextUtils.isEmpty(phone)) {
@@ -62,7 +64,10 @@ public class BindAccountActivity extends BaseActivity<LoginPresenter> implements
             btBindPhone.setText(phone);
         }
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUnionId())) {
+            tvWechatState.setText(getString(R.string.bind_binded));
             btBindWechat.setText(WechatInfoHelper.getWechatNickname());
+        } else {
+            btBindWechat.setTextColor(getResources().getColor(R.color.black_textColor));
         }
 
     }

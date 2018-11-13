@@ -54,41 +54,13 @@
                 android:layout_height="1px"
                 android:background="@color/gray_1" />
 
-            <EditText
-                android:id="@+id/et_feedback_title"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_feedback"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px_90"
-                android:layout_marginTop="@dimen/px_46"
-                android:background="@drawable/profile_edittext_bg_selector"
-                android:gravity="center_vertical"
-                android:hint="@string/feedback_hint_title"
-                android:inputType="text"
-                android:paddingLeft="@dimen/px_30"
-                android:textSize="@dimen/sp_30" />
+                android:layout_height="@dimen/px_600">
 
-            <EditText
-                android:id="@+id/et_feedback_content"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_260"
-                android:layout_marginTop="@dimen/px_32"
-                android:background="@drawable/profile_edittext_bg_selector"
-                android:gravity="top|left"
-                android:hint="@string/feedback_hint_content"
-                android:inputType="textMultiLine"
-                android:padding="@dimen/px_30"
-                android:textSize="@dimen/sp_30" />
+            </android.support.v4.view.ViewPager>
 
-            <EditText
-                android:id="@+id/et_feedback_contact"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px_90"
-                android:layout_marginTop="@dimen/px_46"
-                android:background="@drawable/profile_edittext_bg_selector"
-                android:gravity="center_vertical"
-                android:hint="@string/feedback_hint_contact"
-                android:inputType="text"
-                android:paddingLeft="@dimen/px_30"
-                android:textSize="@dimen/sp_30" />
         </LinearLayout>
 
         <Button
@@ -99,6 +71,7 @@
             android:layout_marginRight="@dimen/px_30"
             android:background="@drawable/bt_choose_login_bg"
             android:text="@string/profile_submit"
+            android:letterSpacing="0.5"
             style="?android:attr/borderlessButtonStyle"
             android:textColor="@color/black_textColor"
             android:textSize="@dimen/sp_30" />

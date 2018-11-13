@@ -29,9 +29,9 @@
         android:hint="@string/bind_phone_phoneHint"
         android:inputType="number"
         android:maxLength="11"
-        android:textColor="@color/black"
+        android:textColor="@color/black_textColor"
         android:textColorHint="#6F6E6E"
-        android:textSize="@dimen/sp_40" />
+        android:textSize="@dimen/sp_30" />
 
     <View
         android:layout_width="match_parent"
@@ -54,20 +54,19 @@
             android:hint="@string/bind_phone_verCodeHint"
             android:inputType="number"
             android:maxLength="8"
-            android:textColor="@color/black"
+            android:textColor="@color/black_textColor"
             android:textColorHint="#6F6E6E"
-            android:textSize="@dimen/sp_40" />
+            android:textSize="@dimen/sp_30" />
 
         <com.jmtad.jftt.customui.CountDownTextView
             android:id="@+id/bt_send_code"
-            android:layout_width="@dimen/px_180"
-            android:layout_height="@dimen/px_72"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/bt_login_bind_send_bg"
-            android:gravity="center"
+            android:layout_alignTop="@id/et_bind_phone_code"
             android:text="@string/bind_phone_getcode"
-            android:textColor="@color/yellow"
-            android:textSize="@dimen/sp_26" />
+            android:textColor="#EDBD67"
+            android:textSize="@dimen/sp_30" />
 
     </RelativeLayout>
 
@@ -81,10 +80,11 @@
         android:id="@+id/bt_login_bind_sure"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_90"
-        android:layout_marginTop="@dimen/px_72"
+        android:layout_marginTop="@dimen/px_80"
         android:background="@drawable/bt_choose_login_bg"
         android:gravity="center"
         android:text="@string/login_bind_sure"
+        android:letterSpacing="0.5"
         android:textColor="@color/black_textColor"
         android:textSize="@dimen/sp_30" />
 
@@ -92,10 +92,11 @@
         android:id="@+id/bt_login_bind_back"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px_90"
-        android:layout_marginTop="@dimen/px_72"
+        android:layout_marginTop="@dimen/px_40"
         android:background="@drawable/bt_login_bind_bg"
         android:gravity="center"
         android:text="@string/back"
+        android:letterSpacing="0.5"
         android:textColor="#8D8C8B"
         android:textSize="@dimen/sp_30" />
 </LinearLayout>

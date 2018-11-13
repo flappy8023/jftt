@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_feedback_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_marginTop="@dimen/px_46"
+        android:background="@drawable/profile_edittext_bg_selector"
+        android:gravity="center_vertical"
+        android:hint="@string/feedback_hint_title"
+        android:inputType="text"
+        android:paddingLeft="@dimen/px_30"
+        android:textSize="@dimen/sp_30" />
+
+    <EditText
+        android:id="@+id/et_feedback_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_260"
+        android:layout_marginTop="@dimen/px_32"
+        android:background="@drawable/profile_edittext_bg_selector"
+        android:gravity="top|left"
+        android:hint="@string/feedback_hint_content"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/px_30"
+        android:textSize="@dimen/sp_30" />
+
+    <EditText
+        android:id="@+id/et_feedback_contact"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_90"
+        android:layout_marginTop="@dimen/px_46"
+        android:background="@drawable/profile_edittext_bg_selector"
+        android:gravity="center_vertical"
+        android:hint="@string/feedback_hint_contact"
+        android:inputType="text"
+        android:paddingLeft="@dimen/px_30"
+        android:textSize="@dimen/sp_30" />
+</LinearLayout>

@@ -103,7 +103,7 @@ public class CountDownTextView extends AppCompatTextView {
                 setClickable(usable);
                 setTextColor(getResources().getColor(unusableColorId));
             }
-            setText(mLastMillis / 1000 + "秒" + mEndHint);
+            setText(mLastMillis / 1000 + mEndHint);
         }
 
     }

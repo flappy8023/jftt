@@ -95,7 +95,7 @@ public class MineActivity extends BaseActivity<MinePresenter> implements MineCon
         });
     }
 
-    @OnClick(R.id.iv_mine_back)
+    @OnClick({R.id.iv_mine_back, R.id.tv_title})
     public void back() {
         finish();
     }

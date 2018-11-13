@@ -32,4 +32,6 @@
     <color name="home_header_bg_color">#1D1D24</color>
     <color name="home_header_selected_color">#FFD302</color>
     <color name="dialog_gray_textColor">#B1B0A9</color>
+    <color name="countDown_usable_color">#EDBD67</color>
+    <color name="countDown_unusable_color">#C6C6C1</color>
 </resources>

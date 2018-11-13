@@ -93,12 +93,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/right" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/gray_1" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -113,6 +107,7 @@
             android:layout_marginBottom="@dimen/px_60"
             android:background="@drawable/bt_choose_login_bg"
             android:text="@string/faq_contant_custom_service"
+            android:letterSpacing="0.2"
             android:textColor="@color/black_textColor"
             android:textSize="@dimen/sp_30" />
     </LinearLayout>

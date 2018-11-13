@@ -53,6 +53,7 @@
     <dimen name='px_540'>231dp</dimen>
     <dimen name='px_560'>239dp</dimen>
     <dimen name='px_584'>250dp</dimen>
+    <dimen name='px_600'>256dp</dimen>
     <dimen name='px_670'>286dp</dimen>
     <dimen name='sp_20'>9sp</dimen>
     <dimen name='sp_24'>11sp</dimen>

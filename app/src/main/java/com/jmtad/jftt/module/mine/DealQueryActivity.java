@@ -113,7 +113,7 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
         picker.setLineSpaceMultiplier(3.0f);
         picker.setSubmitText(R.string.sure);
         picker.setCancelText(getString(R.string.cancel));
-        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.8));
+        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
         picker.setHeight((int) (picker.getScreenHeightPixels() * 0.6));
         picker.setRangeStart(2015, 10, 14);
         picker.setRangeEnd(2099, 11, 11);
@@ -134,7 +134,7 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
 
     }
 
-    @OnClick(R.id.iv_mine_back)
+    @OnClick({R.id.iv_mine_back, R.id.tv_title})
     public void back() {
         finish();
     }

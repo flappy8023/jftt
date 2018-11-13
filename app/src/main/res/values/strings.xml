@@ -12,11 +12,10 @@
     <string name="back">返回</string>
     <string name="bind_phone_phoneHint">手机号</string>
     <string name="bind_phone_verCodeHint">验证码</string>
-    <string name="bind_phone_getcode">获取</string>
+    <string name="bind_phone_getcode">获取验证码</string>
     <string name="bind_phone_title">绑定手机</string>
     <string name="copy_kefu_wx_suc">已成功复制微信号~现在就去添加微信联系客服吧</string>
-    <!--注册-->
-    <string name="register_send_verification_code">获取</string>
+    <string name="register_send_verification_code">获取验证码</string>
     <!--个人中心-->
     <string name="mine_title">个人中心</string>
     <string name="oil_balance">油滴余额</string>

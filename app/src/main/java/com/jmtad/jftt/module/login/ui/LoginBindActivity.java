@@ -32,8 +32,8 @@ public class LoginBindActivity extends BaseActivity<LoginPresenter> implements L
 
     @Override
     protected void initView() {
-        btSend.setCountDownColor(R.color.white, R.color.white);
-        btSend.setEndHint("");
+        btSend.setCountDownColor(R.color.countDown_usable_color, R.color.countDown_unusable_color);
+        btSend.setEndHint("s");
     }
 
     @Override

@@ -1,22 +1,27 @@
 package com.jmtad.jftt.module.setting;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jmtad.jftt.R;
+import com.jmtad.jftt.adapter.FeedbackAdapter;
 import com.jmtad.jftt.base.BaseActivity;
+import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.http.HttpApi;
 import com.jmtad.jftt.http.RxCallBack;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.StatusBarUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,16 +38,13 @@ public class FeedbackActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.iv_toolbar_left_button)
     ImageView ivBack;
-    @BindView(R.id.et_feedback_title)
-    EditText etTitle;
-    @BindView(R.id.et_feedback_content)
-    EditText etContent;
-    @BindView(R.id.et_feedback_contact)
-    EditText etContact;
     @BindView(R.id.bt_feedback_submit)
     Button btSubmit;
     @BindView(R.id.tl_feedback_tab)
     TabLayout tabLayout;
+    @BindView(R.id.viewpager_feedback)
+    ViewPager viewPager;
+    FeedbackAdapter feedbackAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,32 @@ public class FeedbackActivity extends BaseActivity {
     protected void initView() {
         tvTitle.setText(R.string.feedback_title);
         ivBack.setImageResource(R.drawable.back_black);
+        tabLayout.setupWithViewPager(viewPager);
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new FeedBackFragment());
+        fragments.add(new FeedBackFragment());
+        feedbackAdapter = new FeedbackAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(feedbackAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 1) {
+                    slidrInterface.lock();
+                } else {
+                    slidrInterface.unlock();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -68,23 +96,12 @@ public class FeedbackActivity extends BaseActivity {
 
     @OnClick(R.id.bt_feedback_submit)
     public void submit() {
-        String title = etTitle.getText().toString();
-        String content = etContent.getText().toString();
-        String contact = etContact.getText().toString();
-        //常规校验
-        if (TextUtils.isEmpty(title)) {
-            showMsg("请填写标题");
-            etTitle.requestFocus();
-            return;
-        }
-        if (TextUtils.isEmpty(content)) {
-            showMsg("请输入内容");
-            etContent.requestFocus();
-            return;
-        }
-        if (contact.length() != 11) {
-            showMsg("请输入正确手机号");
-            etContact.requestFocus();
+        FeedBackFragment fragment = (FeedBackFragment) feedbackAdapter.getItem(viewPager.getCurrentItem());
+        String title = fragment.getTitle();
+        String content = fragment.getContent();
+        String contact = fragment.getContact();
+        //进行校验
+        if (!fragment.check(title, content, contact)) {
             return;
         }
         //0 功能建议 ；1 性能问题
@@ -98,17 +115,14 @@ public class FeedbackActivity extends BaseActivity {
             @Override
             public void onSuccess(BaseResponse baseResponse) {
                 if (TextUtils.equals(BaseResponse.CODE_0, baseResponse.getCode())) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(FeedbackActivity.this);
-                    dialog.setIcon(R.drawable.success);
-                    dialog.setTitle("反馈成功");
-                    dialog.setMessage("您的反馈已经成功记录");
-                    dialog.setPositiveButton("好的", new DialogInterface.OnClickListener() {
+                    new CommonDialog(FeedbackActivity.this, R.style.BaseDialog, "您的反馈已经成功记录").setTitle("反馈成功").setPositiveButton("好的").setListener(new CommonDialog.OnCloseListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+                        public void onClick(Dialog dialog, boolean confirm) {
+                            dialog.dismiss();
+                            //反馈成功后清除填写的内容
+                            fragment.reset();
                         }
-                    });
-                    dialog.show();
+                    }).show();
                 } else {
                     showMsg("反馈失败,请稍后再试");
                 }

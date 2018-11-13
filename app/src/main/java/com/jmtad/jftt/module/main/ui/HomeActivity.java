@@ -40,6 +40,7 @@ import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.victor.loading.rotate.RotateLoading;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -61,6 +62,8 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     PopupWindow topMenu;
     @BindView(R.id.iv_main_top_menu)
     ImageView ivTopMenu;
+    @BindView(R.id.loading)
+    RotateLoading loading;
     //图文总条数
     private int mTotal = 0;
     //总页数
@@ -90,6 +93,10 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initView() {
+        loading.start();
+        /*
+         *防止预加载图文时闪屏，延时展示
+         */
         recyclerView.setVisibility(View.INVISIBLE);
         mainAdapter = new MainAdapter(HomeActivity.this, mBanners);
         //初始化下拉布局
@@ -149,11 +156,6 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onClear(List<Banner> temp) {
-//            int beforeSize = mBanners.size();
-            //当前列表全部展示一遍后,循环展示刷新数据
-//            mBanners.addAll(temp);
-//
-//            mainAdapter.notifyItemRangeChanged(beforeSize, temp.size());
             pageNo = 1;
             presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
         }
@@ -172,6 +174,14 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void loadBannerList(List<Banner> banners, int total, int pages) {
+        loading.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loading.isStart()) {
+                    loading.stop();
+                }
+            }
+        }, 200);
         this.mTotal = total;
         this.totalPages = pages;
         int beforeSize = mBanners.size();

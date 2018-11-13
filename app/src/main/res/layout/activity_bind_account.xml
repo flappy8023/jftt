@@ -50,7 +50,7 @@
 
                 <EditText
                     android:id="@+id/et_bind_account_phoneNO"
-                    android:layout_width="@dimen/px_340"
+                    android:layout_width="match_parent"
                     android:layout_height="@dimen/px_90"
                     android:layout_below="@id/tv_phone_title"
                     android:layout_marginTop="@dimen/px_24"
@@ -65,15 +65,14 @@
 
                 <com.jmtad.jftt.customui.CountDownTextView
                     android:id="@+id/bt_send_verifyCode"
-                    android:layout_width="@dimen/px_240"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/px_90"
                     android:layout_alignTop="@id/et_bind_account_phoneNO"
-                    android:layout_marginLeft="@dimen/px_30"
-                    android:layout_toRightOf="@id/et_bind_account_phoneNO"
-                    android:background="@drawable/bt_login_bind_send_bg"
-                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/px_36"
+                    android:textColor="@color/countDown_usable_color"
                     android:text="@string/register_send_verification_code"
-                    android:textColor="@color/yellow"
                     android:textSize="@dimen/sp_30" />
 
                 <EditText
@@ -140,14 +139,15 @@
 
         <Button
             android:id="@+id/bt_bind_account_submit"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px_90"
             android:layout_marginLeft="@dimen/px_40"
             android:layout_marginTop="@dimen/px_40"
             android:layout_marginRight="@dimen/px_40"
+            android:letterSpacing="0.5"
             android:background="@drawable/bt_choose_login_bg"
             android:text="@string/profile_submit"
-            style="?android:attr/borderlessButtonStyle"
             android:textColor="@color/black_textColor"
             android:textSize="@dimen/sp_30" />
     </LinearLayout>

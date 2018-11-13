@@ -225,6 +225,7 @@
                     android:layout_marginBottom="@dimen/px_36"
                     android:background="@drawable/bt_choose_login_bg"
                     android:text="@string/profile_submit"
+                    android:letterSpacing="0.5"
                     style="?android:attr/borderlessButtonStyle"
                     android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_30" />
