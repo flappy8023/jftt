@@ -93,64 +93,57 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
         initToolbar();
         //填充数据
         if (null != getIntent()) {
-            Banner banner = (Banner) getIntent().getSerializableExtra(KEY_BANNER);
-            bannerId = banner.getId();
+            mBanner = (Banner) getIntent().getSerializableExtra(KEY_BANNER);
+            bannerId = mBanner.getId();
             //点赞状态
-            if (TextUtils.equals(banner.getStarStatus(), "0")) {
+            if (TextUtils.equals(mBanner.getStarStatus(), "0")) {
                 ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
             } else {
                 ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
             }
             presenter.queryBannerByID(bannerId);
         }
-//        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-//                    //向下滚动时展示标题,滚动到顶部时隐藏标题
-//                    if (scrollY > 100) {
-//                        if (null != mBanner && null != mBanner.getAuthor()) {
-//                            toolbar.setTitle(mBanner.getAuthor());
-//                        }
-//                    } else {
-//                        toolbar.setTitle("");
-//                    }
-//                }
-//        );
-        scrollView.addOnScrollListner(new MyScrollView.OnMyScrollListener() {
-            @Override
-            public void onScrollStateChanged(MyScrollView view, int state) {
-                if (state == MyScrollView.OnMyScrollListener.SCROLL_STATE_FLING || state == MyScrollView.OnMyScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    animateOut();
-                } else {
-                    animateIn();
-                }
-            }
-
-            @Override
-            public void onScrollToTop() {
-                animateIn();
-            }
-
-            @Override
-            public void onScrollToBottom() {
-                animateIn();
-            }
-
-            @Override
-            public void onScroll(int l, int t, int oldl, int oldt) {
-                //向下滚动时展示标题,滚动到顶部时隐藏标题
-                if (t > 100) {
-                    if (null != mBanner && null != mBanner.getAuthor()) {
-                        toolbar.setTitle(mBanner.getAuthor());
-                    }
-                } else {
-                    toolbar.setTitle("");
-                }
-            }
-        });
-
+        //滚动中隐藏跳转按钮，停止后显示按钮
+        scrollView.addOnScrollListner(myScrollListener);
     }
 
+    private MyScrollView.OnMyScrollListener myScrollListener = new MyScrollView.OnMyScrollListener() {
+        @Override
+        public void onScrollStateChanged(MyScrollView view, int state) {
+            if (state == MyScrollView.OnMyScrollListener.SCROLL_STATE_FLING || state == MyScrollView.OnMyScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                animateOut();
+            } else {
+                animateIn();
+            }
+        }
+
+        @Override
+        public void onScrollToTop() {
+            animateIn();
+        }
+
+        @Override
+        public void onScrollToBottom() {
+            animateIn();
+        }
+
+        @Override
+        public void onScroll(int l, int t, int oldl, int oldt) {
+            //向下滚动时展示标题,滚动到顶部时隐藏标题
+            if (t > 100) {
+                if (null != mBanner && null != mBanner.getAuthor()) {
+                    toolbar.setTitle(mBanner.getAuthor());
+                }
+            } else {
+                toolbar.setTitle("");
+            }
+        }
+    };
+
     private void animateIn() {
-        btLink.setVisibility(View.VISIBLE);
+        if (btLink.getVisibility() == View.GONE) {
+            return;
+        }
         if (Build.VERSION.SDK_INT >= 14) {
             ViewCompat.animate(btLink).scaleX(1.0F).scaleY(1.0F).alpha(1.0F)
                     .withLayer().setListener(null)
@@ -160,6 +153,9 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     }
 
     private void animateOut() {
+        if (btLink.getVisibility() == View.GONE) {
+            return;
+        }
         if (Build.VERSION.SDK_INT >= 14) {
             ViewCompat.animate(btLink).scaleX(0.0F).scaleY(0.0F).alpha(0.0F).withLayer()
                     .setListener(new ViewPropertyAnimatorListener() {
@@ -170,7 +166,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
                         }
 
                         public void onAnimationEnd(View view) {
-                            view.setVisibility(View.INVISIBLE);
+                            btLink.setVisibility(View.INVISIBLE);
                         }
                     }).start();
 
