@@ -26,9 +26,7 @@ public class SoundPoolUtil {
     private SoundPoolUtil(Context context) {
         soundPool = new SoundPool(3, AudioManager.STREAM_SYSTEM, 0);
         //加载音频文件
-        soundPool.load(context, R.raw.music1, 1);
-        soundPool.load(context, R.raw.music2, 1);
-        soundPool.load(context, R.raw.music3, 1);
+        soundPool.load(context, R.raw.music, 1);
 
 
     }

@@ -60,16 +60,17 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
         tvDate.setText(date);
 
         //初始化fragment
+        //全部
         allFragment = new RecordFragment();
         Bundle all = new Bundle();
         all.putString(RecordFragment.KEY_TYPE, RecordFragment.TYPE_ALL);
         allFragment.setArguments(all);
-
+        //收入
         incomeFragment = new RecordFragment();
         Bundle income = new Bundle();
         income.putString(RecordFragment.KEY_TYPE, RecordFragment.TYPE_INCOME);
         incomeFragment.setArguments(income);
-
+        //支出
         expendFragment = new RecordFragment();
         Bundle expend = new Bundle();
         expend.putString(RecordFragment.KEY_TYPE, RecordFragment.TYPE_EXPEND);

@@ -96,7 +96,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         @Override
         public UIData onRequestVersionSuccess(String result) {
             CheckUpdateResp resp = JsonParse.json2Object(result, CheckUpdateResp.class);
-            if (TextUtils.equals(BaseResponse.CODE_0, resp.getCode())) {
+            if (null != resp && TextUtils.equals(BaseResponse.CODE_0, resp.getCode())) {
                 //保存最新的下载地址
                 if (null != resp && null != resp.getData()) {
                     SharedPreferenceUtil.getInstance().saveApkUrl(resp.getData().getDownloadUrl());
@@ -189,7 +189,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         public void onSlided(RecyclerView.ViewHolder viewHolder, Banner banner, int direction, int position) {
 
             //滑动时播放声音，，，，，，！！！
-            SoundPoolUtil.getInstance(HomeActivity.this).play(2);
+            SoundPoolUtil.getInstance(HomeActivity.this).play(1);
             int offset = PAGE_SIZE / 2;
             //position是当前所有浏览的计数,循环展示时会超过总数
             position = position % mTotal;
