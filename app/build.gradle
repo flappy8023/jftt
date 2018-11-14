@@ -21,7 +21,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86', 'x86_64'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
@@ -54,6 +54,12 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
 screen {
 
@@ -121,9 +127,6 @@ dependencies {
     implementation 'com.just.agentweb:download:4.0.2' // (可选)
     //图片浏览
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
-    //极光推送
-    implementation 'cn.jiguang.sdk:jpush:3.1.6'
-    implementation 'cn.jiguang.sdk:jcore:1.2.5'
     //运行时权限申请
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 
