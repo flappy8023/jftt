@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="px_2">1dp</dimen>
+    <dimen name="px_4">2dp</dimen>
     <dimen name="px_6">3dp</dimen>
     <dimen name="px_8">4dp</dimen>
     <dimen name="px_10">5dp</dimen>

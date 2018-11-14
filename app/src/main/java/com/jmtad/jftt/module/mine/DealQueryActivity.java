@@ -101,7 +101,7 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
 
     @OnClick(R.id.ll_date_select)
     public void selectDate() {
-        cn.qqtheme.framework.picker.DatePicker picker = new cn.qqtheme.framework.picker.DatePicker(this, cn.qqtheme.framework.picker.DatePicker.YEAR_MONTH);
+        DatePicker picker = new DatePicker(this, cn.qqtheme.framework.picker.DatePicker.YEAR_MONTH);
         picker.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         //设置统一颜色
         picker.setTextColor(getResources().getColor(R.color.red_1));
@@ -113,8 +113,9 @@ public class DealQueryActivity extends BaseActivity<DealPresenter> implements De
         picker.setLineSpaceMultiplier(3.0f);
         picker.setSubmitText(R.string.sure);
         picker.setCancelText(getString(R.string.cancel));
-        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
-        picker.setHeight((int) (picker.getScreenHeightPixels() * 0.6));
+        picker.setSize((int) (picker.getScreenWidthPixels() * 0.8), (int) (picker.getScreenHeightPixels() * 0.6));
+//        picker.setWidth((int) (picker.getScreenWidthPixels() * 0.6));
+//        picker.setHeight((int) (picker.getScreenHeightPixels() * 0.6));
         picker.setRangeStart(2015, 10, 14);
         picker.setRangeEnd(2099, 11, 11);
         picker.setSelectedItem(selectedYear, selectedMonth);

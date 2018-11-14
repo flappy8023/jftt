@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="@dimen/px_300"
+    android:background="@drawable/mine_menu_content_bg">
 
-    android:layout_height="match_parent">
-
-    <TextView
+    <RelativeLayout
+        android:id="@+id/head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/ll"
-        android:alpha="0.2" />
+        android:layout_height="@dimen/px_80"
+        android:layout_marginLeft="@dimen/px_40"
+        android:layout_marginRight="@dimen/px_40">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="分享"
+            android:textColor="@color/black_textColor"
+            android:textSize="@dimen/sp_30" />
+
+        <ImageView
+            android:id="@+id/share_cancel"
+            android:layout_width="@dimen/px_40"
+            android:layout_height="@dimen/px_40"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/close" />
+
+        <TextView
+            android:id="@+id/line"
+            android:layerType="software"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/dash_line" />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/head"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -21,76 +49,61 @@
             android:id="@+id/share_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ebebeb"
+            android:background="@color/white"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="30dp">
+            android:paddingLeft="@dimen/px_80"
+            android:paddingRight="@dimen/px_80">
 
             <LinearLayout
                 android:id="@+id/wechat_share_session"
-                android:layout_width="@dimen/px_200"
+                android:layout_width="@dimen/px_110"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/px_72"
-                    android:layout_height="@dimen/px_72"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/px_36"
                     android:background="@drawable/wechat_session" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:onClick="share"
+                    android:layout_marginTop="@dimen/px_16"
+                    android:gravity="center_horizontal"
                     android:text="微信好友"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black_textColor"
+                    android:textSize="@dimen/sp_26" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/wechat_share_timeline"
-                android:layout_width="@dimen/px_200"
+                android:layout_width="@dimen/px_110"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_50"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="@dimen/px_72"
-                    android:layout_height="@dimen/px_72"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/px_90"
+                    android:layout_height="@dimen/px_90"
+                    android:layout_marginTop="@dimen/px_36"
+                    android:layout_gravity="center_horizontal"
                     android:background="@drawable/wechat_timeline" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
+                    android:layout_marginTop="@dimen/px_16"
+                    android:gravity="center_horizontal"
                     android:text="朋友圈"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black_textColor"
+                    android:textSize="@dimen/sp_26" />
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_below="@+id/share_ll"
-            android:background="#000000" />
 
-        <TextView
-            android:id="@+id/share_cancle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line"
-            android:background="#f5f3f3"
-            android:gravity="center"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:text="取消"
-            android:textSize="20sp" />
     </LinearLayout>
 </RelativeLayout>

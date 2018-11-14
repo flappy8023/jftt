@@ -1,6 +1,7 @@
 <resources>
     <!-- sw392dp -->
     <dimen name='px_2'>2dp</dimen>
+    <dimen name='px_4'>3dp</dimen>
     <dimen name='px_6'>4dp</dimen>
     <dimen name='px_8'>5dp</dimen>
     <dimen name='px_10'>6dp</dimen>

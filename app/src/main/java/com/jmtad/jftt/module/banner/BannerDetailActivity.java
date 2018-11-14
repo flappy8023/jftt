@@ -144,6 +144,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
         if (btLink.getVisibility() == View.GONE) {
             return;
         }
+        btLink.setVisibility(View.VISIBLE);
         if (Build.VERSION.SDK_INT >= 14) {
             ViewCompat.animate(btLink).scaleX(1.0F).scaleY(1.0F).alpha(1.0F)
                     .withLayer().setListener(null)
@@ -173,6 +174,9 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
         }
     }
 
+    /**
+     * 填充图文详情信息
+     */
     private void showBanner() {
         if (null != mBanner) {
             if (!TextUtils.isEmpty(mBanner.getLinkUrl())) {

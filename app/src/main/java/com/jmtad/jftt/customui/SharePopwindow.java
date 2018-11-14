@@ -2,13 +2,16 @@ package com.jmtad.jftt.customui;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.jmtad.jftt.R;
 
@@ -29,10 +32,13 @@ public class SharePopwindow extends PopupWindow {
     }
 
     private void initView() {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.share_popwindow_layout, null);
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout linearLayout = new LinearLayout(mContext);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.share_popwindow_layout, linearLayout);
         LinearLayout session = view.findViewById(R.id.wechat_share_session);
         LinearLayout timeline = view.findViewById(R.id.wechat_share_timeline);
-        TextView tvCancel = view.findViewById(R.id.share_cancle);
+        ImageView tvCancel = view.findViewById(R.id.share_cancel);
         tvCancel.setOnClickListener(view1 -> dismiss());
         session.setOnClickListener(listener);
         timeline.setOnClickListener(listener);
@@ -52,9 +58,10 @@ public class SharePopwindow extends PopupWindow {
         //设置SelectPicPopupWindow弹出窗体动画效果
 //    this.setAnimationStyle(R.style.select_anim);
         //实例化一个ColorDrawable颜色为半透明
-        ColorDrawable dw = new ColorDrawable(0x00000000);
-        //设置SelectPicPopupWindow弹出窗体的背景
-        this.setBackgroundDrawable(dw);
+        Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.mine_menu_content_bg);
+        Drawable drawable = new BitmapDrawable(mContext.getResources(), bmp);
+// 不带参的方法已经deprecated
+        this.setBackgroundDrawable(drawable);
         backgroundAlpha(mContext, 0.5f);//0.0-1.0
         this.setOnDismissListener(() -> {
             backgroundAlpha(mContext, 1f);

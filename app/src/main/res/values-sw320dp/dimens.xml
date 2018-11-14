@@ -1,6 +1,7 @@
 <resources>
     <!-- sw320dp -->
     <dimen name='px_2'>1dp</dimen>
+    <dimen name='px_4'>2dp</dimen>
     <dimen name='px_6'>3dp</dimen>
     <dimen name='px_8'>4dp</dimen>
     <dimen name='px_10'>5dp</dimen>

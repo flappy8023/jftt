@@ -24,7 +24,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     private List<T> tempData = new ArrayList<>();
     private int position = 0;
     //所有内容滚动到剩余多少个时开始下次循环
-    public static final int LOAD_OFFSET = 3;
+    public static final int LOAD_OFFSET = 2;
 
     public ItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList) {
         this.adapter = checkIsNull(adapter);

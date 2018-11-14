@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -17,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
+import com.allenliu.versionchecklib.v2.builder.UIData;
+import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.adapter.HomeHeaderAdapter;
 import com.jmtad.jftt.adapter.MainAdapter;
@@ -30,14 +34,19 @@ import com.jmtad.jftt.customui.slide.OnSlideListener;
 import com.jmtad.jftt.customui.slide.SlideLayoutManager;
 import com.jmtad.jftt.event.RefreshBannerEvent;
 import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.http.bean.response.BaseResponse;
+import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
+import com.jmtad.jftt.util.ApkUtil;
+import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.MyToast;
 import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
+import com.jmtad.jftt.util.SoundPoolUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.victor.loading.rotate.RotateLoading;
@@ -82,6 +91,36 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     ImageView ivQRCode;
     private SharePopwindow popwindow;
 
+    private RequestVersionListener listener = new RequestVersionListener() {
+        @Nullable
+        @Override
+        public UIData onRequestVersionSuccess(String result) {
+            CheckUpdateResp resp = JsonParse.json2Object(result, CheckUpdateResp.class);
+            if (TextUtils.equals(BaseResponse.CODE_0, resp.getCode())) {
+                //保存最新的下载地址
+                if (null != resp && null != resp.getData()) {
+                    SharedPreferenceUtil.getInstance().saveApkUrl(resp.getData().getDownloadUrl());
+                    //如果返回版本号大于本地版本号,且属于强制更新,弹出更新对话框不可取消
+                    if (ApkUtil.getVersionCode(HomeActivity.this) < resp.getData().getIdenNumber() && TextUtils.equals(resp.getData().getIsAuto(), "1")) {
+                        UIData data = UIData.create();
+                        data.setContent(resp.getData().getExplainText());
+                        data.setDownloadUrl(resp.getData().getDownloadUrl());
+                        data.setTitle(resp.getData().getTitle());
+                        return data;
+                    }
+                }
+            } else {
+                showError("请稍后再试");
+
+            }
+            return null;
+        }
+
+        @Override
+        public void onRequestVersionFailure(String message) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +128,10 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         EventBus.getDefault().register(this);
         slidrInterface.lock();
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
+        //启动后检测版本更新
+        DownloadBuilder builder = presenter.checkUpdate(listener, false);
+        builder.setShowDownloadingDialog(false);
+        builder.executeMission(this);
     }
 
     @Override
@@ -144,6 +187,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onSlided(RecyclerView.ViewHolder viewHolder, Banner banner, int direction, int position) {
+
+            //滑动时播放声音，，，，，，！！！
+            SoundPoolUtil.getInstance(HomeActivity.this).play(2);
             int offset = PAGE_SIZE / 2;
             //position是当前所有浏览的计数,循环展示时会超过总数
             position = position % mTotal;
@@ -156,6 +202,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onClear(List<Banner> temp) {
+            if (mTotal > PAGE_SIZE && temp.size() + ItemTouchHelperCallback.LOAD_OFFSET == PAGE_SIZE) {
+                return;
+            }
             pageNo = 1;
             presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
         }
