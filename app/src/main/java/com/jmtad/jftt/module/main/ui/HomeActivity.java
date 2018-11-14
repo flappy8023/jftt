@@ -132,6 +132,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         DownloadBuilder builder = presenter.checkUpdate(listener, false);
         builder.setShowDownloadingDialog(false);
         builder.executeMission(this);
+        SoundPoolUtil.getInstance(HomeActivity.this);
     }
 
     @Override
