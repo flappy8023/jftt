@@ -241,6 +241,10 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     }
 
     private void shareBanner() {
+        if (TextUtils.isEmpty(mBanner.getLinkUrl())) {
+            showError("没有可分享的链接呢~");
+            return;
+        }
         if (null == popwindow) {
             popwindow = new SharePopwindow(BannerDetailActivity.this, view -> {
                 switch (view.getId()) {

@@ -40,6 +40,26 @@ public class Banner implements Serializable {
     private long views;//阅读量
     @SerializedName("isPraise")
     private String starStatus;//0:已点赞  1:未点赞
+    @SerializedName("type")
+    private String type;//0 一般图文 ；1 游戏类
+    @SerializedName("isCollect")
+    private String isCollect;//0:已收藏；1：未收藏
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getIsCollect() {
+        return isCollect;
+    }
+
+    public void setIsCollect(String isCollect) {
+        this.isCollect = isCollect;
+    }
 
     public long getStars() {
         return stars;

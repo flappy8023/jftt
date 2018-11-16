@@ -37,6 +37,10 @@ public class LogUtil {
         lineNumber = sElements[1].getLineNumber();
     }
 
+    public static void error(String tag, String message) {
+        message = tag + message;
+        error(message);
+    }
 
     public static void error(String message) {
         if (!isDebuggable())
@@ -47,6 +51,9 @@ public class LogUtil {
         Log.e(className, createLog(message));
     }
 
+    public static void info(String tag, String message) {
+        info(tag + message);
+    }
 
     public static void info(String message) {
         if (!isDebuggable())
@@ -54,6 +61,10 @@ public class LogUtil {
 
         getMethodNames(new Throwable().getStackTrace());
         Log.i(className, createLog(message));
+    }
+
+    public static void debug(String tag, String message) {
+        debug(tag + message);
     }
 
     public static void debug(String message) {

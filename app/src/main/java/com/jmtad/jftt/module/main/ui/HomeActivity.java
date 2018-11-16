@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
@@ -22,7 +21,6 @@ import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
 import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
 import com.jmtad.jftt.R;
-import com.jmtad.jftt.adapter.HomeHeaderAdapter;
 import com.jmtad.jftt.adapter.MainAdapter;
 import com.jmtad.jftt.base.BaseActivity;
 import com.jmtad.jftt.config.Constants;
@@ -37,13 +35,13 @@ import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
+import com.jmtad.jftt.module.login.ui.SplashActivity;
 import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
 import com.jmtad.jftt.util.ApkUtil;
 import com.jmtad.jftt.util.JsonParse;
-import com.jmtad.jftt.util.MyToast;
 import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.SoundPoolUtil;
@@ -60,6 +58,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 首页
+ */
 public class HomeActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView, MainAdapter.HomeListener {
     @BindView(R.id.pull_extend)
     PullExtendLayout pullExtendLayout;
@@ -67,7 +68,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     ExtendListHeader extendListHeader;
     @BindView(R.id.rv_main_container)
     RecyclerView recyclerView;
-    private final int PAGE_SIZE = 5;
+    private final int PAGE_SIZE = 10;
     PopupWindow topMenu;
     @BindView(R.id.iv_main_top_menu)
     ImageView ivTopMenu;
@@ -84,8 +85,6 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     private MainAdapter mainAdapter;
     private ItemTouchHelperCallback<Banner> itemTouchHelperCallback;
     private ItemTouchHelper itemTouchHelper;
-    private RecyclerView headerRecyclerView;
-    private HomeHeaderAdapter headerAdapter;
     //分享生成二维码
     @BindView(R.id.iv_home_qrcode)
     ImageView ivQRCode;
@@ -111,7 +110,6 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
                 }
             } else {
                 showError("请稍后再试");
-
             }
             return null;
         }
@@ -125,7 +123,14 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //如果用户未登录，拜拜~~
+        if (TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUserId())) {
+            showError("请登录");
+            startActivity(new Intent(HomeActivity.this, SplashActivity.class));
+            finish();
+        }
         EventBus.getDefault().register(this);
+        //首页禁止滑动返回功能
         slidrInterface.lock();
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
         //启动后检测版本更新
@@ -159,25 +164,26 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initHeader() {
-        if (false) {
-            headerRecyclerView = extendListHeader.getRecyclerView();
-            headerRecyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
-            headerRecyclerView.setAdapter(headerAdapter);
-            headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
-                @Override
-                public void onClick(Banner banner) {
-                    toDetail(banner);
-                }
-
-                @Override
-                public void onLongClick(Banner banner) {
-                    MyToast.showLongToast(HomeActivity.this, "长按删除");
-                }
-            });
-        } else {
-            extendListHeader.showHint();
-        }
+//        //如果存在收藏和历史展示列表；否则展示提示信息
+//        if (false) {
+//            headerRvRecent = extendListHeader.getRvRecent();
+//            headerRvRecent.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+//            headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
+//            headerRvRecent.setAdapter(headerAdapter);
+//            headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
+//                @Override
+//                public void onClick(Banner banner) {
+//                    toDetail(banner);
+//                }
+//
+//                @Override
+//                public void onLongClick(Banner banner) {
+//                    MyToast.showLongToast(HomeActivity.this, "长按删除");
+//                }
+//            });
+//        } else {
+//            extendListHeader.showHint();
+//        }
     }
 
     private OnSlideListener<Banner> onSlideListener = new OnSlideListener<Banner>() {
@@ -203,14 +209,39 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onClear(List<Banner> temp) {
+
             if (mTotal > PAGE_SIZE && temp.size() + ItemTouchHelperCallback.LOAD_OFFSET == PAGE_SIZE) {
                 return;
             }
+            //当所有内容阅读完成后开始从第一页重新请求数据
             pageNo = 1;
             presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //每次到首页重新请求收藏和最近浏览
+        presenter.queryCollects("1");
+        presenter.queryRecentList(1, 20);
+//        List<Banner> banners = new ArrayList<>();
+//        for(int i=0;i<10;i++){
+//            Banner banner = new Banner();
+//            banner.setId(i+"");
+//            banner.setAuthor(i+"");
+//            banner.setImgUrl("http://cdn.cocimg.com/bbs/attachment/Fid_65/65_262363_67e871ebb1053f0.png");
+//            banners.add(banner);
+//        }
+//        loadCollects(banners);
+//        loadRecent(banners);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        pullExtendLayout.resetHeaderLayout();
+    }
 
     @Override
     protected int getLayoutId() {
@@ -224,12 +255,10 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void loadBannerList(List<Banner> banners, int total, int pages) {
-        loading.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (loading.isStart()) {
-                    loading.stop();
-                }
+        //延时隐藏加载条
+        loading.postDelayed(() -> {
+            if (loading.isStart()) {
+                loading.stop();
             }
         }, 200);
         this.mTotal = total;
@@ -258,6 +287,16 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         ImageView ivStar = view.findViewById(R.id.iv_star);
         ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like));
         tvStar.setText(String.valueOf(stars));
+    }
+
+    @Override
+    public void loadRecent(List<Banner> bannerList) {
+        extendListHeader.showRecent(bannerList);
+    }
+
+    @Override
+    public void loadCollects(List<Banner> bannerList) {
+        extendListHeader.showCollects(bannerList);
     }
 
     @OnClick(R.id.iv_main_top_menu)
@@ -353,6 +392,11 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         startActivity(intent);
     }
 
+    /**
+     * 从详情页返回首页刷新当前图文
+     *
+     * @param event
+     */
     @Subscribe
     public void refreshBanner(RefreshBannerEvent event) {
         Banner banner = event.getCurrentBanner();

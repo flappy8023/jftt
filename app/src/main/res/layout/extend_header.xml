@@ -31,48 +31,61 @@
         android:id="@+id/ll_home_header_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
 
-        <RadioGroup
-            android:id="@+id/rg_home_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/px_40"
-            android:layout_marginTop="@dimen/px_60"
-            android:orientation="horizontal"
-            android:text="@string/home_header_recent_text"
-            android:textSize="@dimen/px_30">
+        android:paddingTop="@dimen/px_28">
 
-            <RadioButton
-                android:id="@+id/rb_home_header_recent"
-                android:layout_width="@dimen/px_140"
-                android:layout_height="@dimen/px_48"
-                android:background="@drawable/home_header_radio_bt_selector"
-                android:button="@null"
-                android:checked="true"
-                android:gravity="center"
-                android:text="@string/home_header_recent_text"
-                android:textColor="@drawable/home_header_rb_text_selector" />
-
-            <RadioButton
-                android:id="@+id/rb_home_header_like"
-                android:layout_width="@dimen/px_140"
-                android:layout_height="@dimen/px_48"
-                android:layout_marginLeft="@dimen/px_12"
-                android:background="@drawable/home_header_radio_bt_selector"
-                android:button="@null"
-                android:checked="false"
-                android:gravity="center"
-                android:text="@string/home_header_like_text"
-                android:textColor="@drawable/home_header_rb_text_selector" />
-        </RadioGroup>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
+        <LinearLayout
+            android:id="@+id/ll_header_recent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/px_8"
-            android:layout_marginTop="@dimen/px_36" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_44"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_24"
+                android:textColor="#aaaaab"
+                android:text="最近浏览"
+                android:layout_marginLeft="@dimen/px_50" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_recent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/px_48"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_marginTop="@dimen/px_36" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_header_collect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_44"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/sp_24"
+                android:textColor="#aaaaab"
+                android:text="喜欢"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_50" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_collect"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingLeft="@dimen/px_48"
+                android:layout_marginTop="@dimen/px_36" />
+        </LinearLayout>
     </LinearLayout>
 
 

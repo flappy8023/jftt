@@ -118,7 +118,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //        container.setSlideListener(this);
         //第一次请求图文列表
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
-        headerRecyclerView = extendListHeader.getRecyclerView();
         headerRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
         headerAdapter = new HomeHeaderAdapter(MainActivity.this, mBanners);
         headerRecyclerView.setAdapter(headerAdapter);
@@ -320,6 +319,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void unStarSucc(View view, long stars) {
+
+    }
+
+    @Override
+    public void loadRecent(List<Banner> bannerList) {
+
+    }
+
+    @Override
+    public void loadCollects(List<Banner> bannerList) {
 
     }
 

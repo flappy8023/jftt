@@ -3,9 +3,11 @@ package com.jmtad.jftt.http;
 
 import com.jmtad.jftt.http.bean.response.AddReadVolumeResp;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
+import com.jmtad.jftt.http.bean.response.CollectResp;
 import com.jmtad.jftt.http.bean.response.QueryBannerDetailResp;
 import com.jmtad.jftt.http.bean.response.QueryBannerListResp;
 import com.jmtad.jftt.http.bean.response.QueryCardResp;
+import com.jmtad.jftt.http.bean.response.QueryCollectsResp;
 import com.jmtad.jftt.http.bean.response.QueryCommonProResp;
 import com.jmtad.jftt.http.bean.response.QueryMsgResp;
 import com.jmtad.jftt.http.bean.response.QueryOilBalanceResp;
@@ -80,6 +82,38 @@ public interface HttpService {
      */
     @POST("banner/queryBannerById")
     Observable<QueryBannerDetailResp> queryBannerDetail(@Query("id") String id);
+
+    /**
+     * 收藏和取消收藏
+     *
+     * @param bannerId
+     * @param userId
+     * @return
+     */
+    @POST("banner/collectBanner")
+    Observable<CollectResp> collectBanner(@Query("bannerId") String bannerId, @Query("userId") String userId);
+
+    /**
+     * 查询最近浏览
+     *
+     * @param pageNum
+     * @param pageSize
+     * @param userId
+     * @return
+     */
+    @POST("banner/queryReading")
+    Observable<QueryBannerListResp> queryRecentBanner(@Query("pageNum") int pageNum, @Query("pageSize") int pageSize, @Query("userId") String userId);
+
+    /**
+     * 查询收藏列表
+     *
+     * @param userID
+     * @param type
+     * @return
+     */
+    @POST("banner/queryCollections")
+    Observable<QueryCollectsResp> queryCollects(@Query("userId") String userID, @Query("type") String type);
+
     /**
      * 查询图文列表
      *

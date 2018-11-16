@@ -462,7 +462,7 @@ public class PullExtendLayout extends LinearLayout implements IPullToExtend {
     /**
      * 重置header
      */
-    protected void resetHeaderLayout() {
+    public void resetHeaderLayout() {
         final int scrollY = Math.abs(getScrollYValue());
         if (scrollY < mHeaderHeight) {
             smoothScrollTo(0);

@@ -19,6 +19,7 @@
     <dimen name='px_36'>16dp</dimen>
     <dimen name='px_40'>18dp</dimen>
     <dimen name='px_42'>18dp</dimen>
+    <dimen name='px_44'>19dp</dimen>
     <dimen name='px_46'>20dp</dimen>
     <dimen name='px_48'>21dp</dimen>
     <dimen name='px_50'>22dp</dimen>

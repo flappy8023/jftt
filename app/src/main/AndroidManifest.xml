@@ -46,8 +46,8 @@
 
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
-            android:authorities="com.jmtad.jftt.DataProvider"
             android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="com.jmtad.jftt.DataProvider"
             android:exported="true"
             tools:replace="android:exported" />
         <!-- Required SDK 核心功能-->
@@ -75,8 +75,8 @@
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
@@ -150,11 +150,13 @@
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="5f26d3afe919fb9440756a66" />
+
         <activity android:name=".module.main.ui.MainActivity">
 
         </activity>
         <activity
             android:name=".module.login.ui.SplashActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -173,7 +175,9 @@
         <activity android:name=".module.login.ui.LoginActivity" />
         <activity android:name=".module.mine.MineActivity" />
         <activity android:name=".module.setting.SettingActivity" />
-        <activity android:name=".module.banner.BannerDetailActivity"></activity>
+        <activity
+            android:name=".module.banner.BannerDetailActivity"
+            android:parentActivityName=".module.main.ui.HomeActivity"></activity>
         <activity android:name=".module.setting.AboutUsActivity" />
         <activity android:name=".module.mine.ProfileActivity" />
         <activity android:name=".module.mine.BindAccountActivity">
@@ -188,7 +192,9 @@
         <activity android:name=".module.mine.DealQueryActivity" />
         <activity android:name=".module.mine.FAQDetailActivity" />
         <activity android:name=".module.mine.BindCardActivity" />
-        <activity android:name=".module.banner.BannerLinkActivity" />
+        <activity
+            android:name=".module.banner.BannerLinkActivity"
+            android:parentActivityName=".module.main.ui.HomeActivity" />
         <activity android:name=".module.banner.PictureActivity" />
         <activity android:name=".module.main.ui.HomeActivity">
 

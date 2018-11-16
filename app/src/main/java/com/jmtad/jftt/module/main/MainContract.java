@@ -25,6 +25,10 @@ public interface MainContract {
         void starSucc(View view, long stars);
 
         void unStarSucc(View view, long stars);
+
+        void loadRecent(List<Banner> bannerList);
+
+        void loadCollects(List<Banner> bannerList);
     }
 
     interface IMainPresenter extends IBaseContract.IBasePresenter {
@@ -33,5 +37,9 @@ public interface MainContract {
         DownloadBuilder checkUpdate(RequestVersionListener listener, boolean canCancel);
 
         void starOrUnStar(Banner banner, View view);
+
+        void queryRecentList(int pageNo, int pageSize);
+
+        void queryCollects(String type);
     }
 }
