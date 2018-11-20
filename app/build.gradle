@@ -41,7 +41,7 @@ android {
     android.applicationVariants.all {
         variant ->
             variant.outputs.all {
-                output -> output.outputFileName = "jftt_" + buildType.name + "_" + defaultConfig.versionName + "_" + new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("UTC")) + ".apk"
+                output -> output.outputFileName = "jftt_" + buildType.name + "_" + defaultConfig.versionName + "_" + new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+08:00")) + ".apk"
             }
     }
 

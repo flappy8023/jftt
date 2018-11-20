@@ -83,15 +83,6 @@ public interface HttpService {
     @POST("banner/queryBannerById")
     Observable<QueryBannerDetailResp> queryBannerDetail(@Query("id") String id);
 
-    /**
-     * 收藏和取消收藏
-     *
-     * @param bannerId
-     * @param userId
-     * @return
-     */
-    @POST("banner/collectBanner")
-    Observable<CollectResp> collectBanner(@Query("bannerId") String bannerId, @Query("userId") String userId);
 
     /**
      * 查询最近浏览
@@ -205,7 +196,7 @@ public interface HttpService {
      * @return
      */
     @POST("banner/addReadVolume")
-    Observable<AddReadVolumeResp> addReadVolume(@Query("id") String bannerId);
+    Observable<AddReadVolumeResp> addReadVolume(@Query("bannerId") String bannerId, @Query("userId") String userId);
 
     /**
      * 点赞\取消点赞
@@ -214,8 +205,18 @@ public interface HttpService {
      * @param bannerId
      * @return
      */
-    @POST("banner/savePraiseRecord")
-    Observable<StarResp> star(@Query("userId") String userId, @Query("bannerId") String bannerId);
+    @POST("banner/collectBanner")
+    Observable<StarResp> star(@Query("bannerId") String bannerId, @Query("userId") String userId);
+
+    /**
+     * 收藏和取消收藏
+     *
+     * @param bannerId
+     * @param userId
+     * @return
+     */
+    @POST("banner/collectBanner")
+    Observable<CollectResp> collectBanner(@Query("bannerId") String bannerId, @Query("userId") String userId);
 
     /**
      * 查询绑定的卡

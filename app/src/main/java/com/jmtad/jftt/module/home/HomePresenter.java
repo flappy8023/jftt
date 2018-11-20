@@ -19,7 +19,7 @@ import cn.qqtheme.framework.util.LogUtils;
 public class HomePresenter extends BasePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter {
     @Override
     public void addViews(String bannerId) {
-        HttpApi.getInstance().service.addReadVolume(bannerId).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<AddReadVolumeResp>() {
+        HttpApi.getInstance().service.addReadVolume(bannerId, getUserId()).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<AddReadVolumeResp>() {
             @Override
             public void onSuccess(AddReadVolumeResp addReadVolumeResp) {
                 if (TextUtils.equals(BaseResponse.CODE_0, addReadVolumeResp.getCode())) {
@@ -43,7 +43,7 @@ public class HomePresenter extends BasePresenter<HomeContract.IHomeView> impleme
      */
     @Override
     public void starOrUnStar(String bannerId) {
-        HttpApi.getInstance().service.star(getUserId(), bannerId).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<StarResp>() {
+        HttpApi.getInstance().service.star(bannerId, getUserId()).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<StarResp>() {
             @Override
             public void onSuccess(StarResp starResp) {
                 if (TextUtils.equals(BaseResponse.CODE_0, starResp.getCode())) {

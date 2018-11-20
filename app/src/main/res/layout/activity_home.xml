@@ -53,11 +53,11 @@
             app:loading_width="@dimen/px_10" />
         <ImageView
             android:id="@+id/iv_home_qrcode"
-            android:layout_width="@dimen/px_170"
-            android:layout_height="@dimen/px_170"
+            android:layout_width="@dimen/px_160"
+            android:layout_height="@dimen/px_160"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/px_40"
-            android:layout_marginBottom="@dimen/px_20" />
+            android:layout_marginBottom="@dimen/px_40" />
     </RelativeLayout>
 </com.jmtad.jftt.customui.pullextend.PullExtendLayout>

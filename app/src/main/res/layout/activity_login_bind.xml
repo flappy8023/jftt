@@ -84,7 +84,7 @@
         android:background="@drawable/bt_choose_login_bg"
         android:gravity="center"
         android:text="@string/login_bind_sure"
-        android:letterSpacing="0.5"
+        android:letterSpacing="2"
         android:textColor="@color/black_textColor"
         android:textSize="@dimen/sp_30" />
 
@@ -96,7 +96,7 @@
         android:background="@drawable/bt_login_bind_bg"
         android:gravity="center"
         android:text="@string/back"
-        android:letterSpacing="0.5"
+        android:letterSpacing="2"
         android:textColor="#8D8C8B"
         android:textSize="@dimen/sp_30" />
 </LinearLayout>

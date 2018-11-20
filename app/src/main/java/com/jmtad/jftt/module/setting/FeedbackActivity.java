@@ -134,4 +134,9 @@ public class FeedbackActivity extends BaseActivity {
             }
         });
     }
+
+    @OnClick(R.id.iv_toolbar_left_button)
+    public void back() {
+        finish();
+    }
 }

@@ -26,6 +26,7 @@ import com.jmtad.jftt.event.RefreshBannerEvent;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.module.banner.contract.DetailContract;
 import com.jmtad.jftt.module.banner.presenter.DetailPresenter;
+import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.StatusBarUtil;
 import com.jmtad.jftt.util.wechat.WeShareUtil;
 import com.just.agentweb.AgentWebView;
@@ -276,7 +277,7 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     public void toDetail() {
         if (null != mBanner) {
             Intent intent = new Intent(BannerDetailActivity.this, BannerLinkActivity.class);
-            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, mBanner.getLinkUrl());
+            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, mBanner.getLinkUrl() + "&userId=" + SharedPreferenceUtil.getInstance().getUserId());
             startActivity(intent);
         }
     }

@@ -23,6 +23,7 @@ public class Banner implements Serializable {
     @SerializedName("author")
     private String author;
     @SerializedName("isShowDetails")
+    //是否展示详情页（0 展示；1 不展示）
     private String isShowDetails;
     @SerializedName("linkUrl")
     private String linkUrl;
@@ -44,6 +45,8 @@ public class Banner implements Serializable {
     private String type;//0 一般图文 ；1 游戏类
     @SerializedName("isCollect")
     private String isCollect;//0:已收藏；1：未收藏
+    @SerializedName("collectionVolume")
+    private long collectionCount;
 
     public String getType() {
         return type;
@@ -62,11 +65,11 @@ public class Banner implements Serializable {
     }
 
     public long getStars() {
-        return stars;
+        return collectionCount;
     }
 
     public void setStars(long stars) {
-        this.stars = stars;
+        this.collectionCount = stars;
     }
 
     public long getViews() {
@@ -78,11 +81,11 @@ public class Banner implements Serializable {
     }
 
     public String getStarStatus() {
-        return starStatus;
+        return isCollect;
     }
 
     public void setStarStatus(String starStatus) {
-        this.starStatus = starStatus;
+        this.isCollect = starStatus;
     }
 
     public String getId() {

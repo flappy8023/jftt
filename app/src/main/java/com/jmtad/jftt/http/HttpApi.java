@@ -19,8 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @date 2018/01/11 17:59
  */
 public class HttpApi {
-    //            public final String BASE_URL = "http://tdev.juxinbox.com/integral_headline/";//测试环境
-    public final String BASE_URL = "https://game.juxinbox.com/integral_headline/";//正式环境
+    public final String BASE_URL = "http://tdev.juxinbox.com/integral_headline/";//测试环境
+//    public final String BASE_URL = "https://game.juxinbox.com/integral_headline/";//正式环境
     /**
      * 超时时间
      */

@@ -58,7 +58,7 @@ public class MainPresenter extends BasePresenter<MainContract.IMainView> impleme
      */
     @Override
     public void starOrUnStar(Banner banner, View tvStar) {
-        HttpApi.getInstance().service.star(getUserId(), banner.getId()).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<StarResp>() {
+        HttpApi.getInstance().service.star(banner.getId(), getUserId()).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<StarResp>() {
             @Override
             public void onSuccess(StarResp starResp) {
                 if (TextUtils.equals(BaseResponse.CODE_0, starResp.getCode())) {

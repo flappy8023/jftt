@@ -35,6 +35,7 @@
     <dimen name='px_120'>63dp</dimen>
     <dimen name='px_140'>74dp</dimen>
     <dimen name='px_150'>79dp</dimen>
+    <dimen name='px_160'>84dp</dimen>
     <dimen name='px_164'>86dp</dimen>
     <dimen name='px_168'>88dp</dimen>
     <dimen name='px_170'>89dp</dimen>

@@ -35,6 +35,7 @@ import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
+import com.jmtad.jftt.module.banner.BannerLinkActivity;
 import com.jmtad.jftt.module.login.ui.SplashActivity;
 import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
@@ -42,6 +43,7 @@ import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
 import com.jmtad.jftt.util.ApkUtil;
 import com.jmtad.jftt.util.JsonParse;
+import com.jmtad.jftt.util.LogUtil;
 import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.SoundPoolUtil;
@@ -109,7 +111,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
                     }
                 }
             } else {
-                showError("请稍后再试");
+                LogUtil.error("check version fail");
             }
             return null;
         }
@@ -387,9 +389,19 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void toDetail(Banner banner) {
-        Intent intent = new Intent(HomeActivity.this, BannerDetailActivity.class);
-        intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
-        startActivity(intent);
+        if (TextUtils.equals(banner.getIsShowDetails(), "0")) {
+            Intent intent = new Intent(HomeActivity.this, BannerDetailActivity.class);
+            intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
+            startActivity(intent);
+        } else {
+            if (TextUtils.isEmpty(banner.getLinkUrl())) {
+                return;
+            }
+            String url = banner.getLinkUrl() + "&userId=" + SharedPreferenceUtil.getInstance().getUserId() + "&unionId=" + SharedPreferenceUtil.getInstance().getUnionId();
+            Intent intent = new Intent(HomeActivity.this, BannerLinkActivity.class);
+            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
+            startActivity(intent);
+        }
     }
 
     /**

@@ -15,34 +15,37 @@
         android:layout_height="match_parent"
         android:background="@color/profile_bg_color">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/px_40"
             android:background="@drawable/profile_content_bg"
+            android:orientation="vertical"
             android:padding="@dimen/px_40">
 
             <ImageView
-                android:id="@+id/iv_about_us"
-                android:layout_width="@dimen/px_164"
-                android:layout_height="@dimen/px_72"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/px_24"
-                android:src="@drawable/aboutus"
-                android:scaleType="fitXY" />
+                android:layout_width="@dimen/px_240"
+                android:layout_height="@dimen/px_240"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/aboutus" />
 
             <TextView
                 android:id="@+id/tv_about_us_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv_about_us"
-                android:layout_marginTop="@dimen/px_60"
-                android:paddingBottom="@dimen/px_100"
-                android:lineSpacingExtra="@dimen/px_10"
-                android:letterSpacing="0.1"
+                android:layout_marginTop="@dimen/px_48"
+                android:lineSpacingExtra="@dimen/px_24"
                 android:textColor="#666464"
-                android:textIsSelectable="true"
-                android:textSize="@dimen/sp_32" />
-        </RelativeLayout>
+                android:textSize="@dimen/sp_30" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/px_160"
+                android:text="@string/login_copyright"
+                android:textColor="#b1b0a9" />
+
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
