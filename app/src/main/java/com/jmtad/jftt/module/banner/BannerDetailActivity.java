@@ -85,21 +85,6 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
     @Override
     protected void initView() {
         initToolbar();
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                if (!TextUtils.isEmpty(url)) {
-//                    Intent intent = new Intent(BannerDetailActivity.this, BannerLinkActivity.class);
-//                    intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
-//                    startActivity(intent);
-//                    return true;
-//                }
-//                return super.shouldOverrideUrlLoading(view, url);
-//            }
-//        });
-//        WebSettings webSettings = webView.getSettings();
-//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//        webSettings.setJavaScriptEnabled(true);//支持js
         //填充数据
         if (null != getIntent()) {
             bannerId = getIntent().getStringExtra(KEY_BANNER_ID);
@@ -114,7 +99,15 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
             } else {
                 toolbar.setTitle("");
             }
-        });
+                }
+        );
+//        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//
+//            }
+//
+//        });
 
     }
 
@@ -193,35 +186,19 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
                 switch (view.getId()) {
                     //分享到微信会话
                     case R.id.wechat_share_session:
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-                                WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneSession);
-                                webView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        popwindow.dismiss();
-                                    }
-                                });
-                            }
+                        new Thread(() -> {
+                            Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+                            WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneSession);
+                            webView.post(() -> popwindow.dismiss());
                         }).start();
 
                         return;
                     //分享到朋友圈
                     case R.id.wechat_share_timeline:
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-                                WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneTimeline);
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        popwindow.dismiss();
-                                    }
-                                });
-                            }
+                        new Thread(() -> {
+                            Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+                            WeShareUtil.shareUrl(banner.getTitle(), banner.getSummary(), banner.getLinkUrl(), thumb, SendMessageToWX.Req.WXSceneTimeline);
+                            runOnUiThread(() -> popwindow.dismiss());
                         }).start();
 
                         return;

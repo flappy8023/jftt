@@ -24,7 +24,7 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     private List<T> tempData = new ArrayList<>();
     private int position = 0;
     //所有内容滚动到剩余多少个时开始下次循环
-    public static final int LOAD_OFFSET = 1;
+    public static final int LOAD_OFFSET = 3;
 
     public ItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList) {
         this.adapter = checkIsNull(adapter);
@@ -37,11 +37,21 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         this.mListener = listener;
     }
 
+    @Override
+    public int interpolateOutOfBoundsScroll(RecyclerView recyclerView, int viewSize, int viewSizeOutOfBounds, int totalSize, long msSinceStartScroll) {
+        return viewSize;
+    }
+
     private <T> T checkIsNull(T t) {
         if (t == null) {
             throw new NullPointerException();
         }
         return t;
+    }
+
+    @Override
+    public boolean isLongPressDragEnabled() {
+        return false;
     }
 
     public void setOnSlideListener(OnSlideListener<T> mListener) {
@@ -84,8 +94,9 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        return true;
     }
+
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
@@ -113,6 +124,12 @@ public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
         viewHolder.itemView.setRotation(0f);
+    }
+
+    //滑动阈值,超过recyclerview宽高十分之一就切换
+    @Override
+    public float getSwipeThreshold(RecyclerView.ViewHolder viewHolder) {
+        return 0.1f;
     }
 
     private float getThreshold(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {

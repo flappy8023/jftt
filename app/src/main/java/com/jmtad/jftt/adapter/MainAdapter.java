@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,10 +30,12 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
     private List<Banner> banners;
     private HomeListener homeListener;
     private ItemTouchHelper itemTouchHelper;
+    private int touchSlop;
 
     public MainAdapter(Context context, List<Banner> bannerList) {
         this.context = context;
         this.banners = bannerList;
+        touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     public void setItemTouchHelper(ItemTouchHelper itemTouchHelper) {
@@ -95,13 +98,18 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyHolder> {
                     lastY = event.getY();
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    itemTouchHelper.startSwipe(holder);
+                    float deltX = event.getX() - lastX;
+                    float deltY = event.getY() - lastY;
+                    //排除点击事件
+                    if (Math.abs(deltX) > touchSlop || Math.abs(deltY) > touchSlop) {
+                        itemTouchHelper.startSwipe(holder);
+                    }
                 }
                 //为了解决华东和点击事件的冲突,在onTouch
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     float deltX = event.getX() - lastX;
                     float deltY = event.getY() - lastY;
-                    if (Math.abs(deltX) < 20 && Math.abs(deltY) < 20) {
+                    if (Math.abs(deltX) < touchSlop && Math.abs(deltY) < touchSlop) {
                         homeListener.toDetail(banner);
                     }
                 }

@@ -2,6 +2,7 @@ package com.jmtad.jftt.customui;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -45,16 +46,22 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
         if (dyConsumed > 0 && !this.mIsAnimatingOut && child.getVisibility() == View.VISIBLE) {
             // User scrolled down and the FAB is currently visible -> hide the FAB
             animateOut(child);
-        } else if (dyConsumed < 0 && child.getVisibility() == View.INVISIBLE) {
+        } else if (dyConsumed < 0) {
             // User scrolled up and the FAB is currently not visible -> show the FAB
-            animateIn(child);
+            animateOut(child);
         }
+    }
+
+    @Override
+    public void onStopNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View target) {
+        super.onStopNestedScroll(coordinatorLayout, child, target);
+        animateIn(child);
     }
 
     // Same animation that FloatingActionButton.Behavior uses to hide the FAB when the AppBarLayout exits
     private void animateOut(final FloatingActionButton button) {
         if (Build.VERSION.SDK_INT >= 14) {
-            ViewCompat.animate(button).translationY(button.getHeight() + getMarginBottom(button)).setInterpolator(INTERPOLATOR).withLayer()
+            ViewCompat.animate(button).translationY(button.getHeight() + getMarginBottom(button))
                     .setListener(new ViewPropertyAnimatorListener() {
                         public void onAnimationStart(View view) {
                             ScrollAwareFABBehavior.this.mIsAnimatingOut = true;
@@ -66,7 +73,7 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
 
                         public void onAnimationEnd(View view) {
                             ScrollAwareFABBehavior.this.mIsAnimatingOut = false;
-                            view.setVisibility(View.INVISIBLE);
+                            view.setVisibility(View.VISIBLE);
                         }
                     }).start();
         } else {

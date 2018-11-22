@@ -139,13 +139,16 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onClear(List<Banner> temp) {
-            int beforeSize = mBanners.size();
+//            int beforeSize = mBanners.size();
             //当前列表全部展示一遍后,循环展示刷新数据
-            mBanners.addAll(temp);
-
-            mainAdapter.notifyItemRangeChanged(beforeSize, temp.size());
+//            mBanners.addAll(temp);
+//
+//            mainAdapter.notifyItemRangeChanged(beforeSize, temp.size());
+            pageNo = 1;
+            presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
         }
     };
+
 
     @Override
     protected int getLayoutId() {

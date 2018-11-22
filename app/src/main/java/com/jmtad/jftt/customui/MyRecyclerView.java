@@ -37,13 +37,7 @@ public class MyRecyclerView extends RecyclerView {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-//        if (e.getAction() == MotionEvent.ACTION_MOVE) {
-//            itemTouchHelper.startSwipe(getChildViewHolder(getChildAt(0)));
-//        }
         return super.onTouchEvent(e);
     }
 
-    public void setItemTouchHelper(ItemTouchHelper helper) {
-        itemTouchHelper = helper;
-    }
 }
