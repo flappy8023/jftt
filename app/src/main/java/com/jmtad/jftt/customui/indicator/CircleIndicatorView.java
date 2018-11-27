@@ -20,10 +20,6 @@ import com.jmtad.jftt.util.DisplayUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by zhouwei on 17/5/22.
- */
-
 public class CircleIndicatorView extends View implements ViewPager.OnPageChangeListener {
     private static final String LETTER[] = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "G", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     // private int mSelectColor = Color.parseColor("#E38A7C");

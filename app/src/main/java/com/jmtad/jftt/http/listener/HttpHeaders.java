@@ -24,8 +24,6 @@ import static okhttp3.internal.http.StatusLine.HTTP_CONTINUE;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: HttpHeaders.java
- * @author: yh
- * @date: 2016-11-04 16:01
  */
 
 public final class HttpHeaders {

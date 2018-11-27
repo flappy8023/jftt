@@ -4,11 +4,6 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
 
 
 public interface OnSlideListener<T> {

@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity {
     protected void initView() {
         //透明度渐变动画
         AlphaAnimation animation = new AlphaAnimation(0.1f, 1.0f);
-        animation.setDuration(2000);
+        animation.setDuration(1000);
         welcomeRoot.startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

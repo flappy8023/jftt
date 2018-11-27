@@ -1,10 +1,5 @@
 package com.jmtad.jftt.customui.slide;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
 
 public final class ItemConfig {
     public static final int SLIDING_NONE = 1;

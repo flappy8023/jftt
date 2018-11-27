@@ -28,8 +28,6 @@ import java.util.Map;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: JsonParse.java
- * @author: yh
- * @date: 2016-10-31 10:10
  */
 
 public class JsonParse {

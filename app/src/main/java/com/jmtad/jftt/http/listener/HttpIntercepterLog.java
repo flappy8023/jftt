@@ -27,8 +27,6 @@ import okio.BufferedSource;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: HttpIntercepterLog.java
- * @author: yh
- * @date: 2016-11-04 15:14
  */
 
 public class HttpIntercepterLog implements Interceptor {

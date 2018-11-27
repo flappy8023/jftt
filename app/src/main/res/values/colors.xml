@@ -34,4 +34,5 @@
     <color name="dialog_gray_textColor">#B1B0A9</color>
     <color name="countDown_usable_color">#EDBD67</color>
     <color name="countDown_unusable_color">#C6C6C1</color>
+    <color name="item_collection_title_color">#666464</color>
 </resources>

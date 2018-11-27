@@ -9,10 +9,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * 倒计时TextView
- * Created by weijing on 2017-08-21 14:43.
- */
 
 public class CountDownTextView extends AppCompatTextView {
 

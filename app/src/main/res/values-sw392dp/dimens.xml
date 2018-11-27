@@ -33,6 +33,7 @@
     <dimen name='px_100'>53dp</dimen>
     <dimen name='px_110'>58dp</dimen>
     <dimen name='px_120'>63dp</dimen>
+    <dimen name='px_124'>65dp</dimen>
     <dimen name='px_140'>74dp</dimen>
     <dimen name='px_150'>79dp</dimen>
     <dimen name='px_160'>84dp</dimen>
@@ -52,6 +53,7 @@
     <dimen name='px_290'>152dp</dimen>
     <dimen name='px_300'>157dp</dimen>
     <dimen name='px_310'>163dp</dimen>
+    <dimen name='px_320'>168dp</dimen>
     <dimen name='px_340'>178dp</dimen>
     <dimen name='px_540'>283dp</dimen>
     <dimen name='px_560'>293dp</dimen>

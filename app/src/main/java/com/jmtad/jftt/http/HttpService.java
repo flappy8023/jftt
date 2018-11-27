@@ -99,7 +99,7 @@ public interface HttpService {
      * 查询收藏列表
      *
      * @param userID
-     * @param type
+     * @param type 0 图文 ，1 游戏
      * @return
      */
     @POST("banner/queryCollections")

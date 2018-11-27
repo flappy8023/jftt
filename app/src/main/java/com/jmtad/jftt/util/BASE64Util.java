@@ -7,8 +7,6 @@ import java.io.ByteArrayOutputStream;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: BASE64Util.java
- * @author: yh
- * @date: 2017-03-15 23:30
  */
 
 public class BASE64Util {

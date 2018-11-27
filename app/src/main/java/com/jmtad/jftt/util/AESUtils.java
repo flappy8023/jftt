@@ -11,8 +11,6 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: AESUtils.java
- * @author: yh
- * @date: 2017-03-16 11:45
  */
 
 public class AESUtils {

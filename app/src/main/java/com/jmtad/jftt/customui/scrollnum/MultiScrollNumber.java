@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wuhaojie on 2016/7/19 20:39.
  */
 public class MultiScrollNumber extends LinearLayout {
     private Context mContext;

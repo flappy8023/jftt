@@ -98,9 +98,11 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
             bannerId = mBanner.getId();
             //点赞状态
             if (TextUtils.equals(mBanner.getStarStatus(), "0")) {
-                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+//                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+                ivStar.setColorFilter(getResources().getColor(R.color.red_1));
             } else {
-                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
+//                ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
+                ivStar.setColorFilter(getResources().getColor(R.color.black));
             }
             presenter.queryBannerByID(bannerId);
         }
@@ -300,15 +302,17 @@ public class BannerDetailActivity extends BaseActivity<DetailPresenter> implemen
 
     @Override
     public void starSuc() {
-        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+//        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+        ivStar.setColorFilter(getResources().getColor(R.color.red_1));
         mBanner.setStars(mBanner.getStars() + 1);
-        mBanner.setStarStatus(Banner.STATUS_STARED);
+        mBanner.setStarStatus(Banner.CollectStatus.COLLECTED);
         tvLikes.setText(mBanner.getStars() + "");
     }
 
     @Override
     public void unStarSuc() {
-        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
+        ivStar.setColorFilter(getResources().getColor(R.color.black));
+//        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like_black));
         mBanner.setStars(mBanner.getStars() - 1);
         mBanner.setStarStatus(Banner.STATUS_UNSTARED);
         tvLikes.setText(mBanner.getStars() + "");

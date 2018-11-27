@@ -8,7 +8,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * @author l00190891
  */
 public class TimeFormatUtil {
     private TimeFormatUtil() {

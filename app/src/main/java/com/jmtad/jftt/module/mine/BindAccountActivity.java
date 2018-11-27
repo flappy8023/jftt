@@ -40,6 +40,8 @@ public class BindAccountActivity extends BaseActivity<LoginPresenter> implements
     Button btBindWechat;
     @BindView(R.id.bt_bind_account_phone)
     Button btBindPhone;
+    @BindView(R.id.bt_bind_account_submit)
+    Button btSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class BindAccountActivity extends BaseActivity<LoginPresenter> implements
             sendCode.setVisibility(View.GONE);
             btBindPhone.setVisibility(View.VISIBLE);
             btBindPhone.setText(phone);
+            btSubmit.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUnionId())) {
             tvWechatState.setText(getString(R.string.bind_binded));

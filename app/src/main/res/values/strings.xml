@@ -43,6 +43,7 @@
     <string name="clear_done">清除完成</string>
     <!--首页-->
     <string name="home_menu_mine">我的</string>
+    <string name="home_menu_collect">收藏</string>
     <string name="home_menu_setting">设置</string>
     <string name="home_news_view_format">%d   views</string>
     <string name="home_header_recent_text">最近浏览</string>
@@ -90,5 +91,11 @@
     <string name="deal_query_oil_remaining">油滴剩余</string>
     <!--详情页-->
     <string name="banner_detail_comment_hint">有何高见,展开讲讲</string>
-
+    <!--收藏-->
+    <string name="collection_title">我的收藏</string>
+    <string name="collection_empty_hint">您还没有收藏哦</string>
+    <string name="collection_delete_selected">删除选中</string>
+    <string name="collection_delete_tips">确认要删除\n您所选择的图文吗</string>
+    <string name="tips">提示</string>
+    <string name="delete">删除</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/px_240"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/px_120"
     android:gravity="center"
     android:orientation="horizontal">
@@ -25,6 +25,26 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_home_menu_collect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/px_50"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/px_36"
+            android:layout_height="@dimen/px_36"
+            android:src="@drawable/collect" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px_12"
+            android:text="@string/home_menu_collect"
+            android:textColor="@color/white" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_home_menu_setting"
         android:layout_width="wrap_content"

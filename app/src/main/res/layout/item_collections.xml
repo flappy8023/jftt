@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/px_260"
+    android:background="@drawable/profile_content_bg">
+
+    <ImageView
+        android:id="@+id/iv_item_collection_poster"
+        android:layout_width="@dimen/px_124"
+        android:layout_height="@dimen/px_220"
+        android:layout_margin="@dimen/px_20"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_item_collection_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px_20"
+        android:layout_marginTop="@dimen/px_32"
+        android:layout_marginRight="@dimen/px_36"
+        android:layout_toRightOf="@id/iv_item_collection_poster"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/item_collection_title_color"
+        android:textSize="@dimen/sp_28" />
+
+    <TextView
+        android:id="@+id/tv_item_collection_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_collection_title"
+        android:layout_alignLeft="@id/tv_item_collection_title"
+        android:layout_marginTop="@dimen/px_20"
+        android:layout_marginRight="@dimen/px_36"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/dialog_gray_textColor"
+        android:textSize="@dimen/sp_28" />
+
+    <ImageView
+        android:id="@+id/iv_item_collection_select"
+        android:layout_width="@dimen/px_50"
+        android:layout_height="@dimen/px_50"
+        android:src="@drawable/select_0"
+        android:layout_marginRight="@dimen/px_28"
+        android:layout_marginBottom="@dimen/px_30"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

@@ -47,6 +47,7 @@ public class MenuFragment extends BaseMvpFragment {
         startActivity(new Intent(getActivity(), FAQActivity.class));
     }
 
+
     @OnClick(R.id.ll_card_menu_dealQuery)
     public void dealQuery() {
         startActivity(new Intent(getActivity(), DealQueryActivity.class));

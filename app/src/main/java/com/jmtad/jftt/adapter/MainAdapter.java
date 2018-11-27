@@ -52,11 +52,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
     public void onBindViewHolder(@NonNull MainHolder holder, int position, @NonNull List<Object> payloads) {
         if (!CollectionUtil.isEmpty(payloads)) {
             Banner banner = banners.get(position);
-            //只刷新点赞数和浏览量
-            if (TextUtils.equals(Banner.STATUS_STARED, banner.getStarStatus())) {
-                holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.liked));
+            //只刷新收藏数和浏览量
+            if (TextUtils.equals(Banner.CollectStatus.COLLECTED, banner.getStarStatus())) {
+                holder.ivStar.setColorFilter(context.getResources().getColor(R.color.red_1));
             } else {
-                holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.like));
+                holder.ivStar.setColorFilter(context.getResources().getColor(R.color.white));
             }
             holder.tvStars.setText(banner.getStars() + "");
             holder.tvViews.setText(String.format(context.getString(R.string.home_news_view_format), banner.getViews()));
@@ -83,11 +83,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainHolder> {
         } else {
             holder.tvTitle.setText("");
         }
-        //设置点赞状态图标
-        if (TextUtils.equals(Banner.STATUS_STARED, banner.getStarStatus())) {
-            holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.liked));
+        //设置收藏状态图标
+        if (TextUtils.equals(Banner.CollectStatus.COLLECTED, banner.getStarStatus())) {
+            holder.ivStar.setColorFilter(context.getResources().getColor(R.color.red_1));
         } else {
-            holder.ivStar.setImageDrawable(context.getResources().getDrawable(R.drawable.like));
+            holder.ivStar.setColorFilter(context.getResources().getColor(R.color.white));
         }
         holder.tvStars.setText(banner.getStars() + "");
         holder.tvViews.setText(String.format(context.getString(R.string.home_news_view_format), banner.getViews()));

@@ -16,8 +16,6 @@ import okhttp3.OkHttpClient;
  *
  * @version V1.0 <描述当前版本功能>
  * @FileName: OkhttpCAUtil.java
- * @author: yh
- * @date: 2017-05-02 19:40
  */
 
 public class OkhttpCAUtil {

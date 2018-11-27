@@ -14,7 +14,6 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 /**
- * Created by wuhaojie on 2016/7/15 11:36.
  */
 class ScrollNumber extends View {
 

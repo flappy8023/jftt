@@ -69,7 +69,7 @@
                 android:id="@+id/iv_star"
                 android:layout_width="@dimen/px_28"
                 android:layout_height="@dimen/px_28"
-                android:src="@drawable/like" />
+                android:src="@drawable/collectable" />
 
             <TextView
                 android:id="@+id/tv_home_news_likes"

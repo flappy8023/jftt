@@ -7,21 +7,29 @@
         android:id="@+id/iv_toolbar_left_button"
         android:layout_width="@dimen/px_40"
         android:layout_height="@dimen/px_40"
-        android:scaleType="fitXY"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/px_30" />
+        android:layout_marginLeft="@dimen/px_30"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/tv_toolbar_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/px_80"
         android:layout_marginRight="@dimen/px_80"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_36" />
+
+    <ImageView
+        android:id="@+id/iv_toolbar_right_button"
+        android:layout_width="@dimen/px_40"
+        android:layout_height="@dimen/px_40"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/px_36" />
 </RelativeLayout>

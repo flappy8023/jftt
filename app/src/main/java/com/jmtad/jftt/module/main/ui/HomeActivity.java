@@ -32,11 +32,12 @@ import com.jmtad.jftt.customui.slide.OnSlideListener;
 import com.jmtad.jftt.customui.slide.SlideLayoutManager;
 import com.jmtad.jftt.event.RefreshBannerEvent;
 import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.http.bean.node.CheckUpdateData;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.banner.BannerLinkActivity;
-import com.jmtad.jftt.module.login.ui.SplashActivity;
+import com.jmtad.jftt.module.collection.MyCollectionActivity;
 import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
@@ -47,6 +48,7 @@ import com.jmtad.jftt.util.LogUtil;
 import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.SoundPoolUtil;
+import com.jmtad.jftt.util.ThreadPoolUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.victor.loading.rotate.RotateLoading;
@@ -102,7 +104,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
                 if (null != resp && null != resp.getData()) {
                     SharedPreferenceUtil.getInstance().saveApkUrl(resp.getData().getDownloadUrl());
                     //如果返回版本号大于本地版本号,且属于强制更新,弹出更新对话框不可取消
-                    if (ApkUtil.getVersionCode(HomeActivity.this) < resp.getData().getIdenNumber() && TextUtils.equals(resp.getData().getIsAuto(), "1")) {
+                    if (ApkUtil.getVersionCode(HomeActivity.this) < resp.getData().getIdenNumber() && TextUtils.equals(resp.getData().getIsAuto(), CheckUpdateData.IsAuto.TURE)) {
                         UIData data = UIData.create();
                         data.setContent(resp.getData().getExplainText());
                         data.setDownloadUrl(resp.getData().getDownloadUrl());
@@ -126,11 +128,11 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //如果用户未登录，拜拜~~
-        if (TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUserId())) {
-            showError("请登录");
-            startActivity(new Intent(HomeActivity.this, SplashActivity.class));
-            finish();
-        }
+//        if (TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUserId())) {
+//            showError("请登录");
+//            startActivity(new Intent(HomeActivity.this, SplashActivity.class));
+//            finish();
+//        }
         EventBus.getDefault().register(this);
         //首页禁止滑动返回功能
         slidrInterface.lock();
@@ -243,6 +245,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onStop() {
         super.onStop();
         pullExtendLayout.resetHeaderLayout();
+        if (loading.isStart()) {
+            loading.stop();
+        }
     }
 
     @Override
@@ -279,7 +284,8 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     public void starSucc(View view, long stars) {
         TextView tvStar = view.findViewById(R.id.tv_home_news_likes);
         ImageView ivStar = view.findViewById(R.id.iv_star);
-        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+//        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.liked));
+        ivStar.setColorFilter(getResources().getColor(R.color.red_1));
         tvStar.setText(String.valueOf(stars));
     }
 
@@ -287,7 +293,8 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     public void unStarSucc(View view, long stars) {
         TextView tvStar = view.findViewById(R.id.tv_home_news_likes);
         ImageView ivStar = view.findViewById(R.id.iv_star);
-        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like));
+//        ivStar.setImageDrawable(getResources().getDrawable(R.drawable.like));
+        ivStar.setColorFilter(getResources().getColor(R.color.white));
         tvStar.setText(String.valueOf(stars));
     }
 
@@ -305,7 +312,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     public void showMenu() {
         if (null == topMenu) {
             View view = LayoutInflater.from(this).inflate(R.layout.home_popmenu_layout, null);
-            topMenu = new PopupWindow(view, (int) getResources().getDimension(R.dimen.px_240), (int) getResources().getDimension(R.dimen.px_120));
+            topMenu = new PopupWindow(view, (int) getResources().getDimension(R.dimen.px_320), (int) getResources().getDimension(R.dimen.px_120));
             topMenu.setBackgroundDrawable(getResources().getDrawable(R.drawable.home_menu_bg));
             topMenu.setOutsideTouchable(true);
             topMenu.setFocusable(true);
@@ -313,17 +320,23 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
             topMenu.showAsDropDown(ivTopMenu, 0, (int) getResources().getDimension(R.dimen.px_20), Gravity.END);
             LinearLayout menuMine = view.findViewById(R.id.ll_home_menu_mine);
             LinearLayout menuSetting = view.findViewById(R.id.ll_home_menu_setting);
+            LinearLayout menuFavorite = view.findViewById(R.id.ll_home_menu_collect);
             //跳转我的页面
             menuMine.setOnClickListener((view1 -> {
                         startActivity(new Intent(this, MineActivity.class));
                         topMenu.dismiss();
                     })
             );
-            //跳转社这页面
+            //跳转设置页面
             menuSetting.setOnClickListener((view1 -> {
                 startActivity(new Intent(this, SettingActivity.class));
                 topMenu.dismiss();
             }));
+            //跳转收藏页面
+            menuFavorite.setOnClickListener(view12 -> {
+                startActivity(new Intent(this, MyCollectionActivity.class));
+                topMenu.dismiss();
+            });
         } else {
             if (topMenu.isShowing()) {
                 topMenu.dismiss();
@@ -340,18 +353,18 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
                 switch (view.getId()) {
                     //分享到微信会话
                     case R.id.wechat_share_session:
-                        new Thread(() -> {
+                        ThreadPoolUtil.execute(() -> {
                             WechatUtil.getInstance().shareImg(createQRCodeBitmap(), SendMessageToWX.Req.WXSceneSession);
-                            recyclerView.post((Runnable) () -> popwindow.dismiss());
-                        }).start();
+                            runOnUiThread((Runnable) () -> popwindow.dismiss());
+                        });
 
                         return;
                     //分享到朋友圈
                     case R.id.wechat_share_timeline:
-                        new Thread(() -> {
+                        ThreadPoolUtil.execute(() -> {
                             WechatUtil.getInstance().shareImg(createQRCodeBitmap(), SendMessageToWX.Req.WXSceneTimeline);
-                            recyclerView.post((Runnable) () -> popwindow.dismiss());
-                        }).start();
+                            runOnUiThread((Runnable) () -> popwindow.dismiss());
+                        });
 
                         return;
                 }

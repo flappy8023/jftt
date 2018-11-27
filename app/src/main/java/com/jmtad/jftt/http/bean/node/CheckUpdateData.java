@@ -28,6 +28,11 @@ public class CheckUpdateData {
     @SerializedName("updateTime")
     private String updateTime;
 
+    public interface IsAuto {
+        String TURE = "1";
+        String FALSE = "0";
+    }
+
     public String getId() {
         return id;
     }

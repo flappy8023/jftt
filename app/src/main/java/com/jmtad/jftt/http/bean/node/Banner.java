@@ -47,6 +47,22 @@ public class Banner implements Serializable {
     private String isCollect;//0:已收藏；1：未收藏
     @SerializedName("collectionVolume")
     private long collectionCount;
+    public boolean isSelected = false;
+
+    public interface CollectStatus {
+        String COLLECTED = "0";
+        String UNCOLLECTED = "1";
+    }
+
+    public interface Type {
+        String INFO = "0";
+        String GAME = "1";
+    }
+
+    public interface StarStatus {
+        String STARED = "0";
+        String UNSTARED = "1";
+    }
 
     public String getType() {
         return type;

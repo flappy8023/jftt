@@ -96,7 +96,7 @@
                         android:id="@+id/iv_star"
                         android:layout_width="@dimen/px_28"
                         android:layout_height="@dimen/px_28"
-                        android:src="@drawable/like_black" />
+                        android:src="@drawable/collectable" />
 
                     <TextView
                         android:id="@+id/tv_banner_detail_likes"

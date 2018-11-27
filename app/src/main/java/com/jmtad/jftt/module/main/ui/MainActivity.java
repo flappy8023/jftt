@@ -25,6 +25,7 @@ import com.jmtad.jftt.customui.FrameLayoutExt;
 import com.jmtad.jftt.customui.pullextend.ExtendListHeader;
 import com.jmtad.jftt.customui.pullextend.PullExtendLayout;
 import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.http.bean.node.CheckUpdateData;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.home.HomeFragment;
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 if (null != resp && null != resp.getData()) {
                     SharedPreferenceUtil.getInstance().saveApkUrl(resp.getData().getDownloadUrl());
                     //如果返回版本号大于本地版本号,且属于强制更新,弹出更新对话框不可取消
-                    if (ApkUtil.getVersionCode(MainActivity.this) < resp.getData().getIdenNumber() && TextUtils.equals(resp.getData().getIsAuto(), "1")) {
+                    if (ApkUtil.getVersionCode(MainActivity.this) < resp.getData().getIdenNumber() && TextUtils.equals(resp.getData().getIsAuto(), CheckUpdateData.IsAuto.TURE)) {
                         UIData data = UIData.create();
                         data.setContent(resp.getData().getExplainText());
                         data.setDownloadUrl(resp.getData().getDownloadUrl());

@@ -9,11 +9,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
 
 
 public class ItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {

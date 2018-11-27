@@ -1,5 +1,6 @@
 package com.jmtad.jftt.module.setting;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import com.jmtad.jftt.util.CacheUtil;
 import com.jmtad.jftt.util.CheckUpdateUtil;
 import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.StatusBarUtil;
+import com.jmtad.jftt.util.ThreadPoolUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,36 +83,19 @@ public class SettingActivity extends BaseActivity {
      */
     @OnClick(R.id.ll_setting_clear_cache)
     public void clearCache() {
-        new CommonDialog(SettingActivity.this, R.style.BaseDialog, getString(R.string.makesure_clear_cache)).setPositiveButton(getString(R.string.sure)).setTitle("提示").setListener((d, confirm) -> new Thread(() -> {
-            CacheUtil.clearAllCache(SettingActivity.this);
-            runOnUiThread(() -> {
-                showMsg(getString(R.string.clear_done));
-                d.dismiss();
-                showCache();
-            });
-
-        }).start()).show();
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage(R.string.makesure_clear_cache);
-//        builder.setPositiveButton(R.string.sure, (dialogInterface, i) -> {
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    CacheUtil.clearAllCache(SettingActivity.this);
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            showMsg(getString(R.string.clear_done));
-//                            showCache();
-//                        }
-//                    });
-//
-//                }
-//            }).start();
-//
-//        });
-//        builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss());
-//        builder.show();
+        new CommonDialog(SettingActivity.this, R.style.BaseDialog, getString(R.string.makesure_clear_cache)).setPositiveButton(getString(R.string.sure)).setTitle("提示").setListener(new CommonDialog.OnCloseListener() {
+            @Override
+            public void onClick(Dialog dialog, boolean confirm) {
+                ThreadPoolUtil.execute(() -> {
+                    CacheUtil.clearAllCache(SettingActivity.this);
+                    runOnUiThread(() -> {
+                        showMsg(getString(R.string.clear_done));
+                        dialog.dismiss();
+                        showCache();
+                    });
+                });
+            }
+        }).show();
     }
 
     /**

@@ -2,7 +2,6 @@ package com.jmtad.jftt.http.listener;
 
 /**
  * 下载过程中的回调处理
- * Created by WZG on 2016/10/20.
  */
 public abstract class HttpProgressOnNextListener<T> {
     /**

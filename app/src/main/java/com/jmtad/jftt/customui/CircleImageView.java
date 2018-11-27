@@ -24,10 +24,6 @@ import android.util.AttributeSet;
 import com.jmtad.jftt.R;
 
 
-/**
- * Created by Administrator on 2016/11/23.
- */
-
 public class CircleImageView extends AppCompatImageView {
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
