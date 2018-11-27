@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jmtad.jftt.MyScrollView;
+import com.jmtad.jftt.customui.MyScrollView;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
 import com.jmtad.jftt.customui.SharePopwindow;

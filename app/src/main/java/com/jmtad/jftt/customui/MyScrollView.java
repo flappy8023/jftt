@@ -1,7 +1,7 @@
-package com.jmtad.jftt;
+package com.jmtad.jftt.customui;
 
 /**
- * @description:
+ * @description:支持监听滑动状态的scrollview
  * @author: luweiming
  * @create: 2018-11-12 14:48
  **/
