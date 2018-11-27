@@ -24,8 +24,8 @@ import java.util.List;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:自定义推送消息接收器
+ * @author: luweiming
  * @create: 2018-11-13 14:25
  **/
 public class CustomReceiver extends BroadcastReceiver {

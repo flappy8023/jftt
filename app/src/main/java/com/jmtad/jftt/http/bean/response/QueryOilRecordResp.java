@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.QueryOilRecordData;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 11:00
  **/
 public class QueryOilRecordResp extends BaseResponse {

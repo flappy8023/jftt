@@ -14,8 +14,8 @@ import com.jmtad.jftt.http.bean.node.Message;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:我的消息页面列表适配器
+ * @author: luweiming
  * @create: 2018-10-19 18:36
  **/
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder> {
@@ -31,7 +31,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyHolder
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_message_layout, null);
-
         return new MyHolder(view);
     }
 

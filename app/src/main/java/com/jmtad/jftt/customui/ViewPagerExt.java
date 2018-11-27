@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-11 17:40
  **/
 public class ViewPagerExt extends ViewPager {

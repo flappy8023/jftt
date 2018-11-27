@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:收藏页面图文列表适配器
+ * @author: luweiming
  * @create: 2018-11-26 11:24
  **/
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.MyHolder> {
@@ -71,6 +71,7 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                //长按item进入删除模式
                 if (!isDeleteMode) {
                     isDeleteMode = true;
                     notifyDataSetChanged();
@@ -84,24 +85,27 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
                 return true;
             }
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isDeleteMode) {
-                    if (!banner.isSelected) {
-                        banner.isSelected = true;
-                        deletingBanners.add(banner);
-                        holder.cbSelect.setImageResource(R.drawable.select_1);
-                    } else {
-                        banner.isSelected = false;
-                        deletingBanners.remove(banner);
-                        holder.cbSelect.setImageResource(R.drawable.select_0);
-                    }
+        holder.itemView.setOnClickListener(view -> {
+            //点击item时，如果当前处于删除状态，判断该item还未被选中，将该item添加到待删除列表，已选中则从待删除列表移除；如果未处于删除状态，则直接进入图文详情
+            if (isDeleteMode) {
+                if (!banner.isSelected) {
+                    banner.isSelected = true;
+                    deletingBanners.add(banner);
+                    holder.cbSelect.setImageResource(R.drawable.select_1);
+                } else {
+                    banner.isSelected = false;
+                    deletingBanners.remove(banner);
+                    holder.cbSelect.setImageResource(R.drawable.select_0);
                 }
             }
         });
     }
 
+    /**
+     * 或取待删除的图文列表
+     *
+     * @return
+     */
     public List<Banner> getDeletingBanners() {
         return deletingBanners;
     }

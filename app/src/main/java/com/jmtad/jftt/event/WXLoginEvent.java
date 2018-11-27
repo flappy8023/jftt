@@ -3,8 +3,8 @@ package com.jmtad.jftt.event;
 import com.jmtad.jftt.wechat.model.WXUserInfo;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:微信登陆完毕的事件
+ * @author: luweiming
  * @create: 2018-10-16 17:04
  **/
 public class WXLoginEvent {

@@ -21,7 +21,7 @@ import io.reactivex.subjects.BehaviorSubject;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-08 09:26
  **/
 public abstract class BaseFragment extends Fragment implements LifecycleProvider<FragmentEvent> {

@@ -18,7 +18,7 @@ import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 18:57
  **/
 public class DealPresenter extends BasePresenter<DealContract.IDealView> implements DealContract.IDealPresenter {

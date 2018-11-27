@@ -2,7 +2,7 @@ package com.jmtad.jftt.module.mine.bean;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-22 17:29
  **/
 public enum Education {

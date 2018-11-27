@@ -17,7 +17,7 @@ import butterknife.BindView;
 
 /**
  * @description:闪屏页面
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-10 14:34
  **/
 public class SplashActivity extends BaseActivity {

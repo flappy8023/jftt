@@ -19,8 +19,8 @@ import com.jmtad.jftt.util.GlideUtil;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:首页可四个方向滑动recyclerview适配器
+ * @author: luweiming
  * @create: 2018-11-05 09:26
  **/
 public class MainAdapter extends RecyclerView.Adapter<MainHolder> {

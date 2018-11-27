@@ -2,7 +2,7 @@ package com.jmtad.jftt.config;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-27 17:12
  **/
 public class Constants {

@@ -16,7 +16,7 @@ import butterknife.Unbinder;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-08 09:32
  **/
 public abstract class BaseMvpFragment<T extends IBaseContract.IBasePresenter> extends BaseFragment implements IBaseContract.IBaseView {

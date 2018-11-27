@@ -10,7 +10,7 @@ import android.view.ViewConfiguration;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-30 16:29
  **/
 public class MyViewPager extends ViewPager {

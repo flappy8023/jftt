@@ -12,7 +12,7 @@ import butterknife.OnClick;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-17 14:58
  **/
 public class MenuFragment extends BaseMvpFragment {

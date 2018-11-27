@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 10:46
  **/
 public class QueryMsgResp extends BaseResponse {

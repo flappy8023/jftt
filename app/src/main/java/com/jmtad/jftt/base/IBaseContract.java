@@ -4,7 +4,7 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-09-30 09:58
  **/
 public interface IBaseContract {

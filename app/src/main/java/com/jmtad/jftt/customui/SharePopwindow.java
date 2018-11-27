@@ -16,8 +16,8 @@ import android.widget.PopupWindow;
 import com.jmtad.jftt.R;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:分享弹窗
+ * @author: luweiming
  * @create: 2018-10-23 11:19
  **/
 public class SharePopwindow extends PopupWindow {

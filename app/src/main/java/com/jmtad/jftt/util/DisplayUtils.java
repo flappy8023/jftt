@@ -5,7 +5,7 @@ import android.util.TypedValue;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-17 14:37
  **/
 public class DisplayUtils {

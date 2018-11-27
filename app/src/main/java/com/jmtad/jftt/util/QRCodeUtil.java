@@ -19,7 +19,7 @@ import java.util.Hashtable;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-23 13:58
  **/
 public class QRCodeUtil {

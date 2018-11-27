@@ -10,7 +10,7 @@ import android.view.ViewConfiguration;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-06 16:16
  **/
 public class MyRecyclerView extends RecyclerView {

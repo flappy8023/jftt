@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @description:交易记录详情
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 11:14
  **/
 public class OilRecord {

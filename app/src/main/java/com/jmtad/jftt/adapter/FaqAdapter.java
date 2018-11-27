@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @description:常见问题列表适配器
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-24 19:22
  **/
 public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.MyHolder> {

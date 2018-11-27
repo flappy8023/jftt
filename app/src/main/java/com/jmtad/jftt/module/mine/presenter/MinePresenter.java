@@ -12,7 +12,7 @@ import com.jmtad.jftt.module.mine.contract.MineContract;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-26 15:37
  **/
 public class MinePresenter extends BasePresenter<MineContract.IMineView> implements MineContract.IMinePresenter {

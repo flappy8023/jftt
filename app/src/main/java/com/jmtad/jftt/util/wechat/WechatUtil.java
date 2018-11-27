@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 10:19
  **/
 public class WechatUtil {

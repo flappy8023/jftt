@@ -16,7 +16,7 @@ import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-07 15:29
  **/
 public class DetailPresenter extends BasePresenter<DetailContract.IDetailView> implements DetailContract.IDetailPresenter {

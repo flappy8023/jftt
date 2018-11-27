@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 17:49
  **/
 public class BaseResp {

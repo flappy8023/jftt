@@ -3,8 +3,8 @@ package com.jmtad.jftt.module.push;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:自定义推送扩展参数实体类
+ * @author: luweiming
  * @create: 2018-11-15 11:29
  **/
 public class ExtraData {

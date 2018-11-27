@@ -11,7 +11,7 @@ import com.jmtad.jftt.R;
 
 /**
  * @description:引导页viewpager适配器
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-22 09:37
  **/
 public class WelcomeAdapter extends PagerAdapter {

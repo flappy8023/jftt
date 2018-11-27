@@ -7,7 +7,7 @@ import com.jmtad.jftt.http.bean.node.QueryBannerListData;
 
 /**
  * @description:查询图文列表响应
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 10:05
  **/
 public class QueryBannerListResp extends BaseResponse {

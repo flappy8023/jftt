@@ -4,7 +4,7 @@ import io.reactivex.observers.ResourceObserver;
 
 /**
  * @description:方便以后统一处理
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 15:04
  **/
 public abstract class RxCallBack<T> extends ResourceObserver<T> {

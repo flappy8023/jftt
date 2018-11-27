@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.jmtad.jftt.R;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:通用对话框，支持链式调用
+ * @author: luweiming
  * @create: 2018-11-12 10:12
  **/
 public class CommonDialog extends Dialog implements View.OnClickListener {

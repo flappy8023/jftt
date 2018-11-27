@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 14:29
  **/
 public class WXHttpApi {

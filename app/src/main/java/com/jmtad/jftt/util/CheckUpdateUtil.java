@@ -14,7 +14,7 @@ import com.jmtad.jftt.http.HttpApi;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-24 11:03
  **/
 public class CheckUpdateUtil {

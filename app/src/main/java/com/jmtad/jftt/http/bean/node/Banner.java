@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 09:36
  **/
 public class Banner implements Serializable {

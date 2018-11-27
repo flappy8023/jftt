@@ -20,7 +20,7 @@ import butterknife.OnClick;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 15:47
  **/
 public class BindCardActivity extends BaseActivity<MinePresenter> implements MineContract.IMineView {

@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:反馈页面类别Viewpager适配器
+ * @author: luweiming
  * @create: 2018-11-13 10:37
  **/
 public class FeedbackAdapter extends FragmentPagerAdapter {

@@ -36,24 +36,48 @@ import cn.qqtheme.framework.picker.LinkagePicker;
 import cn.qqtheme.framework.picker.SinglePicker;
 import cn.qqtheme.framework.util.ConvertUtils;
 
+/**
+ * 个人资料编辑页面
+ */
 public class ProfileActivity extends BaseActivity<ProfilePresenter> implements ProfileContract.IProfileView {
 
     @BindView(R.id.iv_toolbar_left_button)
     ImageView ivBack;
     @BindView(R.id.tv_toolbar_title)
     TextView tvTitle;
+    /**
+     * 城市
+     */
     @BindView(R.id.tv_profile_city)
     TextView tvCity;
+    /**
+     * 教育背景
+     */
     @BindView(R.id.tv_profile_edu)
     TextView tvEdu;
+    /**
+     * 行业
+     */
     @BindView(R.id.tv_profile_job)
     TextView tvJob;
+    /**
+     * 用户头像
+     */
     @BindView(R.id.iv_profile_headImg)
     CircleImageView ivHead;
+    /**
+     * 昵称
+     */
     @BindView(R.id.et_profile_nickName)
     EditText etNickName;
+    /**
+     * 性别单选框
+     */
     @BindView(R.id.rg_gender)
     RadioGroup groupGender;
+    /**
+     * 个人简介
+     */
     @BindView(R.id.tv_profile_introduction)
     EditText etPersonalPro;
     private String headImg = "";
@@ -75,6 +99,7 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         StatusBarUtil.StatusBarLightMode(this);
+        //进入页面查询用户信息
         presenter.queryUserInfo();
     }
 
@@ -99,6 +124,9 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         finish();
     }
 
+    /**
+     * 点击城市文本框弹出城市选择三级列表
+     */
     @OnClick(R.id.tv_profile_city)
     public void cityPick() {
         try {
@@ -144,6 +172,9 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         }
     }
 
+    /**
+     * 点击提交按钮获取用户填写的文本进行提交
+     */
     @OnClick(R.id.bt_profile_submit)
     public void submit() {
         String nickName = etNickName.getText().toString();
@@ -160,6 +191,9 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         presenter.submitUserInfo(nickName, headImg, city, gender, profession, personalPro, edu);
     }
 
+    /**
+     * 点击行业文本框弹出行业选择二级联动列表
+     */
     @OnClick(R.id.tv_profile_job)
     public void jobPick() {
         if (null == jobProvider) {
@@ -220,6 +254,11 @@ public class ProfileActivity extends BaseActivity<ProfilePresenter> implements P
         picker.show();
     }
 
+    /**
+     * 请求用户信息成功的回调，展示用户信息
+     *
+     * @param user
+     */
     @Override
     public void showUserInfo(User user) {
         //判空

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-26 10:24
  **/
 public interface CollectionContract {

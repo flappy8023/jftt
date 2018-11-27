@@ -8,7 +8,7 @@ import com.jmtad.jftt.config.GlideApp;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-09-30 17:25
  **/
 public class GlideUtil {

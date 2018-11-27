@@ -20,7 +20,7 @@ import butterknife.BindView;
 
 /**
  * @description:交易记录内容
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 19:14
  **/
 public class RecordFragment extends BaseMvpFragment<DealPresenter> implements DealContract.IDealView {

@@ -9,7 +9,7 @@ import com.jmtad.jftt.App;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 13:47
  **/
 public class SharedPreferenceUtil {

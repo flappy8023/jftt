@@ -7,7 +7,7 @@ import com.jmtad.jftt.BuildConfig;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-08 10:37
  **/
 public class LogUtil {

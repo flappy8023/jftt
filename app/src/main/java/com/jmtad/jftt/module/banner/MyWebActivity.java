@@ -11,7 +11,7 @@ import butterknife.BindView;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-01 04:34
  **/
 public class MyWebActivity extends BaseActivity {

@@ -10,7 +10,7 @@ import butterknife.OnClick;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-31 14:25
  **/
 public class PictureActivity extends BaseActivity {

@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-29 16:43
  **/
 public class BannerLinkActivity extends BaseActivity {

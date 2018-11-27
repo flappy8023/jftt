@@ -10,7 +10,7 @@ import com.jmtad.jftt.R;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-12 11:49
  **/
 public class MainHolder extends RecyclerView.ViewHolder {

@@ -20,8 +20,8 @@ import com.jmtad.jftt.util.timeutil.DateCalendarUtils;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:交易查询页面条目列表适配器
+ * @author: luweiming
  * @create: 2018-10-22 11:44
  **/
 public class DealQueryRVAdapter extends RecyclerView.Adapter<DealQueryRVAdapter.MyHolder> {

@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-02 09:39
  **/
 public class WeShareUtil {

@@ -16,8 +16,8 @@ import com.jmtad.jftt.util.GlideUtil;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:首页头部收藏和最近浏览列表适配器
+ * @author: luweiming
  * @create: 2018-11-06 11:14
  **/
 public class HomeHeaderAdapter extends RecyclerView.Adapter<HomeHeaderAdapter.MyHolder> {

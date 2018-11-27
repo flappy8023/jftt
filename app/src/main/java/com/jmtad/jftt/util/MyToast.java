@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 /**
  * @description: 对Toast简单封装
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-15 11:53
  **/
 public class MyToast {

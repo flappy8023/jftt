@@ -13,7 +13,7 @@ import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-26 17:31
  **/
 public class HomePresenter extends BasePresenter<HomeContract.IHomeView> implements HomeContract.IHomePresenter {

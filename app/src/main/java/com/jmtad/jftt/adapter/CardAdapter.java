@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.jmtad.jftt.R;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:个人中心卡片列表适配器
+ * @author: luweiming
  * @create: 2018-10-17 14:06
  **/
 public class CardAdapter extends PagerAdapter {

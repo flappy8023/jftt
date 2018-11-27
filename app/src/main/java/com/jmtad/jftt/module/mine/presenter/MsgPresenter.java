@@ -13,7 +13,7 @@ import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 16:51
  **/
 public class MsgPresenter extends BasePresenter<MsgContract.IMsgView> implements MsgContract.IMsgPresenter {

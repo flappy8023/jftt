@@ -13,7 +13,7 @@ import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-30 20:37
  **/
 public class MyFrameLayout extends FrameLayout implements View.OnTouchListener, GestureDetector.OnGestureListener {

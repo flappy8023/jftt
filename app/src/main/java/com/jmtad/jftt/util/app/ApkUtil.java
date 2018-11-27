@@ -1,4 +1,4 @@
-package com.jmtad.jftt.util;
+package com.jmtad.jftt.util.app;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -7,7 +7,7 @@ import android.os.Build;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-26 10:30
  **/
 public class ApkUtil {
@@ -29,6 +29,11 @@ public class ApkUtil {
         return packageInfo.versionCode;
     }
 
+    /**
+     * 获取当前设备型号
+     *
+     * @return
+     */
     public static String getDevice() {
         return Build.DEVICE;
     }

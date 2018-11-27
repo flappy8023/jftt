@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 14:05
  **/
 public class WXUserInfo {

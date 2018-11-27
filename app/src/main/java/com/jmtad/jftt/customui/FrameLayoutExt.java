@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 18:08
  **/
 public class FrameLayoutExt extends RelativeLayout {

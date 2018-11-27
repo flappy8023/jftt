@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @description:用户结构
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 09:43
  **/
 public class User {

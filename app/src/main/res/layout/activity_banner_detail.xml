@@ -45,13 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/px_30"
-
+                android:layout_marginRight="@dimen/px_30"
                 android:textColor="#333333"
                 android:textSize="@dimen/sp_40" />
 
             <!--仿微信颜色-->
             <!--android:textColor="#4682B4"-->
-            h
+
 
             <TextView
                 android:id="@+id/tv_banner_author"

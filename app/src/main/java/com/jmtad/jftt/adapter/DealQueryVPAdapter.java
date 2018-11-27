@@ -11,8 +11,8 @@ import com.jmtad.jftt.module.mine.RecordFragment;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:交易查询页面类别页面适配器
+ * @author: luweiming
  * @create: 2018-10-22 11:49
  **/
 public class DealQueryVPAdapter extends FragmentStatePagerAdapter {

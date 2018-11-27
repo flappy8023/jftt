@@ -10,8 +10,8 @@ import com.jmtad.jftt.module.mine.MenuFragment;
 import java.util.List;
 
 /**
- * @description:
- * @author: flappy8023
+ * @description:个人中心菜单列表适配器
+ * @author: luweiming
  * @create: 2018-10-17 14:57
  **/
 public class CardMenuAdpater extends FragmentStatePagerAdapter {

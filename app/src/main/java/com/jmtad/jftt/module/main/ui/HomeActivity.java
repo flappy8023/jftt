@@ -38,17 +38,19 @@ import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.banner.BannerLinkActivity;
 import com.jmtad.jftt.module.collection.MyCollectionActivity;
+import com.jmtad.jftt.module.login.ui.SplashActivity;
 import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
-import com.jmtad.jftt.util.ApkUtil;
+import com.jmtad.jftt.service.ActService;
 import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.LogUtil;
 import com.jmtad.jftt.util.QRCodeUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.SoundPoolUtil;
 import com.jmtad.jftt.util.ThreadPoolUtil;
+import com.jmtad.jftt.util.app.ApkUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.victor.loading.rotate.RotateLoading;
@@ -63,19 +65,34 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 首页
+ * 首页，支持四个方向滑动切换
  */
 public class HomeActivity extends BaseActivity<MainPresenter> implements MainContract.IMainView, MainAdapter.HomeListener {
+    /**
+     * 首页根布局，支持下拉显示头部
+     */
     @BindView(R.id.pull_extend)
     PullExtendLayout pullExtendLayout;
+    /**
+     * 头部布局
+     */
     @BindView(R.id.extend_header)
     ExtendListHeader extendListHeader;
     @BindView(R.id.rv_main_container)
     RecyclerView recyclerView;
     private final int PAGE_SIZE = 10;
+    /**
+     * 菜单弹窗
+     */
     PopupWindow topMenu;
+    /**
+     * 右上角菜单按钮
+     */
     @BindView(R.id.iv_main_top_menu)
     ImageView ivTopMenu;
+    /**
+     * 缓冲条
+     */
     @BindView(R.id.loading)
     RotateLoading loading;
     //图文总条数
@@ -86,13 +103,19 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     private int pageNo = 1;
     //图文列表
     private List<Banner> mBanners = new ArrayList<>();
+    /**
+     * 首页适配器
+     */
     private MainAdapter mainAdapter;
     private ItemTouchHelperCallback<Banner> itemTouchHelperCallback;
     private ItemTouchHelper itemTouchHelper;
     //分享生成二维码
     @BindView(R.id.iv_home_qrcode)
     ImageView ivQRCode;
-    private SharePopwindow popwindow;
+    /**
+     * 分享弹窗
+     */
+    private SharePopwindow sharePopwindow;
 
     private RequestVersionListener listener = new RequestVersionListener() {
         @Nullable
@@ -127,13 +150,16 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //如果用户未登录，拜拜~~
-//        if (TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUserId())) {
-//            showError("请登录");
-//            startActivity(new Intent(HomeActivity.this, SplashActivity.class));
-//            finish();
-//        }
+        if (TextUtils.isEmpty(SharedPreferenceUtil.getInstance().getUserId())) {
+            showError("请登录");
+            startActivity(new Intent(HomeActivity.this, SplashActivity.class));
+            finish();
+        }
         EventBus.getDefault().register(this);
+        //开启活动计时
+        startService(new Intent(this, ActService.class));
         //首页禁止滑动返回功能
         slidrInterface.lock();
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
@@ -141,6 +167,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         DownloadBuilder builder = presenter.checkUpdate(listener, false);
         builder.setShowDownloadingDialog(false);
         builder.executeMission(this);
+        //预加载音频资源
         SoundPoolUtil.getInstance(HomeActivity.this);
     }
 
@@ -162,33 +189,8 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         mainAdapter.setHomeListener(this);
         recyclerView.setAdapter(mainAdapter);
         mainAdapter.setItemTouchHelper(itemTouchHelper);
-        //初始化头部数据
-        initHeader();
-
     }
 
-    private void initHeader() {
-//        //如果存在收藏和历史展示列表；否则展示提示信息
-//        if (false) {
-//            headerRvRecent = extendListHeader.getRvRecent();
-//            headerRvRecent.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
-//            headerAdapter = new HomeHeaderAdapter(HomeActivity.this, mBanners);
-//            headerRvRecent.setAdapter(headerAdapter);
-//            headerAdapter.setListener(new HomeHeaderAdapter.HeaderClickListener() {
-//                @Override
-//                public void onClick(Banner banner) {
-//                    toDetail(banner);
-//                }
-//
-//                @Override
-//                public void onLongClick(Banner banner) {
-//                    MyToast.showLongToast(HomeActivity.this, "长按删除");
-//                }
-//            });
-//        } else {
-//            extendListHeader.showHint();
-//        }
-    }
 
     private OnSlideListener<Banner> onSlideListener = new OnSlideListener<Banner>() {
         @Override
@@ -213,7 +215,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
         @Override
         public void onClear(List<Banner> temp) {
-
+            //过滤第一页时的回调
             if (mTotal > PAGE_SIZE && temp.size() + ItemTouchHelperCallback.LOAD_OFFSET == PAGE_SIZE) {
                 return;
             }
@@ -229,22 +231,13 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         //每次到首页重新请求收藏和最近浏览
         presenter.queryCollects("1");
         presenter.queryRecentList(1, 20);
-//        List<Banner> banners = new ArrayList<>();
-//        for(int i=0;i<10;i++){
-//            Banner banner = new Banner();
-//            banner.setId(i+"");
-//            banner.setAuthor(i+"");
-//            banner.setImgUrl("http://cdn.cocimg.com/bbs/attachment/Fid_65/65_262363_67e871ebb1053f0.png");
-//            banners.add(banner);
-//        }
-//        loadCollects(banners);
-//        loadRecent(banners);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        pullExtendLayout.resetHeaderLayout();
+//        pullExtendLayout.resetHeaderLayout();
+
         if (loading.isStart()) {
             loading.stop();
         }
@@ -260,6 +253,13 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         presenter = new MainPresenter();
     }
 
+    /**
+     * 请求图文列表成功的回调，加载图文数据
+     *
+     * @param banners 图文列表
+     * @param total   图文总数
+     * @param pages   图文总页数
+     */
     @Override
     public void loadBannerList(List<Banner> banners, int total, int pages) {
         //延时隐藏加载条
@@ -280,6 +280,10 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
+    /**点赞成功回调，改变点赞数和图标颜色
+     * @param view
+     * @param stars 点赞数
+     */
     @Override
     public void starSucc(View view, long stars) {
         TextView tvStar = view.findViewById(R.id.tv_home_news_likes);
@@ -298,16 +302,25 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         tvStar.setText(String.valueOf(stars));
     }
 
+    /**加载最近浏览数据
+     * @param bannerList
+     */
     @Override
     public void loadRecent(List<Banner> bannerList) {
         extendListHeader.showRecent(bannerList);
     }
 
+    /**加载我的收藏列表
+     * @param bannerList
+     */
     @Override
     public void loadCollects(List<Banner> bannerList) {
         extendListHeader.showCollects(bannerList);
     }
 
+    /**
+     * 展开菜单
+     */
     @OnClick(R.id.iv_main_top_menu)
     public void showMenu() {
         if (null == topMenu) {
@@ -346,35 +359,37 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
+    /**以带有二维码的图片形式分享当前图文
+     * @param banner 当前图文内容
+     */
     @Override
     public void share(Banner banner) {
-        if (null == popwindow) {
-            popwindow = new SharePopwindow(HomeActivity.this, view -> {
+        if (null == sharePopwindow) {
+            sharePopwindow = new SharePopwindow(HomeActivity.this, view -> {
                 switch (view.getId()) {
                     //分享到微信会话
                     case R.id.wechat_share_session:
                         ThreadPoolUtil.execute(() -> {
                             WechatUtil.getInstance().shareImg(createQRCodeBitmap(), SendMessageToWX.Req.WXSceneSession);
-                            runOnUiThread((Runnable) () -> popwindow.dismiss());
+                            runOnUiThread(() -> sharePopwindow.dismiss());
                         });
-
                         return;
                     //分享到朋友圈
                     case R.id.wechat_share_timeline:
                         ThreadPoolUtil.execute(() -> {
                             WechatUtil.getInstance().shareImg(createQRCodeBitmap(), SendMessageToWX.Req.WXSceneTimeline);
-                            runOnUiThread((Runnable) () -> popwindow.dismiss());
+                            runOnUiThread(() -> sharePopwindow.dismiss());
                         });
-
                         return;
                 }
             });
         }
-        popwindow.showAtLocation(recyclerView, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+        //从页面底部弹出分享对话框
+        sharePopwindow.showAtLocation(recyclerView, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
     /**
-     * 生成分享所用的图片
+     * 截取当前屏幕内容，附加二维码，生成分享所用的图片
      *
      * @return
      */
@@ -400,6 +415,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         presenter.starOrUnStar(banner, view);
     }
 
+    /**跳转详情页或者直接打开图文配置的连接地址
+     * @param banner
+     */
     @Override
     public void toDetail(Banner banner) {
         if (TextUtils.equals(banner.getIsShowDetails(), "0")) {

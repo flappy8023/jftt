@@ -33,10 +33,10 @@ import com.jmtad.jftt.module.main.MainContract;
 import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
-import com.jmtad.jftt.util.ApkUtil;
 import com.jmtad.jftt.util.GlideUtil;
 import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
+import com.jmtad.jftt.util.app.ApkUtil;
 
 import java.util.ArrayList;
 import java.util.List;

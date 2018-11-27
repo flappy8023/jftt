@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.Banner;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-08 11:58
  **/
 public class QueryBannerDetailResp extends BaseResponse {

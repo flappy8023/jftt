@@ -4,7 +4,7 @@ import com.jmtad.jftt.base.IBaseContract;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-26 17:21
  **/
 public interface HomeContract {

@@ -1,8 +1,11 @@
 package com.jmtad.jftt.base;
 
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.jmtad.jftt.receiver.ActReceiver;
+import com.jmtad.jftt.service.ActService;
 import com.jmtad.jftt.util.MyToast;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -14,13 +17,18 @@ import butterknife.Unbinder;
 
 /**
  * @description:activity基类
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-09-30 17:55
  **/
 public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> extends RxAppCompatActivity implements IBaseContract.IBaseView {
     protected T presenter;
     protected Unbinder unbinder;
     protected SlidrInterface slidrInterface;
+    private ActReceiver actReceiver;
+    /**
+     * 当前activity是否处于顶部
+     */
+    private boolean isTop = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,5 +98,31 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
         if (null != presenter) {
             presenter.detachView();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isTop = true;
+        //每个页面都需要支持弹出活动弹框
+        registBroadcastReceiver();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isTop = false;
+        //当该页面不可见时取消注册活动广播
+        unregisterReceiver(actReceiver);
+    }
+
+    /**
+     * 注册接收活动弹窗广播
+     */
+    private void registBroadcastReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ActService.TIMER_ACTION);
+        actReceiver = new ActReceiver();
+        registerReceiver(actReceiver, filter);
     }
 }

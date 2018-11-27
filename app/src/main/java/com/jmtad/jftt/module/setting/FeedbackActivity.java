@@ -70,6 +70,7 @@ public class FeedbackActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
+                //当滑动到第二个页面时，禁用滑动返回，防止直接退出
                 if (position == 1) {
                     slidrInterface.lock();
                 } else {

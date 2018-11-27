@@ -33,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Fragment切换方式在V1.1废弃,新的实现{@link HomeActivity}
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-11 14:08
  **/
 @Deprecated

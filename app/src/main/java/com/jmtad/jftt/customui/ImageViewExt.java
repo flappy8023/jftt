@@ -9,7 +9,7 @@ import android.view.ViewConfiguration;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-07 11:29
  **/
 public class ImageViewExt extends AppCompatImageView {

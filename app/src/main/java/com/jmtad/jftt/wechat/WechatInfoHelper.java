@@ -6,7 +6,7 @@ import com.jmtad.jftt.wechat.model.WXUserInfo;
 
 /**
  * @description:微信信息缓存工具
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 14:00
  **/
 public class WechatInfoHelper {

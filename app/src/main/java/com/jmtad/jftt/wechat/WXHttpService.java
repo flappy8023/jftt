@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-16 14:32
  **/
 public interface WXHttpService {

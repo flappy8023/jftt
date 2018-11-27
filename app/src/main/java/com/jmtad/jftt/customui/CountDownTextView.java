@@ -10,6 +10,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
+/**
+ * 用于展示倒计时的文本框，默认60秒
+ */
 public class CountDownTextView extends AppCompatTextView {
 
     /**

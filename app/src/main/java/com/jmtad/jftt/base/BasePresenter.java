@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-09-30 10:03
  **/
 public class BasePresenter<T extends IBaseContract.IBaseView> implements IBaseContract.IBasePresenter {

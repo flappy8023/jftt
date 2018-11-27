@@ -13,7 +13,7 @@ import android.view.animation.Interpolator;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-31 15:42
  **/
 

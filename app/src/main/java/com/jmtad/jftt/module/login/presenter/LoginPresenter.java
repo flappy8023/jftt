@@ -11,7 +11,7 @@ import com.jmtad.jftt.util.SharedPreferenceUtil;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-24 15:04
  **/
 public class LoginPresenter extends BasePresenter<LoginContract.ILoginView> implements LoginContract.ILoginPresenter {

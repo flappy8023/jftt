@@ -11,7 +11,7 @@ import com.jmtad.jftt.module.mine.contract.ProfileContract;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 16:38
  **/
 public class ProfilePresenter extends BasePresenter<ProfileContract.IProfileView> implements ProfileContract.IProfilePresenter {

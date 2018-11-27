@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 13:57
  **/
 public class QueryBannerListData {

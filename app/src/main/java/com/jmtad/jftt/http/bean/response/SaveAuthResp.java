@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.SaveAuthRespData;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-27 13:37
  **/
 public class SaveAuthResp extends BaseResponse {

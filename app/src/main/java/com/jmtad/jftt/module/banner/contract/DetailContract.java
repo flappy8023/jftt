@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.Banner;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-11-07 15:26
  **/
 public interface DetailContract {

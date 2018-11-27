@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.CheckUpdateData;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-26 10:18
  **/
 public class CheckUpdateResp extends BaseResponse {

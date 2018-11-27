@@ -17,12 +17,12 @@ import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.login.ui.LoginActivity;
-import com.jmtad.jftt.util.ApkUtil;
 import com.jmtad.jftt.util.CacheUtil;
 import com.jmtad.jftt.util.CheckUpdateUtil;
 import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.StatusBarUtil;
 import com.jmtad.jftt.util.ThreadPoolUtil;
+import com.jmtad.jftt.util.app.ApkUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;

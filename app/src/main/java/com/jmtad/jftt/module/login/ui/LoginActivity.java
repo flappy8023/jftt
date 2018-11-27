@@ -19,9 +19,9 @@ import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.SaveAuthResp;
 import com.jmtad.jftt.module.login.contract.LoginContract;
 import com.jmtad.jftt.module.login.presenter.LoginPresenter;
-import com.jmtad.jftt.util.ApkUtil;
 import com.jmtad.jftt.util.GlideUtil;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
+import com.jmtad.jftt.util.app.ApkUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.jmtad.jftt.wechat.model.WXUserInfo;
 import com.victor.loading.rotate.RotateLoading;
@@ -36,7 +36,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 登录页面,目前微信登录
+ * 登录页面,目前仅支持微信登录
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.ILoginView {
     @BindView(R.id.bt_choose_top)
@@ -56,7 +56,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-
         //在登录页面禁用滑动返回功能
         slidrInterface.lock();
     }
@@ -117,6 +116,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         });
     }
 
+    /**
+     * 保存微信鉴权信息
+     *
+     * @param userInfo
+     * @param data
+     */
     private void saveUserInfo(WXUserInfo userInfo, SaveAuthRespData data) {
         SharedPreferenceUtil.getInstance().saveUserId(data.getUserId());
         SharedPreferenceUtil.getInstance().saveUionId(data.getUnionid());

@@ -5,7 +5,7 @@ import com.jmtad.jftt.http.bean.node.User;
 
 /**
  * @description:
- * @author: flappy8023
+ * @author: luweiming
  * @create: 2018-10-25 10:21
  **/
 public class QueryUserInfoResp extends BaseResponse {
