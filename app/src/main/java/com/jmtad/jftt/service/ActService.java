@@ -56,11 +56,11 @@ public class ActService extends Service {
             public void run() {
                 Intent intent = new Intent();
                 intent.setAction(TIMER_ACTION);
+
                 sendBroadcast(intent);
             }
         };
         timer.schedule(timerTask, 10 * 1000);
-
     }
 
     @Override

@@ -155,7 +155,6 @@
             android:name="JPUSH_APPKEY"
             android:value="5f26d3afe919fb9440756a66" />
 
-        <activity android:name=".module.main.ui.MainActivity"></activity>
         <activity
             android:name=".module.login.ui.SplashActivity"
             android:exported="true"
@@ -176,7 +175,7 @@
         <activity android:name=".module.setting.SettingActivity" />
         <activity
             android:name=".module.banner.BannerDetailActivity"
-            android:parentActivityName=".module.main.ui.HomeActivity" />
+            android:parentActivityName=".module.home.ui.HomeActivity" />
         <activity android:name=".module.setting.AboutUsActivity" />
         <activity android:name=".module.mine.ProfileActivity" />
         <activity android:name=".module.mine.BindAccountActivity"></activity>
@@ -191,9 +190,9 @@
         <activity android:name=".module.mine.BindCardActivity" />
         <activity
             android:name=".module.banner.BannerLinkActivity"
-            android:parentActivityName=".module.main.ui.HomeActivity" />
+            android:parentActivityName=".module.home.ui.HomeActivity" />
         <activity android:name=".module.banner.PictureActivity" />
-        <activity android:name=".module.main.ui.HomeActivity">
+        <activity android:name=".module.home.ui.HomeActivity">
 
         </activity>
         <activity android:name=".module.collection.MyCollectionActivity"></activity>

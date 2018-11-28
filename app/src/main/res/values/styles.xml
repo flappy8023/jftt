@@ -48,4 +48,24 @@
         <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
+    <!--对话框底部弹出动画-->
+    <style name="DialogBottomOutAndInStyle">
+        <item name="android:windowEnterAnimation">@anim/slide_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_bottom_out</item>
+    </style>
+    <!--对话框顶部弹出动画-->
+    <style name="DialogTopOutAndInStyle">
+        <item name="android:windowEnterAnimation">@anim/slide_top_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_top_out</item>
+    </style>
+    <!--对话框左侧弹出动画-->
+    <style name="DialogLeftOutAndInStyle">
+        <item name="android:windowEnterAnimation">@anim/slide_left_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_left_out</item>
+    </style>
+    <!--对话框右侧弹出动画-->
+    <style name="DialogRightOutAndInStyle">
+        <item name="android:windowEnterAnimation">@anim/slide_right_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_right_out</item>
+    </style>
 </resources>

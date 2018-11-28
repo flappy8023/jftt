@@ -1,4 +1,4 @@
-package com.jmtad.jftt.module.main.ui;
+package com.jmtad.jftt.module.home.ui;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -38,9 +38,9 @@ import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.banner.BannerLinkActivity;
 import com.jmtad.jftt.module.collection.MyCollectionActivity;
+import com.jmtad.jftt.module.home.MainContract;
+import com.jmtad.jftt.module.home.MainPresenter;
 import com.jmtad.jftt.module.login.ui.SplashActivity;
-import com.jmtad.jftt.module.main.MainContract;
-import com.jmtad.jftt.module.main.MainPresenter;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
 import com.jmtad.jftt.service.ActService;

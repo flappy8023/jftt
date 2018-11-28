@@ -1,4 +1,4 @@
-package com.jmtad.jftt.module.main;
+package com.jmtad.jftt.module.home;
 
 import android.text.TextUtils;
 import android.view.View;

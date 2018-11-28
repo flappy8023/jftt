@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
-import com.jmtad.jftt.module.main.ui.HomeActivity;
+import com.jmtad.jftt.module.home.ui.HomeActivity;
 import com.jmtad.jftt.util.SharedPreferenceUtil;
 
 import butterknife.BindView;

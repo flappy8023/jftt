@@ -16,6 +16,7 @@ public class ActReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         CommonDialog dialog = new CommonDialog(context, R.style.BaseDialog, "活动");
+        dialog.getWindow().setWindowAnimations(R.style.DialogBottomOutAndInStyle);
         dialog.show();
     }
 }

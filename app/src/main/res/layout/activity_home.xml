@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/home_header_bg_color"
-    tools:context=".module.main.ui.HomeActivity">
+    tools:context=".module.home.ui.HomeActivity">
 
     <com.jmtad.jftt.customui.pullextend.ExtendListHeader
         android:id="@+id/extend_header"

@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.adapter.WelcomeAdapter;
 import com.jmtad.jftt.base.BaseActivity;
-import com.jmtad.jftt.module.main.ui.HomeActivity;
+import com.jmtad.jftt.module.home.ui.HomeActivity;
 
 import butterknife.BindView;
 
