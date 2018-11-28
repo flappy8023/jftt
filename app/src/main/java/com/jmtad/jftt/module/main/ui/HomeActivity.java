@@ -201,8 +201,10 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         @Override
         public void onSlided(RecyclerView.ViewHolder viewHolder, Banner banner, int direction, int position) {
 
-            //滑动时播放声音，，，，，，！！！
-            SoundPoolUtil.getInstance(HomeActivity.this).play(1);
+            //如果声音开关打开滑动播放声音，(-_-!)
+            if (Constants.soundSwtich) {
+                SoundPoolUtil.getInstance(HomeActivity.this).play(1);
+            }
             int offset = PAGE_SIZE / 2;
             //position是当前所有浏览的计数,循环展示时会超过总数
             position = position % mTotal;
@@ -280,7 +282,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
-    /**点赞成功回调，改变点赞数和图标颜色
+    /**
+     * 点赞成功回调，改变点赞数和图标颜色
+     *
      * @param view
      * @param stars 点赞数
      */
@@ -302,7 +306,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         tvStar.setText(String.valueOf(stars));
     }
 
-    /**加载最近浏览数据
+    /**
+     * 加载最近浏览数据
+     *
      * @param bannerList
      */
     @Override
@@ -310,7 +316,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         extendListHeader.showRecent(bannerList);
     }
 
-    /**加载我的收藏列表
+    /**
+     * 加载我的收藏列表
+     *
      * @param bannerList
      */
     @Override
@@ -359,7 +367,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         }
     }
 
-    /**以带有二维码的图片形式分享当前图文
+    /**
+     * 以带有二维码的图片形式分享当前图文
+     *
      * @param banner 当前图文内容
      */
     @Override
@@ -415,7 +425,9 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         presenter.starOrUnStar(banner, view);
     }
 
-    /**跳转详情页或者直接打开图文配置的连接地址
+    /**
+     * 跳转详情页或者直接打开图文配置的连接地址
+     *
      * @param banner
      */
     @Override

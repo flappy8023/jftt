@@ -23,7 +23,9 @@ public class SharedPreferenceUtil {
         UNION_ID,
         NICK_NAME,
         PHONE,
-        APK_URL
+        APK_URL,
+        //声音开关
+        SOUND_SWITCH
     }
 
     /**
@@ -75,6 +77,14 @@ public class SharedPreferenceUtil {
 
     public String getPhone() {
         return getStringData(Key.PHONE + "", "");
+    }
+
+    public void saveSoundSwitch(boolean soundSwitch) {
+        setBoolData(Key.SOUND_SWITCH + "", soundSwitch);
+    }
+
+    public boolean getSoundSwitch() {
+        return getBoolData(Key.SOUND_SWITCH + "", true);
     }
 
     public String getStringData(String key, String defaultValue) {

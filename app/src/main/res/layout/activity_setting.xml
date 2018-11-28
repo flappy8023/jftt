@@ -123,19 +123,33 @@
                     android:text="@string/setting_check_update"
                     android:textColor="@color/black_textColor"
                     android:textSize="@dimen/sp_32" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_1" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/ll_setting_sound_switch"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px_100">
 
-                <!--<ImageView-->
-                <!--android:layout_width="@dimen/px_28"-->
-                <!--android:layout_height="@dimen/px_28"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:src="@drawable/right" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/setting_sound_switch"
+                    android:textColor="@color/black_textColor"
+                    android:textSize="@dimen/sp_32" />
+                <Switch
+                    android:id="@+id/switch_sound"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:thumb="@drawable/thumb_selector"
+                    android:track="@drawable/track_selector"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content" />
 
-                <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:layout_alignParentBottom="true"-->
-                <!--android:background="@color/gray_1" />-->
             </RelativeLayout>
         </LinearLayout>
 

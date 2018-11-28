@@ -41,6 +41,7 @@
     <string name="setting_switch_account">切换账号</string>
     <string name="makesure_clear_cache">确定清除所有缓存?</string>
     <string name="clear_done">清除完成</string>
+    <string name="setting_sound_switch">声音开关</string>
     <!--首页-->
     <string name="home_menu_mine">我的</string>
     <string name="home_menu_collect">收藏</string>

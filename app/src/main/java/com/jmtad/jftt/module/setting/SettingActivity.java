@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
@@ -13,6 +16,7 @@ import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.base.BaseActivity;
+import com.jmtad.jftt.config.Constants;
 import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
@@ -20,6 +24,7 @@ import com.jmtad.jftt.module.login.ui.LoginActivity;
 import com.jmtad.jftt.util.CacheUtil;
 import com.jmtad.jftt.util.CheckUpdateUtil;
 import com.jmtad.jftt.util.JsonParse;
+import com.jmtad.jftt.util.SharedPreferenceUtil;
 import com.jmtad.jftt.util.StatusBarUtil;
 import com.jmtad.jftt.util.ThreadPoolUtil;
 import com.jmtad.jftt.util.app.ApkUtil;
@@ -35,6 +40,10 @@ public class SettingActivity extends BaseActivity {
 
     @BindView(R.id.tv_total_cache)
     TextView totalCache;
+    @BindView(R.id.ll_setting_sound_switch)
+    RelativeLayout rlSoundSwitch;
+    @BindView(R.id.switch_sound)
+    Switch soundSwtich;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +61,12 @@ public class SettingActivity extends BaseActivity {
         ivTitleLeft.setImageResource(R.drawable.back_black);
         tvTitle.setText(getString(R.string.setting_title));
         showCache();
+        //设置声音开关
+        soundSwtich.setChecked(SharedPreferenceUtil.getInstance().getSoundSwitch());
+        soundSwtich.setOnCheckedChangeListener((compoundButton, b) -> {
+            SharedPreferenceUtil.getInstance().saveSoundSwitch(b);
+            Constants.soundSwtich = b;
+        });
     }
 
     /**
@@ -77,6 +92,10 @@ public class SettingActivity extends BaseActivity {
 
     }
 
+    @OnClick(R.id.ll_setting_sound_switch)
+    public void soundSwitch() {
+        soundSwtich.performClick();
+    }
 
     /**
      * 清除缓存

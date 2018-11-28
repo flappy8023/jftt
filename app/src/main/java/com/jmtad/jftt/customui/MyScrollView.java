@@ -1,10 +1,6 @@
 package com.jmtad.jftt.customui;
 
-/**
- * @description:支持监听滑动状态的scrollview
- * @author: luweiming
- * @create: 2018-11-12 14:48
- **/
+
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -19,12 +15,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-
 /**
- * 自定义ScrollView滑动事件
- *
- * @author brycegao
- */
+ * @description:支持监听滑动状态的scrollview
+ * @author: luweiming
+ * @create: 2018-11-12 14:48
+ **/
 public class MyScrollView extends ScrollView {
     private ArrayList<OnMyScrollListener> listeners;
 

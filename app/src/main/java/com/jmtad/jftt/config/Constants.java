@@ -10,4 +10,5 @@ public class Constants {
      * 默认的apk下载地址,微信授权后重定向到下载页面
      */
     public static final String APK_DOWNLOAD_URL = "https://youku.linkgift.cn/giftpay_oil_depot/user/wxAuth";
+    public static boolean soundSwtich = true;
 }
