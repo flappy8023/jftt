@@ -9,12 +9,12 @@ import java.io.Serializable;
  * @author: luweiming
  * @create: 2018-11-28 10:52
  **/
-public class Act implements Serializable {
+public class Popup implements Serializable {
 
     /**
      * 活动对话框弹出延时时间
      */
-    @SerializedName("delay")
+    @SerializedName("time")
     private long delay;
     @SerializedName("id")
     private String id;
@@ -31,14 +31,14 @@ public class Act implements Serializable {
     /**
      * 对话框弹出动画类型
      */
-    @SerializedName("AnimaType")
+    @SerializedName("style")
     private int AnimaType;
     /**
      * 活动标题
      */
-    @SerializedName("title")
+    @SerializedName("name")
     private String title;
-
+    private long period;
     public long getDelay() {
         return delay;
     }
@@ -87,9 +87,17 @@ public class Act implements Serializable {
         this.title = title;
     }
 
+    public long getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(long period) {
+        this.period = period;
+    }
+
     @Override
     public String toString() {
-        return "Act{" +
+        return "Popup{" +
                 "delay=" + delay +
                 ", id='" + id + '\'' +
                 ", linkUrl='" + linkUrl + '\'' +

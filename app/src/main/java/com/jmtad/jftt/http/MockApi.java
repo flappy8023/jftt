@@ -11,30 +11,27 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * HttpApi
+ * wanandroid开发过程模拟api
  *
  * @version : 1.0
  * @Title: HttpApi
  */
-public class HttpApi {
-    public final String BASE_URL = "http://test2.juxinbox.com/integral_headline/";//测试环境
-//    public final String BASE_URL = "https://game.juxinbox.com/integral_headline/";//正式环境
+public class MockApi {
     /**
      * 超时时间
      */
     private static final int DEFAULT_TIMEOUT = 10;
+    private static MockApi mHttpApi;
+    public final String BASE_URL = "http://wanandroid.com/tools/mockapi/3995/";
+    public MockService service;
 
-    private static HttpApi mHttpApi;
-
-    public HttpService service;
-
-    private HttpApi() {
+    private MockApi() {
         createHttpApiService(createOkHttp());
     }
 
-    public static synchronized HttpApi getInstance() {
+    public static synchronized MockApi getInstance() {
         if (null == mHttpApi) {
-            mHttpApi = new HttpApi();
+            mHttpApi = new MockApi();
         }
         return mHttpApi;
     }
@@ -59,6 +56,6 @@ public class HttpApi {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
-        service = retrofit.create(HttpService.class);
+        service = retrofit.create(MockService.class);
     }
 }

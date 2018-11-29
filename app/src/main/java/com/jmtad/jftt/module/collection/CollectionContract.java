@@ -22,6 +22,6 @@ public interface CollectionContract {
 
         void showBanners(List<Banner> banners);
 
-        void deleteSuc();
+        void deleteSuc(List<Banner> deletingBanners);
     }
 }

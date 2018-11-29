@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.manager.BannerManager;
 import com.jmtad.jftt.util.GlideUtil;
 
 import java.util.ArrayList;
@@ -97,6 +98,9 @@ public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.My
                     deletingBanners.remove(banner);
                     holder.cbSelect.setImageResource(R.drawable.select_0);
                 }
+            } else {
+                BannerManager.clickBanner(banner, mContext);
+
             }
         });
     }

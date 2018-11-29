@@ -35,15 +35,14 @@ import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.http.bean.node.CheckUpdateData;
 import com.jmtad.jftt.http.bean.response.BaseResponse;
 import com.jmtad.jftt.http.bean.response.CheckUpdateResp;
-import com.jmtad.jftt.module.banner.BannerDetailActivity;
-import com.jmtad.jftt.module.banner.BannerLinkActivity;
+import com.jmtad.jftt.manager.BannerManager;
 import com.jmtad.jftt.module.collection.MyCollectionActivity;
 import com.jmtad.jftt.module.home.MainContract;
 import com.jmtad.jftt.module.home.MainPresenter;
 import com.jmtad.jftt.module.login.ui.SplashActivity;
 import com.jmtad.jftt.module.mine.MineActivity;
 import com.jmtad.jftt.module.setting.SettingActivity;
-import com.jmtad.jftt.service.ActService;
+import com.jmtad.jftt.service.PopupService;
 import com.jmtad.jftt.util.JsonParse;
 import com.jmtad.jftt.util.LogUtil;
 import com.jmtad.jftt.util.QRCodeUtil;
@@ -159,7 +158,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
         }
         EventBus.getDefault().register(this);
         //开启活动计时
-        startService(new Intent(this, ActService.class));
+        startService(new Intent(this, PopupService.class));
         //首页禁止滑动返回功能
         slidrInterface.lock();
         presenter.queryBannerList(pageNo, PAGE_SIZE, "0");
@@ -432,19 +431,7 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
      */
     @Override
     public void toDetail(Banner banner) {
-        if (TextUtils.equals(banner.getIsShowDetails(), "0")) {
-            Intent intent = new Intent(HomeActivity.this, BannerDetailActivity.class);
-            intent.putExtra(BannerDetailActivity.KEY_BANNER, banner);
-            startActivity(intent);
-        } else {
-            if (TextUtils.isEmpty(banner.getLinkUrl())) {
-                return;
-            }
-            String url = banner.getLinkUrl() + "&userId=" + SharedPreferenceUtil.getInstance().getUserId() + "&unionId=" + SharedPreferenceUtil.getInstance().getUnionId();
-            Intent intent = new Intent(HomeActivity.this, BannerLinkActivity.class);
-            intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
-            startActivity(intent);
-        }
+        BannerManager.clickBanner(banner, HomeActivity.this);
     }
 
     /**
@@ -461,5 +448,11 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
             mBanners.get(0).setStars(banner.getStars());
             mainAdapter.notifyItemChanged(0, "refresh");
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(HomeActivity.this, PopupService.class));
     }
 }

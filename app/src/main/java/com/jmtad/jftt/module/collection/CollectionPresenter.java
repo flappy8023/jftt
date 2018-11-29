@@ -1,9 +1,15 @@
 package com.jmtad.jftt.module.collection;
 
-import com.jmtad.jftt.base.BasePresenter;
-import com.jmtad.jftt.http.bean.node.Banner;
+import android.text.TextUtils;
 
-import java.util.ArrayList;
+import com.jmtad.jftt.base.BasePresenter;
+import com.jmtad.jftt.http.HttpApi;
+import com.jmtad.jftt.http.RxCallBack;
+import com.jmtad.jftt.http.bean.node.Banner;
+import com.jmtad.jftt.http.bean.response.BaseResponse;
+import com.jmtad.jftt.http.bean.response.QueryCollectsResp;
+import com.jmtad.jftt.util.CollectionUtil;
+
 import java.util.List;
 
 /**
@@ -14,19 +20,45 @@ import java.util.List;
 public class CollectionPresenter extends BasePresenter<CollectionContract.ICollectionView> implements CollectionContract.ICollectionPresenter {
     @Override
     public void queryCollections(String type) {
-        List<Banner> banners = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Banner banner = new Banner();
-            banner.setTitle("标题" + i);
-            banner.setSummary("f 分水水水水水水水水水水水水水水水水烦烦烦烦烦烦烦烦烦方法");
-            banner.setImgUrl("http://t2.hddhhn.com/uploads/tu/201610/198/scx30045vxd.jpg");
-            banners.add(banner);
-        }
-        mView.showBanners(banners);
+        HttpApi.getInstance().service.queryCollects(getUserId(), Banner.Type.INFO).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<QueryCollectsResp>() {
+            @Override
+            public void onSuccess(QueryCollectsResp queryCollectsResp) {
+                if (TextUtils.equals(queryCollectsResp.getCode(), "0") && !CollectionUtil.isEmpty(queryCollectsResp.getData().getBanners())) {
+                    mView.showBanners(queryCollectsResp.getData().getBanners());
+                } else {
+                    mView.showEmpty();
+                }
+            }
+
+            @Override
+            public void onFail(Throwable e) {
+
+            }
+        });
     }
 
     @Override
     public void deleteCollections(List<Banner> bannerList) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < bannerList.size(); i++) {
+            Banner banner = bannerList.get(i);
+            if (i < bannerList.size() - 1) {
+                builder.append(banner.getId()).append(",");
+            } else {
+                builder.append(banner.getId());
+            }
+        }
+        String ids = builder.toString();
+        HttpApi.getInstance().service.deleteCollections(getUserId(), ids).compose(onCompose(mView.bindToLife())).subscribe(new RxCallBack<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse baseResponse) {
+                mView.deleteSuc(bannerList);
+            }
 
+            @Override
+            public void onFail(Throwable e) {
+
+            }
+        });
     }
 }

@@ -106,12 +106,17 @@ public class MyCollectionActivity extends BaseActivity<CollectionPresenter> impl
         llEmpty.setVisibility(View.GONE);
         ivDelete.setVisibility(View.VISIBLE);
         llCollections.setVisibility(View.VISIBLE);
+        mBanners.clear();
         mBanners.addAll(banners);
         collectionAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void deleteSuc() {
+    public void deleteSuc(List<Banner> deleteing) {
+        collectionAdapter.setDeleteMode(false);
+        mBanners.removeAll(deleteing);
+        collectionAdapter.notifyDataSetChanged();
+        btDelete.setVisibility(View.GONE);
 
     }
 
@@ -139,10 +144,8 @@ public class MyCollectionActivity extends BaseActivity<CollectionPresenter> impl
                     if (confirm) {
                         //点击删除按钮删除选择的图文刷新列表，然后退出编辑状态
                         List<Banner> deletingBanners = collectionAdapter.getDeletingBanners();
-                        mBanners.removeAll(deletingBanners);
-                        collectionAdapter.setDeleteMode(false);
-                        collectionAdapter.notifyDataSetChanged();
-                        btDelete.setVisibility(View.GONE);
+                        presenter.deleteCollections(deletingBanners);
+
                     } else {
                         //点击取消直接退出编辑状态
                         collectionAdapter.setDeleteMode(false);

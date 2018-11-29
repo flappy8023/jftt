@@ -4,8 +4,8 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.jmtad.jftt.receiver.ActReceiver;
-import com.jmtad.jftt.service.ActService;
+import com.jmtad.jftt.receiver.PopupReceiver;
+import com.jmtad.jftt.service.PopupService;
 import com.jmtad.jftt.util.MyToast;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -24,7 +24,7 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
     protected T presenter;
     protected Unbinder unbinder;
     protected SlidrInterface slidrInterface;
-    private ActReceiver actReceiver;
+    private PopupReceiver popupReceiver;
     /**
      * 当前activity是否处于顶部
      */
@@ -113,7 +113,7 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
         super.onPause();
         isTop = false;
         //当该页面不可见时取消注册活动广播
-        unregisterReceiver(actReceiver);
+        unregisterReceiver(popupReceiver);
     }
 
     /**
@@ -121,8 +121,8 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
      */
     private void registBroadcastReceiver() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ActService.TIMER_ACTION);
-        actReceiver = new ActReceiver();
-        registerReceiver(actReceiver, filter);
+        filter.addAction(PopupService.TIMER_ACTION);
+        popupReceiver = new PopupReceiver();
+        registerReceiver(popupReceiver, filter);
     }
 }

@@ -12,6 +12,7 @@ import com.jmtad.jftt.http.bean.response.QueryCommonProResp;
 import com.jmtad.jftt.http.bean.response.QueryMsgResp;
 import com.jmtad.jftt.http.bean.response.QueryOilBalanceResp;
 import com.jmtad.jftt.http.bean.response.QueryOilRecordResp;
+import com.jmtad.jftt.http.bean.response.QueryPopupResp;
 import com.jmtad.jftt.http.bean.response.QueryUserInfoResp;
 import com.jmtad.jftt.http.bean.response.SaveAuthResp;
 import com.jmtad.jftt.http.bean.response.StarResp;
@@ -99,7 +100,7 @@ public interface HttpService {
      * 查询收藏列表
      *
      * @param userID
-     * @param type 0 图文 ，1 游戏
+     * @param type   0 图文 ，1 游戏
      * @return
      */
     @POST("banner/queryCollections")
@@ -218,6 +219,8 @@ public interface HttpService {
     @POST("banner/collectBanner")
     Observable<CollectResp> collectBanner(@Query("bannerId") String bannerId, @Query("userId") String userId);
 
+    @POST("banner/deleteCollections")
+    Observable<BaseResponse> deleteCollections(@Query("userId") String userId, @Query("bannerIds") String ids);
     /**
      * 查询绑定的卡
      *
@@ -236,5 +239,24 @@ public interface HttpService {
      */
     @POST("oil/saveMerchantCard")
     Observable<BaseResponse> bindCard(@Query("userId") String userId, @Query("cardNo") String cardNo);
+
+    /**
+     * 查询用户当天的弹窗列表
+     *
+     * @param userId
+     * @return
+     */
+    @POST("popup/queryPopupsByUserId")
+    Observable<QueryPopupResp> queryPopupsByUserId(@Query("userId") String userId);
+
+    /**
+     * 保存用户弹窗记录
+     *
+     * @param userId
+     * @param popupId 弹窗id
+     * @return
+     */
+    @POST("popup/addPopupRecord")
+    Observable<BaseResponse> addPopupRecord(@Query("userId") String userId, @Query("popupId") String popupId);
 
 }
