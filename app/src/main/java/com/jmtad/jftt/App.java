@@ -18,6 +18,8 @@ public class App extends Application {
     private static final String TAG = "App";
     private static App app;
     private OnAppListener appListener;
+    private boolean isOnback = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,11 +32,6 @@ public class App extends Application {
         //监听前后台切换
         registerActivityLifecycleCallbacks(callbacks);
     }
-
-    public static App getContext() {
-        return app;
-    }
-
     private ActivityLifecycleCallbacks callbacks = new ActivityLifecycleCallbacks() {
         private int activityStartCount = 0;
 
@@ -49,6 +46,7 @@ public class App extends Application {
             //数值从0到1说明切换到前台
             if (activityStartCount == 1) {
                 LogUtil.debug(TAG, "switch to front , activity name:" + activity.getClass().getSimpleName());
+                isOnback = false;
                 if (null != appListener) {
                     appListener.onFront();
                 }
@@ -70,6 +68,7 @@ public class App extends Application {
             activityStartCount--;
             //数值从1变为0说明切换到后台
             if (activityStartCount == 0) {
+                isOnback = true;
                 LogUtil.debug(TAG, "switch to back, activity name: " + activity.getClass().getSimpleName());
                 if (null != appListener) {
                     appListener.onBack();
@@ -87,6 +86,14 @@ public class App extends Application {
 
         }
     };
+
+    public static App getContext() {
+        return app;
+    }
+
+    public boolean isOnBack() {
+        return isOnback;
+    }
 
     public void setAppListener(OnAppListener appListener) {
         this.appListener = appListener;

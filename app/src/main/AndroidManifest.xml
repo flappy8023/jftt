@@ -196,7 +196,7 @@
 
         </activity>
         <activity android:name=".module.collection.MyCollectionActivity"></activity>
-
+        <activity android:name=".module.banner.ActDetailActivity" />
         <service android:name=".service.PopupService" />
     </application>
 

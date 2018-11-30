@@ -59,8 +59,13 @@ public class PopupService extends Service {
         App.getContext().setAppListener(new App.OnAppListener() {
             @Override
             public void onFront() {
-                if (null != PopupManager.getInstance().getNextAct()) {
+                if (null != PopupManager.getInstance().getNextAct() && !PopupManager.getInstance().isShowing()) {
                     loadAct(PopupManager.getInstance().getNextAct());
+                } else {
+                    //如果当前有弹窗在展示且已经达到展示时间先关闭弹窗，然后继续下一个的计时
+                    if (PopupManager.getInstance().isNeedClose()) {
+                        PopupManager.getInstance().closeDialog();
+                    }
                 }
             }
 
