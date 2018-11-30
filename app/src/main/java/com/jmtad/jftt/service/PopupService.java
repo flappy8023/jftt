@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.jmtad.jftt.App;
 import com.jmtad.jftt.event.PopupEvent;
+import com.jmtad.jftt.event.ShowPopupEvent;
 import com.jmtad.jftt.http.bean.node.Popup;
 import com.jmtad.jftt.manager.PopupManager;
 
@@ -46,10 +47,7 @@ public class PopupService extends Service {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent();
-                intent.setAction(TIMER_ACTION);
-                intent.putExtra(EXTRA_KEY_ACT, act);
-                sendBroadcast(intent);
+                EventBus.getDefault().post(new ShowPopupEvent(act));
             }
         };
         timer.schedule(timerTask, act.getPeriod() * 1000);

@@ -9,6 +9,7 @@ import com.jmtad.jftt.R;
 import com.jmtad.jftt.customui.dialog.CommonDialog;
 import com.jmtad.jftt.http.bean.node.Popup;
 import com.jmtad.jftt.manager.PopupManager;
+import com.jmtad.jftt.module.banner.BannerLinkActivity;
 import com.jmtad.jftt.service.PopupService;
 
 /**
@@ -23,6 +24,12 @@ public class PopupReceiver extends BroadcastReceiver {
         CommonDialog dialog = new CommonDialog(context, R.style.BaseDialog, "活动").setTitle(act.getTitle()).setListener(new CommonDialog.OnCloseListener() {
             @Override
             public void onClick(Dialog dialog, boolean confirm) {
+                if (confirm) {
+                    Intent intent1 = new Intent(context, BannerLinkActivity.class);
+                    intent1.putExtra(BannerLinkActivity.KEY_LINK_URL, act.getLinkUrl());
+                    intent1.putExtra(BannerLinkActivity.KEY_TITLE, act.getTitle());
+                    context.startActivity(intent1);
+                }
                 dialog.dismiss();
             }
         });

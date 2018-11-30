@@ -54,7 +54,6 @@ import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.victor.loading.rotate.RotateLoading;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
@@ -156,7 +155,6 @@ public class HomeActivity extends BaseActivity<MainPresenter> implements MainCon
             startActivity(new Intent(HomeActivity.this, SplashActivity.class));
             finish();
         }
-        EventBus.getDefault().register(this);
         //开启活动计时
         startService(new Intent(this, PopupService.class));
         //首页禁止滑动返回功能

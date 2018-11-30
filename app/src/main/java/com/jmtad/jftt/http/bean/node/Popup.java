@@ -29,7 +29,7 @@ public class Popup implements Serializable {
     @SerializedName("imgUrl")
     private String imgUrl;
     /**
-     * 对话框弹出动画类型
+     * 对话框弹出动画类型 弹框样式 ： 0 无样式； 1 从上往下 ； 2 从下往上 ；3 从左往右； 4 从右往左
      */
     @SerializedName("style")
     private int AnimaType;

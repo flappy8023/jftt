@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import com.jmtad.jftt.http.bean.node.Banner;
 import com.jmtad.jftt.module.banner.BannerDetailActivity;
 import com.jmtad.jftt.module.banner.BannerLinkActivity;
-import com.jmtad.jftt.util.SharedPreferenceUtil;
 
 /**
  * @description:
@@ -24,7 +23,7 @@ public class BannerManager {
             if (TextUtils.isEmpty(banner.getLinkUrl())) {
                 return;
             }
-            String url = banner.getLinkUrl() + "&userId=" + SharedPreferenceUtil.getInstance().getUserId() + "&unionId=" + SharedPreferenceUtil.getInstance().getUnionId();
+            String url = banner.getLinkUrl() /*+ "&userId=" + SharedPreferenceUtil.getInstance().getUserId() + "&unionId=" + SharedPreferenceUtil.getInstance().getUnionId()*/;
             Intent intent = new Intent(context, BannerLinkActivity.class);
             intent.putExtra(BannerLinkActivity.KEY_LINK_URL, url);
             context.startActivity(intent);

@@ -4,6 +4,9 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.jmtad.jftt.event.ShowPopupEvent;
+import com.jmtad.jftt.http.bean.node.Popup;
+import com.jmtad.jftt.manager.PopupManager;
 import com.jmtad.jftt.receiver.PopupReceiver;
 import com.jmtad.jftt.service.PopupService;
 import com.jmtad.jftt.util.MyToast;
@@ -11,6 +14,10 @@ import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -33,7 +40,8 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //每个页面都需要支持弹出活动弹框
+        EventBus.getDefault().register(this);
         initPresenter();
         if (null != presenter) {
             presenter.attachView(this);
@@ -104,8 +112,7 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
     protected void onResume() {
         super.onResume();
         isTop = true;
-        //每个页面都需要支持弹出活动弹框
-        registBroadcastReceiver();
+
     }
 
     @Override
@@ -113,7 +120,8 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
         super.onPause();
         isTop = false;
         //当该页面不可见时取消注册活动广播
-        unregisterReceiver(popupReceiver);
+//        unregisterReceiver(popupReceiver);
+//        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -125,4 +133,16 @@ public abstract class BaseActivity<T extends IBaseContract.IBasePresenter> exten
         popupReceiver = new PopupReceiver();
         registerReceiver(popupReceiver, filter);
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showPopup(ShowPopupEvent event) {
+        if (isTop) {
+            Popup act = event.getPopup();
+            PopupManager.getInstance().showPopup(this, act);
+            //弹窗展示后立马上报
+            PopupManager.getInstance().saveRecord(act.getId());
+        }
+    }
+
+
 }
