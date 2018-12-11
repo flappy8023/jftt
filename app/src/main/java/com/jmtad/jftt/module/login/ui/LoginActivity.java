@@ -26,7 +26,6 @@ import com.jmtad.jftt.util.wechat.WechatUtil;
 import com.jmtad.jftt.wechat.model.WXUserInfo;
 import com.victor.loading.rotate.RotateLoading;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
@@ -55,7 +54,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
         //在登录页面禁用滑动返回功能
         slidrInterface.lock();
     }

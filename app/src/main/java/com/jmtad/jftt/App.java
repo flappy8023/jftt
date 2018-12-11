@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.jmtad.jftt.util.LogUtil;
 import com.jmtad.jftt.util.wechat.WechatUtil;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -31,7 +32,11 @@ public class App extends Application {
         WechatUtil.getInstance().register();
         //监听前后台切换
         registerActivityLifecycleCallbacks(callbacks);
+        boolean b = BuildConfig.DEBUG;
+        //初始化腾讯bugly
+        CrashReport.initCrashReport(getApplicationContext(), "62dd9f041a", b);
     }
+
     private ActivityLifecycleCallbacks callbacks = new ActivityLifecycleCallbacks() {
         private int activityStartCount = 0;
 

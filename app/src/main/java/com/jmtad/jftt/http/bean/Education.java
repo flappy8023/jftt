@@ -1,4 +1,4 @@
-package com.jmtad.jftt.module.mine.bean;
+package com.jmtad.jftt.http.bean;
 
 /**
  * @description:

@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: "calces.screen"
+apply plugin: 'bugly'
 
+bugly {
+    appId = '62dd9f041a' // 注册时分配的App ID
+    appKey = 'c117a6a9-4a66-45a4-a36a-7c639c1e4fe3' // 注册时分配的App Key
+    debug = true
+}
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     signingConfigs {
@@ -28,7 +34,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
+            shrinkResources true//资源压缩
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debugConfig
         }
@@ -101,8 +109,6 @@ dependencies {
     implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxlifecycleVersion"
     //Gson
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    //banner
-    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
     //wechat
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //滚轮选择器
@@ -124,5 +130,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
     //运行时权限申请
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    //腾讯异常上报
+    implementation 'com.tencent.bugly:crashreport:2.8.6'
 
 }

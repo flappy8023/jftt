@@ -2,6 +2,7 @@ package com.jmtad.jftt.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.jmtad.jftt.R;
 import com.jmtad.jftt.customui.dialog.ActDialog;
@@ -121,19 +122,19 @@ public class PopupManager {
      * @param popId
      */
     public void saveRecord(String popId) {
-//        HttpApi.getInstance().service.addPopupRecord(SharedPreferenceUtil.getInstance().getUserId(), popId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxCallBack<BaseResponse>() {
-//            @Override
-//            public void onSuccess(BaseResponse baseResponse) {
-//                if (TextUtils.equals(baseResponse.getCode(), BaseResponse.CODE_0)) {
-//                    Log.i(TAG, "save popup record suc");
-//                }
-//            }
-//
-//            @Override
-//            public void onFail(Throwable e) {
-//                Log.e(TAG, "save popup record fail ," + e);
-//            }
-//        });
+        HttpApi.getInstance().service.addPopupRecord(SharedPreferenceUtil.getInstance().getUserId(), popId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new RxCallBack<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse baseResponse) {
+                if (TextUtils.equals(baseResponse.getCode(), BaseResponse.CODE_0)) {
+                    Log.i(TAG, "save popup record suc");
+                }
+            }
+
+            @Override
+            public void onFail(Throwable e) {
+                Log.e(TAG, "save popup record fail ," + e);
+            }
+        });
     }
 
     public boolean isShowing() {
